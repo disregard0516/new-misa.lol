@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — misa.lol</title>
+    <meta name="description" content="Edit your misa.lol page.">
+    <meta name="theme-color" content="#050606">
+    <link rel="canonical" href="https://misa.lol/dashboard">
+    <meta property="og:site_name" content="misa.lol">
+    <meta property="og:url" content="https://misa.lol/dashboard">
+    <meta property="og:title" content="Dashboard — misa.lol">
+    <meta property="og:description" content="Edit your misa.lol page.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://misa.lol/images/share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="misa.lol — be weird online again. one page for your links, music and socials.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dashboard — misa.lol">
+    <meta name="twitter:description" content="Edit your misa.lol page.">
+    <meta name="twitter:image" content="https://misa.lol/images/share.png">
+    <meta name="robots" content="noindex">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" href="/images/favicon.svg?v=facff01a" type="image/svg+xml">
+    <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/v2.css?v=facff01a">
+    <script src="/js/config.js" defer></script>
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/v2.js?v=facff01a" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<!-- ═══ SVG ICON SPRITE ═══ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M7 5h4v14H7zM13 5h4v14h-4z"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 2.5l2.3 6.6 6.7 2.4-6.7 2.4L12 20.5l-2.3-6.6L3 11.5l6.7-2.4z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l3 6.3 6.9.9-5 4.8 1.3 6.9L12 18l-6.2 3.4 1.3-6.9-5-4.8 6.9-.9z"/></symbol>
+  <symbol id="i-cursor" viewBox="0 0 24 24"><path d="M4 3l16 8-7 1.8L9 20z"/></symbol>
+  <symbol id="i-ring" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol>
+  <symbol id="i-type" viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 5-6"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><path d="M12 2.5l2.4 2 3.1-.3.9 3 2.7 1.6-1.2 2.9 1.2 2.9-2.7 1.6-.9 3-3.1-.3-2.4 2-2.4-2-3.1.3-.9-3-2.7-1.6 1.2-2.9-1.2-2.9 2.7-1.6.9-3 3.1.3z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+  <symbol id="i-game" viewBox="0 0 24 24"><path d="M6 12h4M8 10v4M15 13h.01M18 11h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-3.96 3.44L2 15.5A2.5 2.5 0 0 0 4.5 18c.8 0 1.5-.4 2-1l1.5-2h8l1.5 2c.5.6 1.2 1 2 1a2.5 2.5 0 0 0 2.5-2.5l-.74-7.06A4 4 0 0 0 17.3 5z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-toggle" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="5"/><circle cx="16" cy="12" r="3"/></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><path d="m1 1 22 22"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+</svg>
+
+<!-- ═══ DASHBOARD — talks to /api/v1/me, /api/v1/me/username (auth.js) and /api/v1/profile/me (v2.js) ═══ -->
+<div class="dash dashboard">
+  <header class="dash__top">
+    <a href="/" class="nav__logo" aria-label="misa.lol home"><span class="nav__dagger" aria-hidden="true">†</span>misa.lol</a>
+    <div class="dash__user">
+      <img class="dash__avatar" id="nav-avatar" src="/images/favicon.svg" alt="" width="34" height="34">
+      <div class="dash__userinfo"><b id="nav-name">loading…</b><span id="nav-handle">misa.lol</span></div>
+    </div>
+    <div class="dash__topactions">
+      <a class="btn btn--ghost btn--sm" href="/" target="_blank" rel="noopener" data-view-page>View my page<span class="sr-only"> — opens in a new tab</span> <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <button class="btn btn--ghost btn--sm dash__peek" type="button" data-peek aria-controls="dash-preview" aria-expanded="false"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg><span>Preview</span></button>
+      <button class="btn btn--ivory btn--sm" type="button" data-save><span>Save<span class="dash__save-more"> changes</span></span></button>
+    </div>
+  </header>
+
+  <aside class="dash__side">
+    <button class="findbtn" type="button" data-find-open aria-haspopup="dialog">
+      <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg><span>Find a setting</span><kbd aria-hidden="true">/</kbd>
+    </button>
+    <nav class="dash__nav" aria-label="Dashboard sections">
+      <a href="#overview" class="is-active"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>Overview</a>
+      <a href="#page"><svg class="ic" aria-hidden="true"><use href="#i-type"/></svg>Your page</a>
+      <a href="#links"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg>Links</a>
+      <a href="#look"><svg class="ic" aria-hidden="true"><use href="#i-bolt"/></svg>Look &amp; effects</a>
+      <a href="#strange"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg>The strange bits</a>
+      <a href="#visitors"><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg>Visitors</a>
+      <a href="#account"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg>Account</a>
+    </nav>
+    <div class="dash__upgrade">
+      <p class="eyebrow">plan</p>
+      <p class="dash__plan"><b data-plan-name>Free</b> <span data-plan-note>forever</span></p>
+      <p data-plan-copy>Lifetime ($5) and Supporter ($9.99) are one-time upgrades — nothing renews.</p>
+      <a class="btn btn--crimson btn--sm" href="/pricing#lifetime" data-plan-cta>See upgrades</a>
+    </div>
+    <button type="button" class="dash__logout" id="logout-btn"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>Log out</button>
+  </aside>
+
+  <main class="dash__main dash-editor is-loading" id="main" aria-busy="true">
+    <p class="auth-message" id="auth-message" role="status" aria-live="polite" hidden></p>
+    <noscript><div class="draftbar" data-mode="expired" role="alert"><span class="draftbar__text">The dashboard is a script — with JavaScript off it can only show you empty tiles. Turn it on for misa.lol and reload.</span></div></noscript>
+    <div class="draftbar" data-draft hidden role="status">
+      <span class="draftbar__text" data-draft-text>Unsaved changes from earlier are on this device.</span>
+      <span class="draftbar__actions">
+        <button class="btn btn--ivory btn--sm" type="button" data-draft-restore>Restore</button>
+        <button class="btn btn--ghost btn--sm" type="button" data-draft-discard>Discard</button>
+        <a class="btn btn--ivory btn--sm" href="/login" data-draft-login hidden>Log in again</a>
+        <button class="btn btn--ivory btn--sm" type="button" data-draft-reload hidden>Reload</button>
+      </span>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="dash__sec" id="overview">
+      <div class="dash__head">
+        <p class="eyebrow">overview</p>
+        <h1 class="title dash__title">Your corner, <em>at a glance.</em></h1>
+      </div>
+      <ol class="checklist" data-checklist hidden aria-label="Getting your page live">
+        <li data-check="name"><a href="#account"><span class="checklist__mark" aria-hidden="true"></span><b class="checklist__title"><span class="sr-only" data-check-state></span>Pick your name</b><span class="checklist__note">misa.lol/<i data-link-user>…</i> — that’s your link</span></a></li>
+        <li data-check="about"><a href="#page"><span class="checklist__mark" aria-hidden="true"></span><b class="checklist__title"><span class="sr-only" data-check-state></span>Say who you are</b><span class="checklist__note">a display name and a line of bio</span></a></li>
+        <li data-check="link"><a href="#links"><span class="checklist__mark" aria-hidden="true"></span><b class="checklist__title"><span class="sr-only" data-check-state></span>Add a link</b><span class="checklist__note">where people should go from here</span></a></li>
+        <li data-check="save"><button type="button" data-save><span class="checklist__mark" aria-hidden="true"></span><b class="checklist__title"><span class="sr-only" data-check-state></span>Hit save</b><span class="checklist__note">and your page is live</span></button></li>
+      </ol>
+      <div class="yourlink" data-yourlink>
+        <span class="yourlink__label">your link</span>
+        <span class="yourlink__url"><b>misa.lol/</b><span data-link-user>…</span></span>
+        <button class="btn btn--ghost btn--sm" type="button" data-copy-link>Copy</button>
+        <a class="btn btn--ghost btn--sm" href="/" target="_blank" rel="noopener" data-view-page>Open<span class="sr-only"> your page in a new tab</span> <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="tiles">
+        <article class="tile"><p class="tile__label">page views</p><p class="tile__num" data-stat-views>…</p><p class="tile__note" data-stat-views-note>since your page went live</p></article>
+        <article class="tile"><p class="tile__label">links</p><p class="tile__num" data-stat-links>…</p><p class="tile__note">enabled on your page</p></article>
+        <article class="tile"><p class="tile__label">badges</p><p class="tile__num" data-stat-badges>…</p><p class="tile__note">showing on your page</p></article>
+        <article class="tile tile--hint"><p class="tile__label">status</p><p class="tile__num" data-stat-status>—</p><p class="tile__note" data-stat-status-note>checking…</p></article>
+      </div>
+      <div class="milestone" data-milestone hidden>
+        <div class="milestone__text"><p class="tile__label">milestone</p><p class="milestone__num" data-ms-num>1,000 views.</p><p class="milestone__note" data-ms-note></p></div>
+        <div class="milestone__acts"><a class="btn btn--ivory btn--sm" href="#" target="_blank" rel="noopener" data-ms-open>Open the card</a><button class="btn btn--ghost btn--sm" type="button" data-ms-copy>Copy its link</button></div>
+      </div>
+      <details class="share" data-share hidden>
+        <summary>What your link looks like when it's posted</summary>
+        <div class="share__body"><img src="/images/share.png" alt="" width="600" height="315" loading="lazy"><p class="dash__note">Discord, X, iMessage and Telegram show this card for misa.lol/<span data-link-user>…</span>. It follows your colours, name, badge and bio — save, and it updates within a few minutes.</p>
+          <div class="dash__grid share__custom">
+            <div class="field"><div class="field__label"><label for="f-cardline">your line on the card</label><span>lifetime perk</span></div><div class="field__box"><input class="field__input" id="f-cardline" type="text" maxlength="60" placeholder="be weird online again." data-cfg="settings.shareCard.tagline" data-plan="lifetime"></div><p class="field__hint"><span class="dot" aria-hidden="true"></span><span>handwritten, in your accent — replaces the misa.lol line</span></p></div>
+            <div class="field"><div class="field__label"><label for="f-cardstyle">card style</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-cardstyle" data-cfg="settings.shareCard.style" data-plan="lifetime"><option value="glow">Glow — ink with your accent</option><option value="poster">Poster — your accent, edge to edge</option><option value="mono">Mono — ink and ivory, a hairline frame</option></select></div></div>
+          </div></div>
+      </details>
+      <div class="ana" data-analytics><!-- v3.90: shown from the first frame (as a placeholder) so the sections below don't jump when the numbers land; hidden only if analytics can't load -->
+        <div class="ana__col ana__col--wide"><p class="tile__label">last 14 days</p><div class="ana__bars" data-ana-bars role="group" aria-label="Views per day — tap a bar for the number" aria-describedby="ana-cap"></div><p class="ana__cap" id="ana-cap" data-ana-cap aria-live="polite">last 14 days · …</p></div>
+        <div class="ana__col"><p class="tile__label">where from</p><ul class="ana__list" data-ana-refs><li class="ana__empty">…</li></ul></div>
+        <div class="ana__col"><p class="tile__label">what they clicked</p><ul class="ana__list" data-ana-clicks><li class="ana__empty">…</li></ul></div>
+      </div>
+
+      <!-- v3.127: the visitor's-eye replay -->
+      <h2 class="dash__sub dash__sub--gap">The last ten visits</h2>
+      <p class="dash__note">Counts tell you how many. This tells you what happened: someone arrived from tiktok on a phone, tapped <em>new single</em> twelve seconds later, signed your guestbook, left. Kept for a week, then gone. No addresses, no names, nothing they typed — and off unless you turn it on.</p>
+      <label class="toggle" data-toggle title="Keep the last visits as little stories, for a week"><input type="checkbox" data-cfg="settings.replay"><i aria-hidden="true"></i>keep a replay</label>
+      <ol class="replay" data-replay hidden></ol>
+      <p class="dash__note replay__msg" data-replay-msg hidden></p>
+    </section>
+
+    <section class="dash__sec" id="page">
+      <div class="dash__head">
+        <p class="eyebrow">your page</p>
+        <h2 class="title dash__title">Who’s <em>this?</em></h2>
+      </div>
+      <div class="dash__grid">
+        <div class="field"><div class="field__label"><label for="f-name">display name</label></div><div class="field__box"><input class="field__input" id="f-name" type="text" maxlength="60" placeholder="yourname" data-cfg="profile.displayName"></div></div>
+        <div class="field"><div class="field__label"><label for="f-loc">location</label><span>optional</span></div><div class="field__box"><input class="field__input" id="f-loc" type="text" maxlength="60" placeholder="somewhere" data-cfg="profile.location"></div></div>
+        <div class="field field--wide"><div class="field__label"><label for="f-bio">bio</label><span>a line or three</span></div><div class="field__box"><textarea class="field__input" id="f-bio" rows="3" maxlength="300" placeholder="not a phase." data-cfg="profile.description"></textarea></div></div>
+        <div class="field"><div class="field__label"><label for="f-avatar">avatar image</label><span>a link, or upload one</span></div><div class="field__box"><input class="field__input" id="f-avatar" type="url" data-asset="image" placeholder="https://…/me.png" data-cfg="assets.avatar.url"><button class="field__eye field__up" type="button" data-upload="avatar" data-target="f-avatar" aria-label="Upload an avatar image" title="Upload an avatar image"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg></button></div><p class="field__hint" data-asset-note hidden><span class="dot" aria-hidden="true"></span><span></span></p></div>
+        <div class="field"><div class="field__label"><label for="f-audio">audio</label><span>autoplays after the first tap</span></div><div class="field__box"><input class="field__input" id="f-audio" type="url" data-asset="audio" placeholder="https://…/track.mp3" data-cfg="assets.audio.url"><button class="field__eye field__up" type="button" data-upload="audio" data-target="f-audio" aria-label="Upload a track" title="Upload a track"><svg class="ic" aria-hidden="true"><use href="#i-music"/></svg></button></div><p class="field__hint" data-asset-note hidden><span class="dot" aria-hidden="true"></span><span></span></p></div>
+        <div class="field"><div class="field__label"><label for="f-audioname">track name</label></div><div class="field__box"><input class="field__input" id="f-audioname" type="text" maxlength="60" placeholder="graveyard shift" data-cfg="assets.audio.name"></div></div>
+        <div class="field"><div class="field__label"><label for="f-player">player style</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-player" data-cfg="settings.playerStyle" data-plan="lifetime"><option value="bars">Bars</option><option value="minimal">Minimal</option><option value="vinyl">Vinyl</option></select></div></div>
+        <div class="field field--row">
+          <label class="toggle" data-toggle><input type="checkbox" data-cfg="assets.audioEnabled"><i aria-hidden="true"></i>play audio</label>
+          <label class="range"><span>volume</span><input type="range" min="0" max="1" step="0.05" data-cfg="assets.volume"></label>
+        </div>
+      </div>
+
+      <h3 class="dash__sub dash__sub--gap">Badges</h3>
+      <p class="dash__note">Badges are granted to your account — you choose which ones your page shows. The verified check comes with Lifetime; Supporter turns it gold.</p>
+      <div class="badges" data-badges></div>
+      <p class="auth-message" data-form-msg data-badges-msg role="status" hidden></p>
+    </section>
+
+    <section class="dash__sec" id="links">
+      <div class="dash__head">
+        <p class="eyebrow">links</p>
+        <h2 class="title dash__title">Where people <em>find you.</em></h2>
+        <p class="lede">The order here is the order on your page — use the arrows to move a link.</p>
+      </div>
+      <p class="sr-only" aria-live="polite" data-links-live></p>
+      <div class="socials" data-socials></div>
+      <div class="dash__btnrow"><button class="btn btn--ghost" type="button" data-add-social><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>Add a link</button><button class="btn btn--ghost" type="button" data-check-links title="The server knocks on every link on your page and tells you which ones are dead">Check my links</button></div>
+      <div class="linkcheck" data-linkcheck hidden><p class="linkcheck__sum" data-linkcheck-sum role="status"></p><ul class="linkcheck__list" data-linkcheck-list></ul></div>
+      <h3 class="dash__sub dash__sub--gap">Blocks <span class="dash__perk" data-blocks-perk>lifetime perk</span></h3>
+      <p class="dash__note">More than links: a heading, a paragraph, a quote, a † divider, a “currently:” status line, a clock that reads “it’s 3:12 am in berlin”, a now-playing line (typed, or live from ListenBrainz), or the weather where you are — above or below your links.</p>
+      <p class="sr-only" aria-live="polite" data-blocks-live></p>
+      <div class="socials blocks-edit" data-blocks></div>
+      <datalist id="tz-list"><option value="UTC"><option value="Europe/London"><option value="Europe/Dublin"><option value="Europe/Lisbon"><option value="Europe/Paris"><option value="Europe/Berlin"><option value="Europe/Amsterdam"><option value="Europe/Brussels"><option value="Europe/Madrid"><option value="Europe/Rome"><option value="Europe/Vienna"><option value="Europe/Zurich"><option value="Europe/Prague"><option value="Europe/Warsaw"><option value="Europe/Stockholm"><option value="Europe/Oslo"><option value="Europe/Copenhagen"><option value="Europe/Helsinki"><option value="Europe/Athens"><option value="Europe/Istanbul"><option value="Europe/Kyiv"><option value="Europe/Moscow"><option value="America/New_York"><option value="America/Toronto"><option value="America/Chicago"><option value="America/Denver"><option value="America/Phoenix"><option value="America/Los_Angeles"><option value="America/Vancouver"><option value="America/Anchorage"><option value="Pacific/Honolulu"><option value="America/Mexico_City"><option value="America/Bogota"><option value="America/Lima"><option value="America/Santiago"><option value="America/Sao_Paulo"><option value="America/Argentina/Buenos_Aires"><option value="Africa/Cairo"><option value="Africa/Lagos"><option value="Africa/Johannesburg"><option value="Africa/Nairobi"><option value="Asia/Dubai"><option value="Asia/Tehran"><option value="Asia/Karachi"><option value="Asia/Kolkata"><option value="Asia/Dhaka"><option value="Asia/Bangkok"><option value="Asia/Jakarta"><option value="Asia/Singapore"><option value="Asia/Kuala_Lumpur"><option value="Asia/Manila"><option value="Asia/Hong_Kong"><option value="Asia/Shanghai"><option value="Asia/Taipei"><option value="Asia/Seoul"><option value="Asia/Tokyo"><option value="Australia/Perth"><option value="Australia/Adelaide"><option value="Australia/Sydney"><option value="Australia/Melbourne"><option value="Australia/Brisbane"><option value="Pacific/Auckland"></datalist>
+      <button class="btn btn--ghost" type="button" data-add-block data-plan="lifetime"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>Add a block</button>
+    </section>
+
+    <section class="dash__sec" id="look">
+      <div class="dash__head">
+        <p class="eyebrow">look &amp; effects</p>
+        <h2 class="title dash__title">Make it <em>yours.</em></h2>
+        <p class="lede">Start from a theme, then change anything below. Themes only set colours, corners, type and effects — your links and words stay.</p>
+      </div>
+      <div class="themes" role="group" aria-label="Themes" data-themes>
+        <button class="theme-pick" type="button" data-theme-pick="gothic" style="--t1:#050606;--t2:#F00646;--tf:#F2F2F0"><i aria-hidden="true">Aa</i><span>gothic</span></button>
+        <button class="theme-pick" type="button" data-theme-pick="soft" style="--t1:#fff1f6;--t2:#ff6ea9;--tf:#3b2a33"><i aria-hidden="true">Aa</i><span>soft</span></button>
+        <button class="theme-pick" type="button" data-theme-pick="mono" style="--t1:#000000;--t2:#ffffff;--tf:#ffffff"><i aria-hidden="true">Aa</i><span>mono</span></button>
+        <button class="theme-pick" type="button" data-theme-pick="paper" style="--t1:#EEE8E2;--t2:#141210;--tf:#141210"><i aria-hidden="true">Aa</i><span>paper</span></button>
+        <button class="theme-pick" type="button" data-theme-pick="sunset" style="--t1:#1a0b2e;--t2:#ff8a3d;--tf:#fff3e6"><i aria-hidden="true">Aa</i><span>sunset</span></button>
+        <button class="theme-pick" type="button" data-theme-pick="y2k" style="--t1:#03060f;--t2:#39ffa0;--tf:#c8ffe6"><i aria-hidden="true">Aa</i><span>y2k</span></button>
+        <button class="theme-pick" type="button" data-theme-pick="vampire" style="--t1:#0b0004;--t2:#b3001b;--tf:#f3e9e9" title="Blood on velvet — blackletter, embers, a vinyl player"><i aria-hidden="true">Aa</i><span>vampire</span></button>
+        <button class="theme-pick" type="button" data-theme-pick="cathedral" style="--t1:#0e0c14;--t2:#d4a24c;--tf:#efe6d2" title="Stone and candlelight — Cormorant, a halo, ghost links"><i aria-hidden="true">Aa</i><span>cathedral</span></button>
+        <button class="theme-pick" type="button" data-theme-pick="static" style="--t1:#101010;--t2:#e8e8e8;--tf:#f5f5f5" title="Dead channel — VT323, hard shadows, pixel frame, rain"><i aria-hidden="true">Aa</i><span>static</span></button>
+        <button class="theme-pick" type="button" data-theme-pick="lavender" style="--t1:#f3eefc;--t2:#7c5cff;--tf:#2a2140" title="A soft purple haze — Playfair, petals, outline links"><i aria-hidden="true">Aa</i><span>lavender</span></button>
+      </div>
+      <p class="look__reset"><button class="btn btn--ghost btn--sm" type="button" data-theme-reset hidden><span>Back to <b data-theme-reset-name>the theme</b></span></button></p>
+
+      <p class="sr-only" id="lock-lifetime">Lifetime perk — $5, once. Unlock it on the pricing page.</p>
+      <p class="sr-only" id="lock-supporter">Supporter perk — $9.99, once. Unlock it on the pricing page.</p>
+      <p class="sr-only" id="lock-uploads">Uploading files comes with Lifetime — $5, once. A link works on every plan.</p>
+      <h3 class="dash__sub dash__sub--gap">Type</h3>
+      <div class="dash__grid">
+        <div class="field"><div class="field__label"><label for="f-font">page font</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-font" data-cfg="settings.font" data-plan="lifetime"><option value="inter">Inter (default)</option><option value="playfair">Playfair Display — serif</option><option value="space-mono">Space Mono — mono</option><option value="caveat">Caveat — handwritten</option><option value="vt323">VT323 — pixel</option><option value="bebas">Bebas Neue — display</option><option value="cormorant" data-plan="supporter">Cormorant Garamond — serif · supporter</option><option value="unifraktur" data-plan="supporter">UnifrakturMaguntia — blackletter · supporter</option></select></div><p class="field__hint"><span class="dot" aria-hidden="true"></span><span>the name, bio and links take the font; the handle stays in Playfair italic</span></p></div>
+      </div>
+      <h3 class="dash__sub dash__sub--gap">Colours</h3>
+      <div class="dash__grid look__colours">
+        <label class="color"><span>accent</span><input type="color" data-cfg="settings.accentColor"><code data-color-code>#F00646</code></label>
+        <label class="color"><span>text</span><input type="color" data-cfg="settings.textColor"><code data-color-code>#F2F2F0</code></label>
+        <label class="color"><span>background</span><input type="color" data-cfg="settings.backgroundColor"><code data-color-code>#050606</code></label>
+        <label class="color"><span>icons</span><input type="color" data-cfg="settings.iconColor"><code data-color-code>#F00646</code></label>
+      </div>
+
+      <h3 class="dash__sub dash__sub--gap">Behind the card</h3>
+      <div class="dash__grid">
+        <div class="field"><div class="field__label"><label for="f-bgimg">background image</label></div><div class="field__box"><input class="field__input" id="f-bgimg" type="url" data-asset="image" placeholder="https://…/bg.jpg" data-cfg="assets.background.url"><button class="field__eye field__up" type="button" data-upload="background" data-target="f-bgimg" aria-label="Upload a background image" title="Upload a background image"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg></button></div><p class="field__hint" data-asset-note hidden><span class="dot" aria-hidden="true"></span><span></span></p></div>
+        <div class="field"><div class="field__label"><label for="f-bgvid">background video</label><span>lifetime perk</span></div><div class="field__box"><input class="field__input" id="f-bgvid" type="url" data-asset="video" data-plan="lifetime" placeholder="https://…/loop.mp4" data-cfg="assets.backgroundVideo.url"><button class="field__eye field__up" type="button" data-upload="video" data-target="f-bgvid" aria-label="Upload a background video" title="Upload a background video"><svg class="ic" aria-hidden="true"><use href="#i-video"/></svg></button></div><p class="field__hint" data-asset-note hidden><span class="dot" aria-hidden="true"></span><span></span></p></div>
+        <div class="field"><div class="field__label"><label for="f-cursorset">cursor</label><span>supporter perk</span></div><div class="field__box"><select class="field__input" id="f-cursorset" data-cfg="settings.cursor" data-plan="supporter"><option value="default">Default</option><option value="star">Gold star</option><option value="ring">Ring</option><option value="snow">Snow</option></select></div><p class="field__hint"><span class="dot" aria-hidden="true"></span><span>a cursor image of your own wins over these</span></p></div>
+        <div class="field"><div class="field__label"><label for="f-cursor">cursor image</label><span>supporter perk</span></div><div class="field__box"><input class="field__input" id="f-cursor" type="url" data-asset="image" data-plan="supporter" placeholder="https://…/cursor.png" data-cfg="assets.cursor.url"><button class="field__eye field__up" type="button" data-upload="cursor" data-target="f-cursor" aria-label="Upload a cursor image" title="Upload a cursor image"><svg class="ic" aria-hidden="true"><use href="#i-cursor"/></svg></button></div><p class="field__hint" data-asset-note hidden><span class="dot" aria-hidden="true"></span><span></span></p></div>
+      </div>
+
+      <h3 class="dash__sub dash__sub--gap">Effects</h3>
+      <div class="dash__grid">
+        <div class="field"><div class="field__label"><label for="f-ufx">username effect</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-ufx" data-cfg="settings.usernameEffect" data-plan="lifetime"><option>None</option><option>Glow</option><option>Gradient</option><option>Shimmer</option></select></div></div>
+        <div class="field"><div class="field__label"><label for="f-bfx">background effect</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-bfx" data-cfg="settings.backgroundEffect" data-plan="lifetime"><option>None</option><option>Particles</option><option>Stars</option><option>Glow</option><option>Rain</option><option>Snow</option><option>Embers</option><option>Petals</option></select></div></div>
+        <div class="field"><div class="field__label"><label for="f-linkstyle">link style</label></div><div class="field__box"><select class="field__input" id="f-linkstyle" data-cfg="settings.linkStyle"><option value="pill">Pill</option><option value="outline">Outline</option><option value="ghost">Ghost — just words</option><option value="brutal">Brutal — hard shadow</option><option value="glass">Glass</option></select></div></div>
+        <div class="field"><div class="field__label"><label for="f-frame">avatar frame</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-frame" data-cfg="settings.avatarFrame" data-plan="lifetime"><option value="none">None</option><option value="ring">Ring — turns</option><option value="halo">Halo — breathes</option><option value="pixel">Pixel</option><option value="petals">Petals</option></select></div></div>
+        <div class="field"><div class="field__label"><label for="f-tab">tab title</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-tab" data-cfg="settings.tabTitle" data-plan="lifetime"><option value="none">Still</option><option value="breathe">Breathe — two titles trade places</option><option value="scroll">Scroll — the name walks</option><option value="blink">Blink — a dot pulses</option></select></div></div>
+        <div class="field"><div class="field__label"><label for="f-enter">entrance animation</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-enter" data-cfg="settings.entryAnimation" data-plan="lifetime"><option>None</option><option>Fade</option><option>Rise</option><option>Flicker</option><option>Glitch</option></select></div></div>
+        <div class="field"><div class="field__label"><label for="f-entry">entry screen text</label></div><div class="field__box"><input class="field__input" id="f-entry" type="text" maxlength="40" placeholder="click to enter" data-cfg="settings.entryText"></div></div>
+        <div class="field field--wide field--row">
+          <label class="toggle" data-toggle><input type="checkbox" data-cfg="settings.entryScreen" data-plan="lifetime"><i aria-hidden="true"></i>entry screen</label>
+          <label class="toggle" data-toggle title="The bio types itself out when the page opens"><input type="checkbox" data-cfg="settings.bioTypewriter" data-plan="lifetime"><i aria-hidden="true"></i>typewriter bio</label>
+          <label class="toggle" data-toggle title="The background wash follows the visitor’s clock: dawn, day, dusk, night"><input type="checkbox" data-cfg="settings.mood" data-plan="lifetime"><i aria-hidden="true"></i>page moods</label>
+          <label class="toggle" data-toggle><input type="checkbox" data-cfg="settings.usernameGlow" data-plan="supporter"><i aria-hidden="true"></i>name halo</label>
+          <label class="toggle" data-toggle title="A small gold “supporter” tag next to your name"><input type="checkbox" data-cfg="settings.supporterTag" data-plan="supporter"><i aria-hidden="true"></i>supporter tag</label>
+          <label class="toggle" data-toggle title="Gold sparks that follow the pointer across your page"><input type="checkbox" data-cfg="settings.sparkleTrail" data-plan="supporter"><i aria-hidden="true"></i>sparkle trail</label>
+          <label class="toggle" data-toggle title="A gold gradient border that slowly turns around the card"><input type="checkbox" data-cfg="settings.goldBorder" data-plan="supporter"><i aria-hidden="true"></i>gold border</label>
+          <label class="toggle" data-toggle><input type="checkbox" data-cfg="settings.socialGlow"><i aria-hidden="true"></i>link glow</label>
+          <label class="toggle" data-toggle><input type="checkbox" data-cfg="settings.profileGradient"><i aria-hidden="true"></i>gradient border</label>
+        </div>
+      </div>
+
+      <h3 class="dash__sub dash__sub--gap">What shows</h3>
+      <div class="field field--row">
+          <label class="toggle" data-toggle><input type="checkbox" data-cfg="settings.showViews"><i aria-hidden="true"></i>show views</label>
+          <label class="toggle" data-toggle title="A live “3 people here right now” line on your page"><input type="checkbox" data-cfg="settings.presence"><i aria-hidden="true"></i>who’s here right now</label>
+          <label class="toggle" data-toggle title="“here since jul 2026” in the footer — a wax seal after a month, a patina after a year"><input type="checkbox" data-cfg="settings.since"><i aria-hidden="true"></i>here since</label>
+          <label class="toggle" data-toggle title="A line for someone who has been here before — written by their own browser, never by us"><input type="checkbox" data-cfg="settings.remember"><i aria-hidden="true"></i>remember visitors</label>
+          <label class="toggle" data-toggle><input type="checkbox" data-cfg="settings.showBadges"><i aria-hidden="true"></i>show badges</label>
+          <label class="toggle" data-toggle><input type="checkbox" data-cfg="settings.showSocials"><i aria-hidden="true"></i>show links</label>
+          <label class="toggle" data-toggle title="Show your page in the real pages row on misa.lol/explore"><input type="checkbox" data-cfg="settings.listed"><i aria-hidden="true"></i>list on explore</label>
+          <label class="toggle" data-toggle title="Take the “made with misa.lol” badge off your page"><input type="checkbox" data-cfg="settings.hideBrand" data-plan="lifetime"><i aria-hidden="true"></i>no misa.lol badge</label>
+      </div>
+      <p class="dash__note">“Remember visitors” writes nothing to our servers: a returning visitor’s own browser keeps the count and shows them a line — <em>you’ve been here before</em>, and what turned up while they were away: <em>2 new answers, 1 new drawing since</em>, with a small mark on each one. Clearing their site data forgets it, and you never see who they are or what they’ve seen.</p>
+      <div class="dash__grid">
+        <div class="field"><div class="field__label"><label for="f-counter">hit counter</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-counter" data-cfg="settings.counterStyle" data-plan="lifetime"><option value="plain">Plain — “12,412 views”</option><option value="odometer">Odometer — wheels that roll up</option><option value="lcd">LCD — glows in your accent</option><option value="flip">Split-flap</option></select></div><p class="field__hint"><span class="dot" aria-hidden="true"></span><span>“you are visitor no. 012412” — shows while views are on</span></p></div>
+      </div>
+
+      <h3 class="dash__sub dash__sub--gap">The card</h3>
+      <div class="field field--row look__ranges">
+          <label class="range"><span>card opacity</span><input type="range" min="0" max="1" step="0.01" data-cfg="settings.profileOpacity"><code data-range-out>–</code></label>
+          <label class="range"><span>card blur</span><input type="range" min="0" max="40" step="1" data-cfg="settings.profileBlur"><code data-range-out>–</code></label>
+          <label class="range"><span>corner radius</span><input type="range" min="0" max="60" step="1" data-cfg="settings.profileRadius"><code data-range-out>–</code></label>
+          <label class="range"><span>background opacity</span><input type="range" min="0" max="1" step="0.01" data-cfg="settings.backgroundOpacity"><code data-range-out>–</code></label>
+      </div>
+    </section>
+
+    <section class="dash__sec" id="strange">
+      <div class="dash__head">
+        <p class="eyebrow">the strange bits</p>
+        <h2 class="title dash__title">Things a page <em>shouldn't</em> be able to do.</h2>
+        <p class="lede">A word that unlocks a link. Weather from where you are, drawn over the page. Words sealed until a day you pick. Parts that only exist after dark. A line dealt to each visitor. A whole other side. None of this is necessary. That's rather the point.</p>
+      </div>
+
+      <h3 class="dash__sub dash__sub--gap">Secret word <span class="dash__perk">lifetime perk</span></h3>
+      <p class="dash__note">A link that isn’t on the page until someone types the word anywhere on it — or taps your avatar five times and says it. Neither the word nor the link sits in the page’s source.</p>
+      <div class="dash__grid">
+        <div class="field"><div class="field__label"><label for="f-secretword">the word</label><span>letters and numbers, 3–24</span></div><div class="field__box"><input class="field__input" id="f-secretword" type="text" maxlength="24" placeholder="nightbus" autocomplete="off" autocapitalize="none" spellcheck="false" data-cfg="settings.secret.word" data-plan="lifetime"></div><p class="field__hint" data-secret-hint><span class="dot" aria-hidden="true"></span><span>no secret yet</span></p></div>
+        <div class="field"><div class="field__label"><label for="f-secreturl">where it leads</label></div><div class="field__box"><input class="field__input" id="f-secreturl" type="url" placeholder="https://…/the-b-side" data-cfg="settings.secret.url" data-plan="lifetime"></div></div>
+        <div class="field"><div class="field__label"><label for="f-secretlabel">what the link says</label></div><div class="field__box"><input class="field__input" id="f-secretlabel" type="text" maxlength="40" placeholder="you found it" data-cfg="settings.secret.label" data-plan="lifetime"></div></div>
+      </div>
+      <h3 class="dash__sub dash__sub--gap">The moon</h3>
+      <p class="dash__note">Tonight's real moon, in the corner of your card — the actual phase, worked out from the date. Nothing is fetched and nothing is stored; the moon is a clock everybody already shares. It's a crescent on the correct side, which is the bit most drawings of the moon get wrong.</p>
+      <div class="field field--row">
+        <label class="toggle" data-toggle title="Show tonight's real moon on your page"><input type="checkbox" data-cfg="settings.moon"><i aria-hidden="true"></i>the moon on my page</label>
+        <span class="dash__note" data-moon-hint style="margin:0"></span>
+      </div>
+
+      <h3 class="dash__sub dash__sub--gap">The sky <span class="dash__perk">lifetime perk</span></h3>
+      <p class="dash__note">Your page wears the weather where you are. Raining in berlin? It rains on your page — snow, fog, storms with a flash, stars on a clear night. Read from the same free forecast as the weather block, checked every ten minutes, and it holds still for anyone who asks for less motion.</p>
+      <div class="dash__grid">
+        <div class="field"><div class="field__label"><label for="f-sky">the town whose sky you want</label><span>blank for none</span></div><div class="field__box"><input class="field__input" id="f-sky" type="text" maxlength="64" placeholder="berlin" autocomplete="off" data-cfg="settings.sky" data-plan="lifetime"></div><p class="field__hint" data-sky-hint><span class="dot" aria-hidden="true"></span><span>no sky</span></p></div>
+      </div>
+      <h3 class="dash__sub dash__sub--gap">Time capsule <span class="dash__perk">lifetime perk</span></h3>
+      <p class="dash__note">Write something now that your page opens on a day you pick. Until then visitors see a wax seal and a countdown — <b>the words never leave the server</b>, so nobody can read ahead in the page source. On the day, it opens itself.</p>
+      <div class="dash__grid">
+        <div class="field field--wide"><div class="field__label"><label for="f-capsuletext">what it says</label><span>up to 600 characters</span></div><div class="field__box"><textarea class="field__input" id="f-capsuletext" maxlength="600" rows="3" placeholder="for whoever is reading this in a year…" data-cfg="settings.capsule.text" data-plan="lifetime"></textarea></div><p class="field__hint" data-capsule-hint><span class="dot" aria-hidden="true"></span><span>nothing sealed yet</span></p></div>
+        <div class="field"><div class="field__label"><label for="f-capsuleat">opens on</label><span>UTC, midnight</span></div><div class="field__box"><input class="field__input" id="f-capsuleat" type="date" data-cfg="settings.capsule.at" data-plan="lifetime"></div></div>
+      </div>
+      <!-- v3.142: the night shift -->
+      <h3 class="dash__sub dash__sub--gap">The night shift <span class="dash__perk">lifetime perk</span></h3>
+      <p class="dash__note">Give your page a night. Any content block marked <b>night only</b> is on it between these hours — <b>your</b> hours, not the visitor's — and outside them <b>it isn't in the page at all</b>, so nobody can read it early by looking at the source. While it's on, the page says so: <em>it's 3:14 am where you are. some of this is only here now.</em></p>
+      <div class="dash__grid">
+        <div class="field"><div class="field__label"><label for="f-nighttz">your timezone</label></div><div class="field__box"><input class="field__input" id="f-nighttz" type="text" list="tz-list" maxlength="64" placeholder="Europe/Berlin" autocomplete="off" spellcheck="false" data-cfg="settings.night.tz" data-plan="lifetime"></div><p class="field__hint" data-night-hint><span class="dot" aria-hidden="true"></span><span>no night — nothing is hidden by the hour</span></p></div>
+        <div class="field"><div class="field__label"><label for="f-nightfrom">from</label><span>hour, 0–23</span></div><div class="field__box"><input class="field__input" id="f-nightfrom" type="number" min="0" max="23" step="1" placeholder="23" data-cfg="settings.night.from" data-plan="lifetime"></div></div>
+        <div class="field"><div class="field__label"><label for="f-nightto">until</label><span>hour, 0–23</span></div><div class="field__box"><input class="field__input" id="f-nightto" type="number" min="0" max="23" step="1" placeholder="5" data-cfg="settings.night.to" data-plan="lifetime"></div></div>
+      </div>
+
+      <!-- v3.138: the draw -->
+      <h3 class="dash__sub dash__sub--gap">The draw <span class="dash__perk">lifetime perk</span></h3>
+      <p class="dash__note">Write a small deck — one line a line, up to twelve. Every visitor is dealt one of them and keeps it for the day; the person next to them gets a different one. Nothing about who got what is stored anywhere: it's worked out from the same anonymous shape the view counter uses, fresh, every time the page is drawn.</p>
+      <div class="field field--wide"><div class="field__label"><label for="f-draw">the deck</label><span>one line a line, twelve at most</span></div><div class="field__box"><textarea class="field__input" id="f-draw" rows="5" maxlength="1600" placeholder="the b-side is better&#10;go outside&#10;you were right about the drums" data-cfg="settings.draw" data-plan="lifetime"></textarea></div><p class="field__hint" data-draw-hint><span class="dot" aria-hidden="true"></span><span>no deck — nothing is dealt</span></p></div>
+
+      <!-- v3.135: the back of the page -->
+      <h3 class="dash__sub dash__sub--gap">The other side <span class="dash__perk">lifetime perk</span></h3>
+      <p class="dash__note">Your page can have a back. There's a folded corner at the bottom of the card — turn it over and the page shows a second face: something handwritten, and any block you send round there. Fill either in and the corner appears.</p>
+      <div class="dash__grid">
+        <div class="field"><div class="field__label"><label for="f-backtitle">what the back is called</label><span>optional</span></div><div class="field__box"><input class="field__input" id="f-backtitle" type="text" maxlength="40" placeholder="liner notes" data-cfg="settings.reverse.title" data-plan="lifetime"></div></div>
+        <div class="field field--wide"><div class="field__label"><label for="f-backtext">what it says</label><span>up to 800 characters</span></div><div class="field__box"><textarea class="field__input" id="f-backtext" maxlength="800" rows="4" placeholder="the long version. a thank-you. the story behind the record. anything that doesn&#39;t belong on the front." data-cfg="settings.reverse.text" data-plan="lifetime"></textarea></div><p class="field__hint" data-back-hint><span class="dot" aria-hidden="true"></span><span>no back yet</span></p></div>
+      </div>
+    </section>
+
+    <section class="dash__sec" id="visitors">
+      <div class="dash__head">
+        <p class="eyebrow">visitors</p>
+        <h2 class="title dash__title">The people who <em>came.</em></h2>
+        <p class="lede">Everything on your page that somebody else puts there — a name and a line, a drawing, a question, an answer to yours, a candle. Nothing shows until you say so, or until two of you agree. Keep what you like, answer what you feel like, bin the rest.</p>
+      </div>
+      <div class="field field--row">
+        <label class="toggle" data-toggle title="Show a guestbook on your page"><input type="checkbox" data-cfg="settings.guestbook"><i aria-hidden="true"></i>guestbook on my page</label>
+      </div>
+      <p class="sr-only" aria-live="polite" data-book-live></p>
+      <h3 class="dash__sub dash__sub--gap">Waiting for you <span class="dash__perk" data-book-pending-count></span></h3>
+      <div class="book-list" data-book-pending><p class="dash__previewnote" style="text-align:left">nothing waiting.</p></div>
+      <h3 class="dash__sub dash__sub--gap">On your page <span class="dash__perk" data-book-ok-count></span></h3>
+      <div class="book-list" data-book-ok><p class="dash__previewnote" style="text-align:left">no signatures yet.</p></div>
+      <p class="auth-message" data-form-msg data-book-msg role="status" hidden></p>
+
+      <h3 class="dash__sub dash__sub--gap">Chalkboard</h3>
+      <p class="dash__note">A small chalkboard on your page. Visitors draw something; nothing hangs on the wall until you keep it.</p>
+      <div class="field field--row">
+        <label class="toggle" data-toggle title="Show a chalkboard on your page"><input type="checkbox" data-cfg="settings.doodles"><i aria-hidden="true"></i>chalkboard on my page</label>
+      </div>
+      <p class="sr-only" aria-live="polite" data-board-live></p>
+      <h4 class="dash__sub dash__sub--gap">Drawn for you <span class="dash__perk" data-board-pending-count></span></h4>
+      <div class="board-grid" data-board-pending><p class="dash__previewnote" style="text-align:left">nothing waiting.</p></div>
+      <h4 class="dash__sub dash__sub--gap">On the wall <span class="dash__perk" data-board-ok-count></span></h4>
+      <div class="board-grid" data-board-ok><p class="dash__previewnote" style="text-align:left">nothing on the wall yet.</p></div>
+      <p class="auth-message" data-form-msg data-board-msg role="status" hidden></p>
+
+      <!-- v3.128: the ask box -->
+      <h3 class="dash__sub dash__sub--gap">Ask box</h3>
+      <p class="dash__note">A question box on your page. Answering is what publishes it — question and answer together, in your handwriting. Anything you never answer stays here, seen by nobody but you.</p>
+      <div class="field field--row">
+        <label class="toggle" data-toggle title="Show an ask box on your page"><input type="checkbox" data-cfg="settings.asks"><i aria-hidden="true"></i>ask box on my page</label>
+      </div>
+      <p class="sr-only" aria-live="polite" data-ask-live></p>
+      <h4 class="dash__sub dash__sub--gap">Waiting for an answer <span class="dash__perk" data-ask-new-count></span></h4>
+      <div class="ask-list" data-ask-new><p class="dash__previewnote" style="text-align:left">nobody has asked anything yet.</p></div>
+      <h4 class="dash__sub dash__sub--gap">Answered, and up <span class="dash__perk" data-ask-done-count></span></h4>
+      <div class="ask-list" data-ask-done><p class="dash__previewnote" style="text-align:left">nothing answered yet.</p></div>
+      <p class="auth-message" data-form-msg data-ask-msg role="status" hidden></p>
+
+      <!-- v3.136: the tally -->
+      <h3 class="dash__sub dash__sub--gap">The tally</h3>
+      <p class="dash__note">The ask box is questions coming in. This is one going out: ask something, give two to four answers, and every visitor picks one. The count is scratched on your card as tally marks, and everyone can see it. Change the question or any answer and the count starts clean.</p>
+      <div class="dash__grid">
+        <div class="field field--wide"><div class="field__label"><label for="f-tallyq">what you're asking</label><span>up to 120 characters</span></div><div class="field__box"><input class="field__input" id="f-tallyq" type="text" maxlength="120" placeholder="which one should be the single?" data-cfg="settings.tally.q"></div><p class="field__hint" data-tally-hint><span class="dot" aria-hidden="true"></span><span>not asking anything</span></p></div>
+        <div class="field"><div class="field__label"><label for="f-tally0">answer one</label></div><div class="field__box"><input class="field__input" id="f-tally0" type="text" maxlength="40" placeholder="the one about the bus" data-cfg="settings.tally.options.0"></div></div>
+        <div class="field"><div class="field__label"><label for="f-tally1">answer two</label></div><div class="field__box"><input class="field__input" id="f-tally1" type="text" maxlength="40" placeholder="the loud one" data-cfg="settings.tally.options.1"></div></div>
+        <div class="field"><div class="field__label"><label for="f-tally2">answer three</label><span>optional</span></div><div class="field__box"><input class="field__input" id="f-tally2" type="text" maxlength="40" placeholder="the one nobody has heard" data-cfg="settings.tally.options.2"></div></div>
+        <div class="field"><div class="field__label"><label for="f-tally3">answer four</label><span>optional</span></div><div class="field__box"><input class="field__input" id="f-tally3" type="text" maxlength="40" data-cfg="settings.tally.options.3"></div></div>
+      </div>
+
+      <!-- v3.134: the vigil -->
+      <h3 class="dash__sub dash__sub--gap">Vigil</h3>
+      <p class="dash__note">A shelf of candles on your page. A visitor lights one — no name, no words — and it burns down on its own, so the shelf shows who has been by lately and empties itself when nobody has. One a day each; nothing about who lit it is kept.</p>
+      <div class="field"><div class="field__label"><label for="f-vigil">candles on my page</label></div><div class="field__box"><select class="field__input" id="f-vigil" data-cfg="settings.vigil"><option value="">off</option><option value="6">on — they burn for 6 hours</option><option value="12">on — they burn for 12 hours</option><option value="24">on — they burn for 24 hours</option></select></div><p class="field__hint"><span class="dot" aria-hidden="true"></span><span data-vigil-state>off — nothing on your page, nothing kept</span></p></div>
+      <div class="field field--row">
+        <button class="btn btn--ghost" type="button" data-vigil-snuff>Put them all out</button>
+      </div>
+      <p class="auth-message" data-form-msg data-vigil-msg role="status" hidden></p>
+
+      <!-- v3.144: neighbours -->
+      <h3 class="dash__sub dash__sub--gap">Neighbours</h3>
+      <p class="dash__note">Name up to five other misa.lol pages. A name does nothing on its own — it shows up on your page <b>only if that page names you back</b>. So nobody can put themselves next to you, and you can't put yourself next to anybody: it takes two. Both pages then carry a small row of the other.</p>
+      <div class="dash__grid">
+        <div class="field"><div class="field__label"><label for="f-nb0">one</label><span>misa.lol/…</span></div><div class="field__box"><span class="field__prefix">misa.lol/</span><input class="field__input" id="f-nb0" type="text" maxlength="32" autocomplete="off" spellcheck="false" placeholder="peach" data-cfg="settings.neighbours.0"></div><p class="field__hint" data-nb-hint><span class="dot" aria-hidden="true"></span><span>nobody named yet</span></p></div>
+        <div class="field"><div class="field__label"><label for="f-nb1">two</label></div><div class="field__box"><span class="field__prefix">misa.lol/</span><input class="field__input" id="f-nb1" type="text" maxlength="32" autocomplete="off" spellcheck="false" data-cfg="settings.neighbours.1"></div></div>
+        <div class="field"><div class="field__label"><label for="f-nb2">three</label></div><div class="field__box"><span class="field__prefix">misa.lol/</span><input class="field__input" id="f-nb2" type="text" maxlength="32" autocomplete="off" spellcheck="false" data-cfg="settings.neighbours.2"></div></div>
+        <div class="field"><div class="field__label"><label for="f-nb3">four</label></div><div class="field__box"><span class="field__prefix">misa.lol/</span><input class="field__input" id="f-nb3" type="text" maxlength="32" autocomplete="off" spellcheck="false" data-cfg="settings.neighbours.3"></div></div>
+        <div class="field"><div class="field__label"><label for="f-nb4">five</label></div><div class="field__box"><span class="field__prefix">misa.lol/</span><input class="field__input" id="f-nb4" type="text" maxlength="32" autocomplete="off" spellcheck="false" data-cfg="settings.neighbours.4"></div></div>
+      </div>
+    </section>
+
+    <section class="dash__sec" id="account">
+      <div class="dash__head">
+        <p class="eyebrow">account</p>
+        <h2 class="title dash__title">The boring <em>but important bit.</em></h2>
+      </div>
+      <form id="username-form" class="dash__username">
+        <div class="field">
+          <div class="field__label"><label for="username">username</label><span>this is your link</span></div>
+          <div class="field__box"><span class="field__prefix" aria-hidden="true">misa.lol/</span><input class="field__input" id="username" name="username" type="text" minlength="3" maxlength="24" autocomplete="username" spellcheck="false" autocapitalize="off" placeholder="yourname" aria-describedby="username-hint"></div>
+          <p class="field__hint" id="username-hint"><span class="dot" aria-hidden="true"></span><span data-username-hint>3–24 characters, starts with a letter — letters, numbers, underscores. Changing it changes your link; the old one stops working.</span></p>
+        </div>
+        <p class="auth-message" data-form-msg role="status" hidden></p>
+        <button class="btn btn--ivory" type="submit">Save username</button>
+      </form>
+      <dl class="dash__facts">
+        <div><dt>email</dt><dd id="account-email">—</dd></div>
+        <div><dt>display name</dt><dd id="account-name">—</dd></div>
+        <div><dt>user id</dt><dd id="account-id">—</dd></div>
+      </dl>
+      <h3 class="dash__sub">Login methods</h3>
+      <div class="connections">
+        <div class="connection-row" data-provider="email"><span class="connection-row__icon"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></span><div class="connection-row__info"><b>Email + password</b><span data-status>Not set</span></div><span class="connection-row__toggle connection-row__toggle--connect" data-state>Password</span></div>
+        <div class="connection-row" data-provider="google"><span class="connection-row__icon"><img src="/icons/google.webp" alt="" loading="lazy" decoding="async"></span><div class="connection-row__info"><b>Google</b><span data-status>Not connected</span></div><a class="connection-row__toggle connection-row__toggle--connect" href="/api/v1/auth/google?next=/dashboard" aria-label="Connect Google">Connect</a></div>
+        <div class="connection-row" data-provider="discord"><span class="connection-row__icon"><img src="/icons/discord.webp" alt="" loading="lazy" decoding="async"></span><div class="connection-row__info"><b>Discord</b><span data-status>Not connected</span></div><a class="connection-row__toggle connection-row__toggle--connect" href="/api/v1/auth/discord?next=/dashboard" aria-label="Connect Discord">Connect</a></div>
+        <div class="connection-row" data-provider="telegram"><span class="connection-row__icon"><img src="/icons/telegram.webp" alt="" loading="lazy" decoding="async"></span><div class="connection-row__info"><b>Telegram</b><span data-status>Not connected</span></div><a class="connection-row__toggle connection-row__toggle--connect" href="/api/v1/auth/telegram" aria-label="Connect Telegram">Connect</a></div>
+      </div>
+      <details class="danger danger--calm" data-password-panel>
+        <summary data-password-title>Change password</summary>
+        <p class="dash__note" data-password-note>Pick something long. Sessions elsewhere stay signed in.</p>
+        <form class="danger__form" data-password-form>
+          <div class="field" data-password-current><div class="field__label"><label for="pw-cur">current password</label></div><div class="field__box"><input class="field__input" id="pw-cur" name="current_password" type="password" autocomplete="current-password"></div></div>
+          <div class="field"><div class="field__label"><label for="pw-new">new password</label><span>8 characters or more</span></div><div class="field__box"><input class="field__input" id="pw-new" name="new_password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required></div></div>
+          <div class="field"><div class="field__label"><label for="pw-again">same thing again</label></div><div class="field__box"><input class="field__input" id="pw-again" name="again" type="password" minlength="8" maxlength="128" autocomplete="new-password" required></div></div>
+          <p class="auth-message" data-form-msg role="status" hidden></p>
+          <button class="btn btn--ivory btn--sm" type="submit">Save password</button>
+        </form>
+      </details>
+      <details class="danger">
+        <summary>Delete my account</summary>
+        <p class="dash__note">Deletes your page, your uploads, your analytics and your account. There is no undo and the name goes back in the pool.</p>
+        <form class="danger__form" data-delete-form>
+          <div class="field" data-delete-password><div class="field__label"><label for="del-pass">password</label></div><div class="field__box"><input class="field__input" id="del-pass" name="password" type="password" autocomplete="current-password"></div></div>
+          <div class="field"><div class="field__label"><label for="del-confirm">type <b>delete</b> to confirm</label></div><div class="field__box"><input class="field__input" id="del-confirm" name="confirm" type="text" autocomplete="off" autocapitalize="off" required></div></div>
+          <p class="auth-message" data-form-msg role="status" hidden></p>
+          <button class="btn btn--ghost btn--sm danger__btn" type="submit">Delete everything</button>
+        </form>
+      </details>
+
+      <!-- v3.143: the archive -->
+      <h3 class="dash__sub dash__sub--gap">The archive</h3>
+      <p class="dash__note">Every time you save, the page you just replaced goes on a shelf — the last twelve of them. You can put any of them back (what's there now gets shelved first, so undoing an undo works). Turn the switch on and visitors can read your page backwards too, at <b>misa.lol/<span data-link-user>you</span>?as=…</b>; leave it off and the shelf is yours alone.</p>
+      <div class="field field--row">
+        <label class="toggle" data-toggle title="Let visitors read your page as it was"><input type="checkbox" data-cfg="settings.archive"><i aria-hidden="true"></i>let visitors read it backwards</label>
+      </div>
+      <p class="sr-only" aria-live="polite" data-arch-live></p>
+      <div class="arch" data-arch><p class="dash__previewnote" style="text-align:left">nothing shelved yet — it fills up as you save.</p></div>
+      <p class="auth-message" data-form-msg data-arch-msg role="status" hidden></p>
+    </section>
+    <div class="dash__savebar" data-savebar hidden>
+      <span role="status" aria-live="polite" data-savebar-text>unsaved changes</span>
+      <button class="btn btn--crimson" type="button" data-save><span data-savebar-btn>Save changes</span> <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <button class="btn btn--ghost" type="button" data-see-open>See your page</button>
+      <a class="btn btn--ivory" href="/" target="_blank" rel="noopener" data-savebar-open data-view-page hidden>Open page <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </main>
+
+  <aside class="dash__preview" id="dash-preview" aria-label="Live preview">
+    <button class="dash__preview-close" type="button" data-peek-close aria-label="Close preview"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+    <p class="dash__previewtitle hand">live preview</p>
+    <div class="phone phone--sm dash__phone" id="dash-phone" aria-hidden="true">
+      <div class="phone__notch"></div><div class="phone__bg"></div><div class="phone__art"></div><div class="phone__fx" data-pv-fx></div><div class="phone__mood" data-pv-mood></div><div class="phone__glare"></div>
+      <svg class="ic pf__spark"><use href="#i-sparkle"/></svg><svg class="ic pf__spark"><use href="#i-sparkle"/></svg><svg class="ic pf__spark"><use href="#i-sparkle"/></svg>
+      <div class="pf">
+        <div class="pf__avatar" data-pv-avatar>y</div>
+        <div class="pf__name"><span data-pv-name>yourname</span><span class="pf__badge" data-pv-badge hidden><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span><span class="pf__tag" data-pv-tag hidden>supporter</span></div>
+        <div class="pf__handle">misa.lol/<span data-pv-handle>yourname</span></div>
+        <p class="pf__bio" data-pv-bio>your bio.</p>
+        <div class="pf__links" data-pv-links></div>
+        <div class="pf__blocks" data-pv-blocks hidden></div>
+        <div class="pf__odo" data-pv-odo hidden><span class="pf__odo-label">you are visitor no.</span><span class="pf__odo-digits" data-pv-odo-digits></span></div>
+        <p class="pf__here" data-pv-here hidden><i aria-hidden="true"></i>just you here right now</p>
+        <div class="pf__foot"><span class="pf__views" data-pv-views-wrap><svg class="ic"><use href="#i-eye"/></svg><span data-pv-views>0</span> views</span><span class="pf__since" data-pv-since hidden></span></div>
+      </div>
+    </div>
+    <p class="dash__previewnote">Saved pages look like this at <b>misa.lol/<span data-link-user>…</span></b>.</p>
+    <button class="btn btn--ghost btn--sm dash__see" type="button" data-see-open>See the real thing</button>
+  </aside>
+</div>
+
+<!-- v3.141: find a setting — an index of every labelled control in the editor, built from the page itself -->
+<div class="find" data-find hidden>
+  <div class="find__panel" role="dialog" aria-modal="true" aria-labelledby="find-title">
+    <label class="find__label" for="find-q" id="find-title">Find a setting</label>
+    <input class="find__input" id="find-q" type="search" autocomplete="off" spellcheck="false" placeholder="candles, gold, guestbook, the back of the page…" data-find-input role="combobox" aria-expanded="true" aria-controls="find-list" aria-autocomplete="list">
+    <ul class="find__list" id="find-list" role="listbox" aria-label="Settings" data-find-list></ul>
+    <p class="find__foot"><span data-find-count></span><span class="find__keys"><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>↵</kbd> go · <kbd>esc</kbd> close</span></p>
+  </div>
+</div>
+
+<!-- v3.137: the page as it would really be — rendered by the same code the live page uses, nothing saved -->
+<div class="see" data-see hidden>
+  <div class="see__panel" role="dialog" aria-modal="true" aria-labelledby="see-title">
+    <div class="see__bar">
+      <p class="see__title hand" id="see-title">your page, as it would be</p>
+      <div class="see__widths" role="group" aria-label="Width">
+        <button type="button" data-see-w="390" aria-pressed="true">phone</button>
+        <button type="button" data-see-w="1100" aria-pressed="false">desktop</button>
+      </div>
+      <button class="btn btn--ghost btn--sm" type="button" data-see-again>Refresh</button>
+      <button class="see__close" type="button" data-see-close aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+    </div>
+    <p class="see__note" data-see-note role="status">nothing is saved by looking.</p>
+    <div class="see__stage" data-see-stage tabindex="0" role="group" aria-label="Your page as it would be — scroll here"><iframe class="see__frame" data-see-frame title="Your page as it would be" tabindex="-1" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe></div>
+  </div>
+</div>
+
+
+</body>
+</html>

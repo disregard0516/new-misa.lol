@@ -1,0 +1,9 @@
+tunnel: YOUR_CLOUDFLARE_TUNNEL_ID
+credentials-file: /etc/cloudflared/credentials.json
+
+ingress:
+  - hostname: misa.lol
+    service: http://nginx:80
+  - hostname: www.misa.lol
+    service: http://nginx:80
+  - service: http_status:404

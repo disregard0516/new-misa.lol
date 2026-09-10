@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>misa.lol — make the internet actually yours.</title>
+    <meta name="description" content="misa.lol gives you one page for your identity, music, socials and links — video backgrounds, effects and custom cursors included. Free forever, no subscription.">
+    <meta name="theme-color" content="#050606">
+    <link rel="canonical" href="https://misa.lol">
+    <meta property="og:site_name" content="misa.lol">
+    <meta property="og:url" content="https://misa.lol">
+    <meta property="og:title" content="misa.lol — make the internet actually yours.">
+    <meta property="og:description" content="misa.lol gives you one page for your identity, music, socials and links — video backgrounds, effects and custom cursors included. Free forever, no subscription.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://misa.lol/images/share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="misa.lol — be weird online again. one page for your links, music and socials.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="misa.lol — make the internet actually yours.">
+    <meta name="twitter:description" content="misa.lol gives you one page for your identity, music, socials and links — video backgrounds, effects and custom cursors included. Free forever, no subscription.">
+    <meta name="twitter:image" content="https://misa.lol/images/share.png">
+    <meta name="robots" content="noindex">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" href="/images/favicon.svg?v=facff01a" type="image/svg+xml">
+    <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/v2.css?v=facff01a">
+    <script src="/js/config.js" defer></script>
+    <script src="/js/auth.js" defer></script>
+    <script src="/js/v2.js?v=facff01a" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<!-- ═══ SVG ICON SPRITE ═══ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M7 5h4v14H7zM13 5h4v14h-4z"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 2.5l2.3 6.6 6.7 2.4-6.7 2.4L12 20.5l-2.3-6.6L3 11.5l6.7-2.4z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l3 6.3 6.9.9-5 4.8 1.3 6.9L12 18l-6.2 3.4 1.3-6.9-5-4.8 6.9-.9z"/></symbol>
+  <symbol id="i-cursor" viewBox="0 0 24 24"><path d="M4 3l16 8-7 1.8L9 20z"/></symbol>
+  <symbol id="i-ring" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3z"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol>
+  <symbol id="i-type" viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 5-6"/></symbol>
+  <symbol id="i-badge" viewBox="0 0 24 24"><path d="M12 2.5l2.4 2 3.1-.3.9 3 2.7 1.6-1.2 2.9 1.2 2.9-2.7 1.6-.9 3-3.1-.3-2.4 2-2.4-2-3.1.3-.9-3-2.7-1.6 1.2-2.9-1.2-2.9 2.7-1.6.9-3 3.1.3z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+  <symbol id="i-game" viewBox="0 0 24 24"><path d="M6 12h4M8 10v4M15 13h.01M18 11h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-3.96 3.44L2 15.5A2.5 2.5 0 0 0 4.5 18c.8 0 1.5-.4 2-1l1.5-2h8l1.5 2c.5.6 1.2 1 2 1a2.5 2.5 0 0 0 2.5-2.5l-.74-7.06A4 4 0 0 0 17.3 5z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-toggle" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="5"/><circle cx="16" cy="12" r="3"/></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><path d="m1 1 22 22"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+</svg>
+
+<!-- ═══ NAV ═══ -->
+<header class="nav" id="top">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo" aria-label="misa.lol home"><span class="nav__dagger" aria-hidden="true">†</span>misa.lol</a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/#themes">Themes</a>
+      <a href="/#features">Features</a>
+      <a href="/explore">Explore</a>
+      <a href="/pricing">Pricing</a>
+    </nav>
+    <div class="nav__actions">
+      <a href="/login" class="nav__login">Login</a>
+      <a href="/signup" class="btn btn--ivory btn--sm" data-claim><span>Claim<span class="full"> username</span></span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <button class="nav__burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mobile-menu" hidden>
+  <a href="/#themes">Themes</a>
+  <a href="/#features">Features</a>
+  <a href="/explore">Explore</a>
+  <a href="/pricing">Pricing</a>
+  <a href="/login">Login</a>
+  <a href="/signup" class="btn btn--crimson" data-claim>Claim your username <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  <p class="mmenu__tag hand">be weird online again.</p>
+</div>
+
+<main id="main">
+
+<!-- ═══ HERO — the editor is the landing page ═══ -->
+<section class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__dots" aria-hidden="true"></div>
+
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow">your corner of the internet</p>
+      <h1 class="hero__title">be weird <em>online again.</em></h1>
+      <p class="hero__lede"><strong>misa.lol</strong> is one page for your identity, music, socials and links — with the video backgrounds, effects and cursors that make it actually yours. Type a name. Watch it happen.</p>
+
+      <div class="hero__form">
+        <form class="claim" action="/signup" method="get" autocomplete="off">
+          <label class="claim__prefix" for="claim-name">misa.lol/</label>
+          <input class="claim__input" id="claim-name" name="username" type="text" placeholder="yourname" maxlength="24" spellcheck="false" autocapitalize="off" autocorrect="off" inputmode="text" enterkeyhint="go" pattern="[A-Za-z][A-Za-z0-9_]{2,23}" aria-describedby="claim-hint" data-live>
+          <button class="claim__btn" type="submit">Claim <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </form>
+        <p class="claim__hint" id="claim-hint"><span class="dot" aria-hidden="true"></span><span data-hint>free forever · not a subscription · live in under a minute</span></p>
+      </div>
+
+      <!-- live controls for the preview phone -->
+      <div class="lab" role="group" aria-label="Preview controls">
+        <div class="lab__row">
+          <span class="lab__label">theme</span>
+          <div class="swatches" role="radiogroup" aria-label="Theme">
+            <button class="swatch" type="button" data-set-theme="gothic" role="radio" aria-checked="true" tabindex="0" aria-label="Gothic theme" title="gothic" style="--sw:linear-gradient(135deg,#F00646,#1a0006)"></button>
+            <button class="swatch" type="button" data-set-theme="soft" role="radio" aria-checked="false" tabindex="-1" aria-label="Soft theme" title="soft" style="--sw:linear-gradient(135deg,#ffb3d1,#c9b6ff)"></button>
+            <button class="swatch" type="button" data-set-theme="mono" role="radio" aria-checked="false" tabindex="-1" aria-label="Mono theme" title="mono" style="--sw:linear-gradient(135deg,#fff 50%,#000 50%)"></button>
+            <button class="swatch" type="button" data-set-theme="y2k" role="radio" aria-checked="false" tabindex="-1" aria-label="Y2K theme" title="y2k" style="--sw:linear-gradient(135deg,#39ffa0,#1a5cff)"></button>
+            <button class="swatch" type="button" data-set-theme="sunset" role="radio" aria-checked="false" tabindex="-1" aria-label="Sunset theme" title="sunset" style="--sw:linear-gradient(135deg,#ff8a3d,#7b2cff)"></button>
+            <button class="swatch" type="button" data-set-theme="paper" role="radio" aria-checked="false" tabindex="-1" aria-label="Paper theme" title="paper" style="--sw:#EEE8E2"></button>
+          </div>
+        </div>
+        <div class="lab__row">
+          <span class="lab__label">effects</span>
+          <div class="toggles">
+            <button class="toggle" type="button" role="switch" data-fx="video" aria-checked="true"><i aria-hidden="true"></i>video background</button>
+            <button class="toggle" type="button" role="switch" data-fx="type" aria-checked="true"><i aria-hidden="true"></i>typewriter bio</button>
+            <button class="toggle" type="button" role="switch" data-fx="sparkle" aria-checked="false"><i aria-hidden="true"></i>gold sparkles</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__stage">
+      <p class="hero__note hand" aria-hidden="true">this is you →</p>
+
+      <!-- The preview phone. Reuses your hero loop as the profile's video background. -->
+      <div class="phone theme-gothic video-on phone-float" id="hero-phone" data-theme="gothic" role="group" aria-label="Live preview of your misa.lol page">
+        <div class="phone__notch" aria-hidden="true"></div>
+        <div class="phone__bg" aria-hidden="true"></div>
+        <div class="phone__art" aria-hidden="true"></div>
+        <video class="phone__video" muted loop playsinline preload="none" data-poster="/images/mainbg-poster-960.webp" data-autoplay aria-hidden="true" tabindex="-1">
+          <source src="/images/mainbg.webm" type="video/webm">
+          <source src="/images/mainbg.mp4" type="video/mp4">
+        </video>
+        <div class="phone__tint" aria-hidden="true"></div>
+        <div class="phone__glare" aria-hidden="true"></div>
+        <svg class="ic pf__spark" aria-hidden="true"><use href="#i-sparkle"/></svg>
+        <svg class="ic pf__spark" aria-hidden="true"><use href="#i-sparkle"/></svg>
+        <svg class="ic pf__spark" aria-hidden="true"><use href="#i-sparkle"/></svg>
+        <div class="pf">
+          <div class="pf__avatar" aria-hidden="true" data-avatar>y</div>
+          <div class="pf__name"><span data-name>yourname</span><span class="pf__badge" data-badge title="verified"><svg class="ic"><use href="#i-check"/></svg></span></div>
+          <div class="pf__handle">misa.lol/<span data-handle>yourname</span></div>
+          <p class="pf__bio"><span data-bio>your bio, typing itself.</span><span class="caret" aria-hidden="true"></span></p>
+          <div class="pf__links">
+            <span class="pf__link"><svg class="ic"><use href="#i-music"/></svg><span class="pf__label">new single</span><svg class="ic"><use href="#i-arrow"/></svg></span>
+            <span class="pf__link"><svg class="ic"><use href="#i-video"/></svg><span class="pf__label">tiktok</span><svg class="ic"><use href="#i-arrow"/></svg></span>
+            <span class="pf__link"><svg class="ic"><use href="#i-users"/></svg><span class="pf__label">discord server</span><svg class="ic"><use href="#i-arrow"/></svg></span>
+            <span class="pf__link"><svg class="ic"><use href="#i-heart"/></svg><span class="pf__label">wishlist</span><svg class="ic"><use href="#i-arrow"/></svg></span>
+          </div>
+          <div class="pf__music"><span class="pf__art"><svg class="ic"><use href="#i-play"/></svg></span><span class="pf__track"><b>graveyard shift</b><span data-artist>yourname</span><span class="pf__bar"><i></i></span></span></div>
+          <div class="pf__foot"><span class="pf__views"><svg class="ic"><use href="#i-eye"/></svg>12.4k views</span><span class="pf__socials" aria-hidden="true"><i><svg class="ic"><use href="#i-music"/></svg></i><i><svg class="ic"><use href="#i-video"/></svg></i><i><svg class="ic"><use href="#i-users"/></svg></i><i><svg class="ic"><use href="#i-mail"/></svg></i></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STRIP ═══ -->
+<div class="strip">
+  <div class="container strip__inner">
+    <!-- keep these honest — swap in live numbers when you have them -->
+    <span><b>200K+</b> profiles</span>
+    <span><b>40M+</b> page views</span>
+    <span><b>$0</b> to start</span>
+    <span><b>1 min</b> to go live</span>
+    <span class="hand" aria-hidden="true">one payment, yours for life.</span>
+  </div>
+</div>
+
+<!-- ═══ THEMES / FILMSTRIP ═══ -->
+<section class="section container" id="themes">
+  <div class="section__head reveal">
+    <p class="eyebrow">themes</p>
+    <h2 class="title">Pick a direction. <em>Or none of them.</em></h2>
+    <p class="lede">Every page starts from a theme and ends up somewhere else. Tap one to try it on your preview above.</p>
+  </div>
+  <div class="film" id="film" role="group" aria-label="Example pages by theme"><!-- built by app.js from the PAGES list --></div>
+  <p class="film__hint">scroll → · tap a page to try its theme</p>
+</section>
+
+<!-- ═══ SPEC SHEET ═══ -->
+<section class="section container" id="features">
+  <div class="section__head reveal">
+    <p class="eyebrow">what you get</p>
+    <h2 class="title">Everything a page <em>should've had</em> by now.</h2>
+    <p class="lede">Most link-in-bio tools give you a list of buttons. misa.lol gives you a place. Everything below is a toggle — turn off anything you don't want.</p>
+  </div>
+
+  <div class="spec">
+    <div class="spec__row reveal">
+      <div class="spec__name"><em>Soundtrack</em><span class="tier">free</span></div>
+      <div class="spec__body">
+        <p>Add a track and visitors hear it the second they land — or hit play, your call. Hidden mode keeps it just for you.</p>
+        <div class="spec__demo" aria-hidden="true"><div class="wave"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i><i style="--i:16"></i><i style="--i:17"></i><i style="--i:18"></i><i style="--i:19"></i></div><span class="chip"><svg class="ic"><use href="#i-play"/></svg>graveyard shift · 2:41</span><span class="chip"><svg class="ic"><use href="#i-eye"/></svg>hidden mode</span></div>
+      </div>
+    </div>
+
+    <div class="spec__row reveal">
+      <div class="spec__name"><em>Video backgrounds</em><span class="tier tier--lifetime">lifetime</span></div>
+      <div class="spec__body">
+        <p>Loop any clip behind your page, then layer animated backgrounds over it. The one on this page's phone is the real thing.</p>
+        <div class="spec__demo" aria-hidden="true"><div class="mini-vid"><div class="mini-vid__bg"></div><span class="mini-vid__chip"><i></i>loop · 0:14</span></div><span class="chip"><svg class="ic"><use href="#i-video"/></svg>mainbg.mp4</span><span class="chip"><svg class="ic"><use href="#i-bolt"/></svg>animated overlay</span></div>
+      </div>
+    </div>
+
+    <div class="spec__row reveal">
+      <div class="spec__name"><em>Effects</em><span class="tier tier--lifetime">lifetime</span></div>
+      <div class="spec__body">
+        <p>Typewriter bio, entrance animations, username effects, pro fonts and layouts, a custom share card for when the link gets posted.</p>
+        <div class="spec__demo"><p class="tw" aria-live="off">i make <span data-tw>music</span><span class="caret" aria-hidden="true"></span></p></div>
+      </div>
+    </div>
+
+    <div class="spec__row reveal">
+      <div class="spec__name"><em>Cursors</em><span class="tier tier--supporter">supporter</span></div>
+      <div class="spec__body">
+        <p>Swap the arrow for something that fits the page. The gold star, ring and snow set is Supporter-only.</p>
+        <div class="spec__demo chips" aria-hidden="true"><span class="chip"><svg class="ic"><use href="#i-cursor"/></svg>default</span><span class="chip chip--gold"><svg class="ic"><use href="#i-star"/></svg>star</span><span class="chip chip--gold"><svg class="ic"><use href="#i-ring"/></svg>ring</span><span class="chip chip--gold"><svg class="ic"><use href="#i-snow"/></svg>snow</span></div>
+      </div>
+    </div>
+
+    <div class="spec__row reveal">
+      <div class="spec__name"><em>Analytics</em><span class="tier">free</span></div>
+      <div class="spec__body">
+        <p>Views, where they came from, what they clicked. On every plan, including the free one.</p>
+        <div class="spec__demo" aria-hidden="true"><div class="refs"><span>this week<b>1,204</b></span><span>tiktok<b>612</b></span><span>discord<b>331</b></span><span>x<b>189</b></span></div></div>
+      </div>
+    </div>
+
+    <div class="spec__row reveal">
+      <div class="spec__name"><em>Badges</em><span class="tier tier--lifetime">lifetime</span><span class="tier tier--supporter">supporter</span></div>
+      <div class="spec__body">
+        <p>Verified blue check with Lifetime. Gold check with a halo, animated gold username, sparkle trail and a gold profile border for Supporters.</p>
+        <div class="spec__demo names" aria-hidden="true">
+          <span class="name">ren <span class="pf__badge"><svg class="ic"><use href="#i-check"/></svg></span></span>
+          <span class="name name--gold"><svg class="ic spark"><use href="#i-sparkle"/></svg><svg class="ic spark"><use href="#i-sparkle"/></svg>lune <span class="pf__badge pf__badge--gold"><svg class="ic"><use href="#i-check"/></svg></span> <span class="tag">supporter</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING STRIP ═══ -->
+<section class="section container" id="pricing">
+  <div class="section__head reveal">
+    <p class="eyebrow">pricing</p>
+    <h2 class="title">Pay once. <em>Or don't.</em></h2>
+    <p class="lede">Every upgrade is a one-time payment. Nothing renews.</p>
+  </div>
+
+  <div class="tiers">
+    <div class="tier-col reveal">
+      <h3 class="plan__name">Free</h3>
+      <p class="plan__price"><b>$0</b><span>forever</span></p>
+      <ul>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>misa.lol/yourname</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Unlimited links</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Music player + hidden mode</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Analytics</li>
+      </ul>
+      <a href="/signup" class="btn btn--ghost" data-claim>Claim for free</a>
+    </div>
+    <div class="tier-col tier-col--hot reveal" data-delay="1">
+      <h3 class="plan__name">Lifetime</h3>
+      <p class="plan__price"><b>$5</b><span>once</span></p>
+      <ul>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Verified blue check</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Video backgrounds &amp; animated backgrounds</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Typewriter bio, entrance &amp; username effects</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Image host, encrypted chats, no footer badge</li>
+      </ul>
+      <a href="/pricing#lifetime" class="btn btn--crimson">Get Lifetime <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="tier-col tier-col--gold reveal" data-delay="2">
+      <h3 class="plan__name">Supporter</h3>
+      <p class="plan__price"><b>$9.99</b><span>once</span></p>
+      <ul>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Everything in Lifetime</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Gold check + halo, supporter tag</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Gold username glow, sparkle trail, gold border</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Gold cursors, exclusive fonts, early access</li>
+      </ul>
+      <a href="/pricing#compare" class="btn btn--ghost">See everything</a>
+    </div>
+  </div>
+  <p class="plans__note reveal">Full comparison on the <a href="/pricing">pricing page</a>. Every cosmetic is a toggle.</p>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta">
+  <div class="container cta__grid">
+    <div class="reveal">
+      <h2 class="title">Claim your corner <em>of the internet.</em></h2>
+      <p class="cta__hand hand" aria-hidden="true">go on. make it weird.</p>
+    </div>
+    <div class="cta__side reveal" data-delay="1">
+      <div style="width:100%">
+        <form class="claim" action="/signup" method="get" autocomplete="off">
+          <label class="claim__prefix" for="claim-name-2">misa.lol/</label>
+          <input class="claim__input" id="claim-name-2" name="username" type="text" placeholder="yourname" maxlength="24" spellcheck="false" autocapitalize="off" autocorrect="off" inputmode="text" enterkeyhint="go" pattern="[A-Za-z][A-Za-z0-9_]{2,23}" aria-describedby="claim-name-2-hint">
+          <button class="claim__btn" type="submit">Claim <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        </form>
+        <p class="claim__hint" id="claim-name-2-hint"><span class="dot" aria-hidden="true"></span><span data-hint>free forever · not a subscription · live in under a minute</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid footer__grid--3">
+      <div class="footer__brand">
+        <a href="/" class="nav__logo" aria-label="misa.lol home"><span class="nav__dagger" aria-hidden="true">†</span>misa.lol</a>
+        <p class="footer__tag hand">be weird online again.</p>
+      </div>
+      <div>
+        <h2>Product</h2>
+        <ul><li><a href="/#themes">Themes</a></li><li><a href="/#features">Features</a></li><li><a href="/explore">Explore</a></li><li><a href="/pricing">Pricing</a></li></ul>
+      </div>
+      <div>
+        <h2>Account</h2>
+        <ul><li><a href="/login">Login</a></li><li><a href="/signup">Sign up</a></li></ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 misa.lol · made for the internet people ♡</span>
+      <span><a href="/terms">Terms</a><a href="/privacy">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>

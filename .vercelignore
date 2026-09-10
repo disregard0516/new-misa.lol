@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+cloudflared/cert.pem
+cloudflared/credentials.json
+__pycache__/
+*.pyc
+tools/*/target/
+node_modules/
+dashboard-ui/.next/
+dashboard-ui/out/
+*.sqlite
+*.sqlite3
+*.db

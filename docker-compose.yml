@@ -1,0 +1,158 @@
+name: misa
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "1"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    container_name: nginx
+    restart: unless-stopped
+    depends_on:
+      - app01
+      - app02
+    ports:
+      - "80:80"
+    networks:
+      - public
+    logging: *logging
+
+  app01:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app01
+    restart: unless-stopped
+    environment:
+      MISA_INSTANCE_NAME: app01
+      MISA_APP_NAME: misa
+      MISA_APP_VERSION: 0.1.0
+      MISA_ENVIRONMENT: "${MISA_ENVIRONMENT:-production}"
+      MISA_DEBUG: "false"
+      MISA_CORS_ORIGINS: "${MISA_CORS_ORIGINS:-https://misa.lol,https://www.misa.lol}"
+      MISA_DOMAIN: "${MISA_DOMAIN:-misa.lol}"
+      MISA_PUBLIC_BASE_URL: "${MISA_PUBLIC_BASE_URL:-https://misa.lol}"
+      DATABASE_URL: "${DATABASE_URL:?Set DATABASE_URL in .env}"
+      MISA_ADMIN_USER_IDS: "${MISA_ADMIN_USER_IDS:-}"
+      WEB_CONCURRENCY: "2"
+      DRAGONFLY_URL: "${DRAGONFLY_URL:-redis://dragonfly:6379/0}"
+      DATA_API_URL: "${DATA_API_URL:-http://prostgres_db:8080}"
+      DATA_API_KEY: "${DATA_API_KEY:?Set DATA_API_KEY in .env}"
+      MISA_GOOGLE_CLIENT_ID: "${MISA_GOOGLE_CLIENT_ID:-}"
+      MISA_GOOGLE_CLIENT_SECRET: "${MISA_GOOGLE_CLIENT_SECRET:-}"
+      MISA_DISCORD_CLIENT_ID: "${MISA_DISCORD_CLIENT_ID:-}"
+      MISA_DISCORD_CLIENT_SECRET: "${MISA_DISCORD_CLIENT_SECRET:-}"
+      MISA_TELEGRAM_BOT_TOKEN: "${MISA_TELEGRAM_BOT_TOKEN:-}"
+      MISA_TELEGRAM_BOT_USERNAME: "${MISA_TELEGRAM_BOT_USERNAME:-}"
+      MISA_TURNSTILE_SITE_KEY: "${MISA_TURNSTILE_SITE_KEY:-}"
+      MISA_TURNSTILE_SECRET_KEY: "${MISA_TURNSTILE_SECRET_KEY:-}"
+    depends_on:
+      prostgres_db:
+        condition: service_healthy
+      dragonfly:
+        condition: service_started
+    volumes:
+      - ./app/templates:/app/app/templates:ro
+      - uploads:/data/uploads
+    networks:
+      - public
+      - data
+    expose:
+      - "8000"
+    logging: *logging
+
+  app02:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app02
+    restart: unless-stopped
+    environment:
+      MISA_INSTANCE_NAME: app02
+      MISA_APP_NAME: misa
+      MISA_APP_VERSION: 0.1.0
+      MISA_ENVIRONMENT: "${MISA_ENVIRONMENT:-production}"
+      MISA_DEBUG: "false"
+      MISA_CORS_ORIGINS: "${MISA_CORS_ORIGINS:-https://misa.lol,https://www.misa.lol}"
+      MISA_DOMAIN: "${MISA_DOMAIN:-misa.lol}"
+      MISA_PUBLIC_BASE_URL: "${MISA_PUBLIC_BASE_URL:-https://misa.lol}"
+      DATABASE_URL: "${DATABASE_URL:?Set DATABASE_URL in .env}"
+      MISA_ADMIN_USER_IDS: "${MISA_ADMIN_USER_IDS:-}"
+      WEB_CONCURRENCY: "2"
+      DRAGONFLY_URL: "${DRAGONFLY_URL:-redis://dragonfly:6379/0}"
+      DATA_API_URL: "${DATA_API_URL:-http://prostgres_db:8080}"
+      DATA_API_KEY: "${DATA_API_KEY:?Set DATA_API_KEY in .env}"
+      MISA_GOOGLE_CLIENT_ID: "${MISA_GOOGLE_CLIENT_ID:-}"
+      MISA_GOOGLE_CLIENT_SECRET: "${MISA_GOOGLE_CLIENT_SECRET:-}"
+      MISA_DISCORD_CLIENT_ID: "${MISA_DISCORD_CLIENT_ID:-}"
+      MISA_DISCORD_CLIENT_SECRET: "${MISA_DISCORD_CLIENT_SECRET:-}"
+      MISA_TELEGRAM_BOT_TOKEN: "${MISA_TELEGRAM_BOT_TOKEN:-}"
+      MISA_TELEGRAM_BOT_USERNAME: "${MISA_TELEGRAM_BOT_USERNAME:-}"
+      MISA_TURNSTILE_SITE_KEY: "${MISA_TURNSTILE_SITE_KEY:-}"
+      MISA_TURNSTILE_SECRET_KEY: "${MISA_TURNSTILE_SECRET_KEY:-}"
+    depends_on:
+      prostgres_db:
+        condition: service_healthy
+      dragonfly:
+        condition: service_started
+    volumes:
+      - ./app/templates:/app/app/templates:ro
+      - uploads:/data/uploads
+    networks:
+      - public
+      - data
+    expose:
+      - "8000"
+    logging: *logging
+
+  prostgres_db:
+    build:
+      context: ./tools/prostgres_db
+    container_name: misa-prostgres-db
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "${DATABASE_URL:?Set DATABASE_URL in .env}"
+      DATABASE_MAX_CONNECTIONS: "${DATABASE_MAX_CONNECTIONS:-10}"
+      DATA_API_KEY: "${DATA_API_KEY:?Set DATA_API_KEY in .env}"
+      LISTEN_ADDR: 0.0.0.0:8080
+      RUST_LOG: info
+    expose:
+      - "8080"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8080/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 8
+      start_period: 25s
+    networks:
+      - public
+      - data
+    mem_limit: 256m
+    cpus: "1.0"
+    logging: *logging
+
+  dragonfly:
+    image: docker.dragonflydb.io/dragonflydb/dragonfly
+    container_name: misa-dragonfly
+    restart: unless-stopped
+    volumes:
+      - dragonfly_data:/data
+    networks:
+      - data
+    logging: *logging
+
+networks:
+  public:
+    driver: bridge
+  data:
+    driver: bridge
+    internal: true
+
+volumes:
+  uploads:
+  dragonfly_data:
