@@ -893,12 +893,12 @@ body.layout-sleek .card{{max-width:560px;padding:32px 36px}}
 .location .ic{{width:13px;height:13px;color:var(--icon)}}
 .bio{{margin-top:12px;font-size:calc(15px * var(--fs));line-height:1.55;opacity:.85;max-width:100%;text-wrap:pretty;white-space:pre-line;overflow-wrap:anywhere}}
 .links{{width:100%;display:grid;gap:9px;margin-top:22px}}
-.link{{display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:calc(var(--radius) * .45);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-size:calc(14px * var(--fs));font-weight:600;text-align:left;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s}}
+.link{{display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:calc(var(--radius) * .45);background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);font-size:calc(14px * var(--fs));font-weight:600;text-align:left;transition:background .2s,border-color .2s,box-shadow .2s}}
 .link .ic{{width:16px;height:16px;color:var(--icon)}}
 .link .ic:last-child{{margin-left:auto;opacity:.45;color:currentColor;width:14px;height:14px}}
 .link__label{{min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 .link__value{{margin-left:auto;font-weight:500;opacity:.7;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55%}}
-a.link:hover{{transform:translateY(-2px);background:rgba(var(--accent-rgb),.16);border-color:rgba(var(--accent-rgb),.5){';box-shadow:0 0 24px -6px rgba(var(--accent-rgb),.7)' if glow_social else ''}}}
+a.link:hover{{background:rgba(var(--accent-rgb),.12);border-color:rgba(var(--accent-rgb),.55){';box-shadow:0 0 24px -6px rgba(var(--accent-rgb),.7)' if glow_social else ''}}}
 a.link:focus-visible{{outline:2px solid var(--accent);outline-offset:3px}}
 .links--outline .link{{background:transparent;border:1.5px solid rgba(var(--accent-rgb),.65)}}
 .links--outline a.link:hover{{background:rgba(var(--accent-rgb),.12);border-color:var(--accent)}}
@@ -1237,6 +1237,25 @@ a.np__t:hover{{color:var(--accent)}}
 @keyframes in-rise{{from{{opacity:0;transform:translateY(28px)}}}}
 @keyframes in-flicker{{0%,12%,22%,34%{{opacity:0}}6%,18%,28%{{opacity:.55}}40%{{opacity:1}}47%{{opacity:.3}}52%{{opacity:1}}}}
 @keyframes in-glitch{{0%{{opacity:0;transform:translate(-8px,0);clip-path:inset(0 0 70% 0)}}15%{{opacity:1;transform:translate(6px,-2px);clip-path:inset(30% 0 40% 0);filter:drop-shadow(-4px 0 var(--accent))}}30%{{transform:translate(-4px,2px);clip-path:inset(60% 0 5% 0);filter:drop-shadow(4px 0 var(--accent))}}45%{{transform:translate(2px,0);clip-path:inset(10% 0 55% 0)}}60%{{transform:none;clip-path:inset(0);filter:none}}75%{{transform:translate(3px,-1px);filter:drop-shadow(-3px 0 var(--accent))}}85%{{transform:none;filter:none}}}}
+body::after{{content:"";position:fixed;inset:0;z-index:5;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}}
+.card{{box-shadow:0 34px 90px -46px rgba(0,0,0,.92)}}
+.tint{{background:linear-gradient(180deg,rgba(var(--bg-rgb),.18),rgba(var(--bg-rgb),.74))}}
+.avatar{{border-width:1px;box-shadow:0 10px 28px -14px rgba(0,0,0,.8)}}
+.name{{letter-spacing:-.038em}}
+.handle{{opacity:.9;letter-spacing:-.01em}}
+.badge{{border-radius:2px;background:none;letter-spacing:.14em}}
+.location{{font-size:12px;letter-spacing:.05em;opacity:.62}}
+.bio{{max-width:42ch;line-height:1.6;opacity:.82}}
+.foot{{margin-top:26px;padding-top:13px;border-top:1px solid rgba(255,255,255,.1);font-size:11.5px}}
+.views{{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:15px;opacity:.85}}
+.brand{{padding:0;border:0;border-radius:0;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.62}}
+.brand:hover{{opacity:1;border-color:transparent}}
+.report{{font-size:10.5px;letter-spacing:.16em}}
+.link__value{{font-variant-numeric:tabular-nums;opacity:.55}}
+.player,.player__art,.ic-custom{{border-radius:2px}}
+.report-form,.report-form select,.report-form textarea{{border-radius:2px}}
+.report-form button{{border-radius:2px;font-size:11px;letter-spacing:.1em;text-transform:uppercase}}
+@media (forced-colors:active){{body::after{{display:none}}}}
 @media (prefers-reduced-motion:reduce){{.bg-fx,.name--shimmer,.player__bars i,.entry__text,.bio__caret,.card,.card--gold,.player--vinyl .player__btn,.blk__dot,.avatar-wrap::before,.here__dot,.blk__colon{{animation:none!important}}.odo__col,.mood{{transition:none!important}}.blk--np .np__disc,.np__bars i{{animation:none!important}}.secret.in-glitch,.secret__ask.is-wrong input{{animation:none!important}}.bg-video{{display:none}}.sky i,.sky--storm{{animation:none!important}}.candle__flame,.draw__card{{animation:none!important}}.flip--on .card,.flip--on .card--back,.flip--on{{transition:none!important}}.candle.is-out .candle__flame,.candle.is-out{{transition:none!important}}.bio--type .bio__caret{{display:none}}}}
 </style>
 </head>
