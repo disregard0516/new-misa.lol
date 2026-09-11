@@ -308,7 +308,7 @@
 
 .dash--v43 .ana{
   display:grid;
-  grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,.66fr));
+  grid-template-columns:repeat(auto-fill,minmax(176px,1fr));
   gap:26px;
   margin-top:34px;
   padding:0;
@@ -316,7 +316,9 @@
   border-radius:0;
   background:none;
 }
+.dash--v43 .ana__col--wide{grid-column:span 2}
 .dash--v43 .ana__col{
+  min-width:0;
   padding:12px 0 0;
   border:0;
   border-top:1px solid var(--line);
@@ -351,6 +353,7 @@
   gap:8px;
   padding:6px 0;
   border:0;
+  overflow:hidden;
 }
 .dash--v43 .ana__list li > span{order:0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dash--v43 .ana__list li::before{
@@ -607,6 +610,7 @@
   .dash--v43 .tile{grid-column:span 4}
   .dash--v43 .tile:first-child{grid-column:span 12}
   .dash--v43 .ana{grid-template-columns:1fr 1fr}
+  .dash--v43 .ana__col--wide{grid-column:span 2}
 }
 @media (max-width:860px){
   .dash.dash--v43{grid-template-columns:minmax(0,1fr)}
@@ -614,6 +618,7 @@
 }
 @media (max-width:820px){
   .dash--v43 .ana{grid-template-columns:minmax(0,1fr)}
+  .dash--v43 .ana__col--wide{grid-column:span 1}
 }
 @media (max-width:640px){
   .dash--v43 .tile{grid-column:span 6}
