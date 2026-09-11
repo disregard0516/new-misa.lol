@@ -55,6 +55,8 @@ RESERVED_USERNAMES = {
     # v3.35 — the placeholder every example on the site uses, and the uploads mount
     "yourname",
     "u",
+    "ui",
+    "preview",
 }
 
 

@@ -252,6 +252,10 @@ function bindLogout() {
   const button = document.getElementById("logout-btn");
   if (!button) return;
   button.addEventListener("click", async () => {
+    if (window.MISA_DEMO) {
+      window.location.href = "/";
+      return;
+    }
     await sendJson("/api/v1/auth/logout", {});
     window.location.href = "/";
   });
@@ -305,6 +309,10 @@ function renderDashboard(user) {
 
 async function loadDashboard() {
   if (!document.querySelector(".dashboard")) return;
+  if (window.MISA_DEMO && window.MISA_DEMO["/api/v1/me"]) {
+    renderDashboard(window.MISA_DEMO["/api/v1/me"]);
+    return;
+  }
   let response;
   try {
     response = await fetch("/api/v1/me", { credentials: "include", headers: { Accept: "application/json" } });

@@ -29,10 +29,12 @@
     <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="/css/v2.css?v=facff01a">
-    <script src="/js/config.js" defer></script>
+    <link rel="stylesheet" href="/css/v2.css?v=ui42">
+    <link rel="stylesheet" href="/css/dash-ui.css?v=ui42">
+    <script src="/js/config.js"></script>
+    <script src="/js/ui-preview.js?v=ui42"></script>
     <script src="/js/auth.js" defer></script>
-    <script src="/js/v2.js?v=facff01a" defer></script>
+    <script src="/js/v2.js?v=ui42" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -75,9 +77,13 @@
 </svg>
 
 <!-- ═══ DASHBOARD — talks to /api/v1/me, /api/v1/me/username (auth.js) and /api/v1/profile/me (v2.js) ═══ -->
-<div class="dash dashboard">
+<div class="dash dashboard dash--v42">
   <header class="dash__top">
     <a href="/" class="nav__logo" aria-label="misa.lol home"><span class="nav__dagger" aria-hidden="true">†</span>misa.lol</a>
+    <div class="dash__url" data-yourlink>
+      <span class="dash__url-host">misa.lol/</span><b data-link-user>…</b>
+      <button class="dash__url-copy" type="button" data-copy-link title="Copy link" aria-label="Copy your page link">⧉</button>
+    </div>
     <div class="dash__user">
       <img class="dash__avatar" id="nav-avatar" src="/images/favicon.svg" alt="" width="34" height="34">
       <div class="dash__userinfo"><b id="nav-name">loading…</b><span id="nav-handle">misa.lol</span></div>
@@ -142,8 +148,11 @@
         <button class="btn btn--ghost btn--sm" type="button" data-copy-link>Copy</button>
         <a class="btn btn--ghost btn--sm" href="/" target="_blank" rel="noopener" data-view-page>Open<span class="sr-only"> your page in a new tab</span> <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
-      <div class="tiles">
+      <div class="tiles tiles--stats">
         <article class="tile"><p class="tile__label">page views</p><p class="tile__num" data-stat-views>…</p><p class="tile__note" data-stat-views-note>since your page went live</p></article>
+        <article class="tile"><p class="tile__label">link clicks</p><p class="tile__num" data-stat-clicks>…</p><p class="tile__note" data-stat-clicks-note>all time</p></article>
+        <article class="tile"><p class="tile__label">click rate</p><p class="tile__num" data-stat-rate>…</p><p class="tile__note">clicks per 100 views</p></article>
+        <article class="tile"><p class="tile__label">avg / day</p><p class="tile__num" data-stat-avg>…</p><p class="tile__note" data-stat-avg-note>last 14 days</p></article>
         <article class="tile"><p class="tile__label">links</p><p class="tile__num" data-stat-links>…</p><p class="tile__note">enabled on your page</p></article>
         <article class="tile"><p class="tile__label">badges</p><p class="tile__num" data-stat-badges>…</p><p class="tile__note">showing on your page</p></article>
         <article class="tile tile--hint"><p class="tile__label">status</p><p class="tile__num" data-stat-status>—</p><p class="tile__note" data-stat-status-note>checking…</p></article>
@@ -152,10 +161,23 @@
         <div class="milestone__text"><p class="tile__label">milestone</p><p class="milestone__num" data-ms-num>1,000 views.</p><p class="milestone__note" data-ms-note></p></div>
         <div class="milestone__acts"><a class="btn btn--ivory btn--sm" href="#" target="_blank" rel="noopener" data-ms-open>Open the card</a><button class="btn btn--ghost btn--sm" type="button" data-ms-copy>Copy its link</button></div>
       </div>
+      <div class="shareqr" data-qr hidden>
+        <img data-qr-img alt="" width="132" height="132">
+        <div>
+          <p class="tile__label">share your page</p>
+          <p class="dash__note" style="margin:6px 0 0">Put the QR on a sticker, a slide, a bio. Every scan is a view.</p>
+          <div class="shareqr__acts">
+            <a class="btn btn--ghost btn--sm" data-qr-dl download>Download QR</a>
+            <button class="btn btn--ghost btn--sm" type="button" data-copy-link>Copy link</button>
+          </div>
+        </div>
+      </div>
       <details class="share" data-share hidden>
         <summary>What your link looks like when it's posted</summary>
-        <div class="share__body"><img src="/images/share.png" alt="" width="600" height="315" loading="lazy"><p class="dash__note">Discord, X, iMessage and Telegram show this card for misa.lol/<span data-link-user>…</span>. It follows your colours, name, badge and bio — save, and it updates within a few minutes.</p>
+        <div class="share__body"><img src="/images/share.png" alt="" width="600" height="315" loading="lazy">          <p class="dash__note">Discord, X, iMessage and Telegram show this card for misa.lol/<span data-link-user>…</span>. It follows your colours, name, badge and bio — save, and it updates within a few minutes.</p>
           <div class="dash__grid share__custom">
+            <div class="field"><div class="field__label"><label for="f-seotitle">page title</label><span>browser tab + embed</span></div><div class="field__box"><input class="field__input" id="f-seotitle" type="text" maxlength="80" placeholder="defaults to your display name" data-cfg="settings.seoTitle"></div></div>
+            <div class="field"><div class="field__label"><label for="f-seodesc">embed description</label><span>defaults to your bio</span></div><div class="field__box"><input class="field__input" id="f-seodesc" type="text" maxlength="200" placeholder="defaults to your bio" data-cfg="settings.seoDescription"></div></div>
             <div class="field"><div class="field__label"><label for="f-cardline">your line on the card</label><span>lifetime perk</span></div><div class="field__box"><input class="field__input" id="f-cardline" type="text" maxlength="60" placeholder="be weird online again." data-cfg="settings.shareCard.tagline" data-plan="lifetime"></div><p class="field__hint"><span class="dot" aria-hidden="true"></span><span>handwritten, in your accent — replaces the misa.lol line</span></p></div>
             <div class="field"><div class="field__label"><label for="f-cardstyle">card style</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-cardstyle" data-cfg="settings.shareCard.style" data-plan="lifetime"><option value="glow">Glow — ink with your accent</option><option value="poster">Poster — your accent, edge to edge</option><option value="mono">Mono — ink and ivory, a hairline frame</option></select></div></div>
           </div></div>
@@ -164,6 +186,7 @@
         <div class="ana__col ana__col--wide"><p class="tile__label">last 14 days</p><div class="ana__bars" data-ana-bars role="group" aria-label="Views per day — tap a bar for the number" aria-describedby="ana-cap"></div><p class="ana__cap" id="ana-cap" data-ana-cap aria-live="polite">last 14 days · …</p></div>
         <div class="ana__col"><p class="tile__label">where from</p><ul class="ana__list" data-ana-refs><li class="ana__empty">…</li></ul></div>
         <div class="ana__col"><p class="tile__label">what they clicked</p><ul class="ana__list" data-ana-clicks><li class="ana__empty">…</li></ul></div>
+        <div class="ana__col"><p class="tile__label">devices</p><ul class="ana__list" data-ana-devices><li class="ana__empty">turn on the replay to split phone / desktop</li></ul></div>
       </div>
 
       <!-- v3.127: the visitor's-eye replay -->
@@ -182,10 +205,12 @@
       <div class="dash__grid">
         <div class="field"><div class="field__label"><label for="f-name">display name</label></div><div class="field__box"><input class="field__input" id="f-name" type="text" maxlength="60" placeholder="yourname" data-cfg="profile.displayName"></div></div>
         <div class="field"><div class="field__label"><label for="f-loc">location</label><span>optional</span></div><div class="field__box"><input class="field__input" id="f-loc" type="text" maxlength="60" placeholder="somewhere" data-cfg="profile.location"></div></div>
+        <div class="field"><div class="field__label"><label for="f-pronouns">pronouns</label><span>optional</span></div><div class="field__box"><input class="field__input" id="f-pronouns" type="text" maxlength="30" placeholder="she/her" data-cfg="profile.pronouns"></div></div>
         <div class="field field--wide"><div class="field__label"><label for="f-bio">bio</label><span>a line or three</span></div><div class="field__box"><textarea class="field__input" id="f-bio" rows="3" maxlength="300" placeholder="not a phase." data-cfg="profile.description"></textarea></div></div>
         <div class="field"><div class="field__label"><label for="f-avatar">avatar image</label><span>a link, or upload one</span></div><div class="field__box"><input class="field__input" id="f-avatar" type="url" data-asset="image" placeholder="https://…/me.png" data-cfg="assets.avatar.url"><button class="field__eye field__up" type="button" data-upload="avatar" data-target="f-avatar" aria-label="Upload an avatar image" title="Upload an avatar image"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg></button></div><p class="field__hint" data-asset-note hidden><span class="dot" aria-hidden="true"></span><span></span></p></div>
         <div class="field"><div class="field__label"><label for="f-audio">audio</label><span>autoplays after the first tap</span></div><div class="field__box"><input class="field__input" id="f-audio" type="url" data-asset="audio" placeholder="https://…/track.mp3" data-cfg="assets.audio.url"><button class="field__eye field__up" type="button" data-upload="audio" data-target="f-audio" aria-label="Upload a track" title="Upload a track"><svg class="ic" aria-hidden="true"><use href="#i-music"/></svg></button></div><p class="field__hint" data-asset-note hidden><span class="dot" aria-hidden="true"></span><span></span></p></div>
         <div class="field"><div class="field__label"><label for="f-audioname">track name</label></div><div class="field__box"><input class="field__input" id="f-audioname" type="text" maxlength="60" placeholder="graveyard shift" data-cfg="assets.audio.name"></div></div>
+        <div class="field"><div class="field__label"><label for="f-audiocover">cover art</label><span>a square image</span></div><div class="field__box"><input class="field__input" id="f-audiocover" type="url" data-asset="image" placeholder="https://…/cover.png" data-cfg="assets.audio.cover"><button class="field__eye field__up" type="button" data-upload="avatar" data-target="f-audiocover" aria-label="Upload cover art" title="Upload cover art"><svg class="ic" aria-hidden="true"><use href="#i-image"/></svg></button></div><p class="field__hint" data-asset-note hidden><span class="dot" aria-hidden="true"></span><span></span></p></div>
         <div class="field"><div class="field__label"><label for="f-player">player style</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-player" data-cfg="settings.playerStyle" data-plan="lifetime"><option value="bars">Bars</option><option value="minimal">Minimal</option><option value="vinyl">Vinyl</option></select></div></div>
         <div class="field field--row">
           <label class="toggle" data-toggle><input type="checkbox" data-cfg="assets.audioEnabled"><i aria-hidden="true"></i>play audio</label>
@@ -236,6 +261,14 @@
         <button class="theme-pick" type="button" data-theme-pick="lavender" style="--t1:#f3eefc;--t2:#7c5cff;--tf:#2a2140" title="A soft purple haze — Playfair, petals, outline links"><i aria-hidden="true">Aa</i><span>lavender</span></button>
       </div>
       <p class="look__reset"><button class="btn btn--ghost btn--sm" type="button" data-theme-reset hidden><span>Back to <b data-theme-reset-name>the theme</b></span></button></p>
+      <h3 class="dash__sub dash__sub--gap">Layout</h3>
+      <p class="dash__note">How the card sits on the page — words and links stay yours.</p>
+      <div class="layout-picks" role="group" aria-label="Layouts">
+        <button class="layout-pick" type="button" data-layout="modern" aria-pressed="true"><i aria-hidden="true"></i><span>Modern — centred card</span></button>
+        <button class="layout-pick" type="button" data-layout="simplistic" aria-pressed="false"><i aria-hidden="true"></i><span>Simplistic — left, tight</span></button>
+        <button class="layout-pick" type="button" data-layout="sleek" aria-pressed="false"><i aria-hidden="true"></i><span>Sleek — wide glass</span></button>
+      </div>
+      <select class="sr-only" id="f-layout" data-cfg="settings.layout" aria-label="Layout"><option value="modern">modern</option><option value="simplistic">simplistic</option><option value="sleek">sleek</option></select>
 
       <p class="sr-only" id="lock-lifetime">Lifetime perk — $5, once. Unlock it on the pricing page.</p>
       <p class="sr-only" id="lock-supporter">Supporter perk — $9.99, once. Unlock it on the pricing page.</p>
@@ -250,7 +283,9 @@
         <label class="color"><span>text</span><input type="color" data-cfg="settings.textColor"><code data-color-code>#F2F2F0</code></label>
         <label class="color"><span>background</span><input type="color" data-cfg="settings.backgroundColor"><code data-color-code>#050606</code></label>
         <label class="color"><span>icons</span><input type="color" data-cfg="settings.iconColor"><code data-color-code>#F00646</code></label>
+        <label class="color"><span>gradient to</span><input type="color" data-cfg="settings.backgroundColor2"><code data-color-code>#050606</code></label>
       </div>
+      <p class="dash__note">Gradient to is the second background colour. Match it to the first for a flat wash.</p>
 
       <h3 class="dash__sub dash__sub--gap">Behind the card</h3>
       <div class="dash__grid">
@@ -262,9 +297,10 @@
 
       <h3 class="dash__sub dash__sub--gap">Effects</h3>
       <div class="dash__grid">
-        <div class="field"><div class="field__label"><label for="f-ufx">username effect</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-ufx" data-cfg="settings.usernameEffect" data-plan="lifetime"><option>None</option><option>Glow</option><option>Gradient</option><option>Shimmer</option></select></div></div>
-        <div class="field"><div class="field__label"><label for="f-bfx">background effect</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-bfx" data-cfg="settings.backgroundEffect" data-plan="lifetime"><option>None</option><option>Particles</option><option>Stars</option><option>Glow</option><option>Rain</option><option>Snow</option><option>Embers</option><option>Petals</option></select></div></div>
+        <div class="field"><div class="field__label"><label for="f-ufx">username effect</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-ufx" data-cfg="settings.usernameEffect" data-plan="lifetime"><option>None</option><option>Glow</option><option>Gradient</option><option>Shimmer</option><option>Rainbow</option></select></div></div>
+        <div class="field"><div class="field__label"><label for="f-bfx">background effect</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-bfx" data-cfg="settings.backgroundEffect" data-plan="lifetime"><option>None</option><option>Particles</option><option>Stars</option><option>Glow</option><option>Rain</option><option>Snow</option><option>Embers</option><option>Petals</option><option>Aurora</option><option>Plasma</option><option>Dither</option><option>TV</option></select></div></div>
         <div class="field"><div class="field__label"><label for="f-linkstyle">link style</label></div><div class="field__box"><select class="field__input" id="f-linkstyle" data-cfg="settings.linkStyle"><option value="pill">Pill</option><option value="outline">Outline</option><option value="ghost">Ghost — just words</option><option value="brutal">Brutal — hard shadow</option><option value="glass">Glass</option></select></div></div>
+        <div class="field"><div class="field__label"><label for="f-linkalign">link alignment</label></div><div class="field__box"><select class="field__input" id="f-linkalign" data-cfg="settings.linkAlign"><option value="center">Center</option><option value="left">Left</option><option value="right">Right</option></select></div></div>
         <div class="field"><div class="field__label"><label for="f-frame">avatar frame</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-frame" data-cfg="settings.avatarFrame" data-plan="lifetime"><option value="none">None</option><option value="ring">Ring — turns</option><option value="halo">Halo — breathes</option><option value="pixel">Pixel</option><option value="petals">Petals</option></select></div></div>
         <div class="field"><div class="field__label"><label for="f-tab">tab title</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-tab" data-cfg="settings.tabTitle" data-plan="lifetime"><option value="none">Still</option><option value="breathe">Breathe — two titles trade places</option><option value="scroll">Scroll — the name walks</option><option value="blink">Blink — a dot pulses</option></select></div></div>
         <div class="field"><div class="field__label"><label for="f-enter">entrance animation</label><span>lifetime perk</span></div><div class="field__box"><select class="field__input" id="f-enter" data-cfg="settings.entryAnimation" data-plan="lifetime"><option>None</option><option>Fade</option><option>Rise</option><option>Flicker</option><option>Glitch</option></select></div></div>

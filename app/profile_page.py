@@ -266,6 +266,7 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
     display_name = escape(str(profile.get("displayName") or profile.get("username") or "user"))
     description = escape(str(profile.get("description") or ""))
     location = escape(str(profile.get("location") or ""))
+    pronouns = escape(str(profile.get("pronouns") or "").strip()[:30])
     views = int(_num(views if views is not None else profile.get("views"), 0, 0, 10**12))
 
     accent = _color(settings.get("accentColor"), "#F00646")
@@ -341,6 +342,16 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
     link_style = str(settings.get("linkStyle") or "pill").lower()
     if link_style not in ("pill", "outline", "ghost", "brutal", "glass"):
         link_style = "pill"
+    link_align = str(settings.get("linkAlign") or "center").lower()
+    if link_align not in ("left", "center", "right"):
+        link_align = "center"
+    layout = str(settings.get("layout") or "modern").lower()
+    if layout not in ("modern", "simplistic", "sleek"):
+        layout = "modern"
+    seo_title = escape(str(settings.get("seoTitle") or "").strip()[:80])
+    seo_desc = escape(str(settings.get("seoDescription") or "").strip()[:200])
+    bg2_raw = str(settings.get("backgroundColor2") or "").strip()
+    bg2 = _color(bg2_raw, bg) if bg2_raw else ""
     avatar_frame = str(settings.get("avatarFrame") or "none").lower()
     if avatar_frame not in ("ring", "halo", "pixel", "petals"):
         avatar_frame = ""
@@ -356,6 +367,7 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
     bg_video = _url((assets.get("backgroundVideo") or {}).get("url"))
     audio = _url((assets.get("audio") or {}).get("url"))
     audio_name = escape(str((assets.get("audio") or {}).get("name") or "now playing"))
+    audio_cover = _url((assets.get("audio") or {}).get("cover"))
     audio_enabled = bool(assets.get("audioEnabled", True)) and bool(audio)
     volume = _num(assets.get("volume"), 0.6, 0, 1)
     cursor = _url((assets.get("cursor") or {}).get("url"))
@@ -391,8 +403,16 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
             if not value:
                 continue
             icon = PLATFORM_ICON.get(platform.lower(), "link")
+            icon_url = _url(social.get("icon"))
+            icon_html = (
+                f'<img class="ic-custom" src="{escape(icon_url, quote=True)}" alt="" width="18" height="18">'
+                if icon_url else _ic(icon)
+            )
             if social.get("displayMode") == "text":
-                social_tags.append(f'<span class="link link--text">{_ic(icon)}<span class="link__label">{label}</span> <span class="link__value">{escape(value)}</span></span>')
+                social_tags.append(
+                    f'<button class="link link--text" type="button" data-copy="{escape(value, quote=True)}">'
+                    f'{icon_html}<span class="link__label">{label}</span> <span class="link__value">{escape(value)}</span></button>'
+                )
                 continue
             if platform.lower() == "email" and "@" in value and not value.startswith("mailto:"):
                 href = "mailto:" + value
@@ -402,9 +422,9 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
                 href = "https://" + value
             sid = escape(re.sub(r"[^A-Za-z0-9_-]", "", str(social.get("id") or ""))[:64], quote=True)
             social_tags.append(
-                f'<a class="link" href="{escape(href, quote=True)}" target="_blank" rel="noreferrer noopener"{f" data-go={chr(34)}{sid}{chr(34)}" if sid else ""}>{_ic(icon)}<span class="link__label">{label}</span><span class="sr-only"> (opens in a new tab)</span>{_ic("arrow")}</a>'
+                f'<a class="link" href="{escape(href, quote=True)}" target="_blank" rel="noreferrer noopener"{f" data-go={chr(34)}{sid}{chr(34)}" if sid else ""}>{icon_html}<span class="link__label">{label}</span><span class="sr-only"> (opens in a new tab)</span>{_ic("arrow")}</a>'
             )
-    socials = f'<div class="links links--{link_style}">{"".join(social_tags)}</div>' if social_tags else ""
+    socials = f'<div class="links links--{link_style} links-align-{link_align}">{"".join(social_tags)}</div>' if social_tags else ""
 
     # v3.115: content blocks — a heading, a paragraph, a quote, a divider, a “currently:” status — above or below the links
     top_blocks, bottom_blocks, back_blocks = [], [], []
@@ -667,7 +687,14 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
             '</section>'
         )
 
-    location_tag = f'<p class="location">{_ic("pin")}{location}</p>' if location else ""
+    location_tag = ""
+    if location or pronouns:
+        bits = []
+        if location:
+            bits.append(f'{_ic("pin")}{location}')
+        if pronouns:
+            bits.append(f'<span class="pronouns">{pronouns}</span>')
+        location_tag = f'<p class="location">{" · ".join(bits)}</p>'
     fresh_tag, seal_tag, patina_tag, since_tag, age_class = "", "", "", "", ""
     if age:
         days, label = age
@@ -744,9 +771,14 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
 
     audio_tag = ""
     if audio_enabled:
+        cover_html = (
+            f'<img class="player__art" src="{escape(audio_cover, quote=True)}" alt="" width="36" height="36">'
+            if audio_cover else ""
+        )
         audio_tag = (
             f'<div class="player player--{player_style}" data-player{" inert" if entry_screen else ""}>'
             f'<audio preload="none" loop src="{escape(audio, quote=True)}"></audio>'
+            f'{cover_html}'
             f'<button class="player__btn" type="button" aria-label="Play {audio_name}" data-play>{_ic("play")}</button>'
             f'<span class="player__name">{audio_name}</span>'
             f'<span class="player__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>'
@@ -759,7 +791,7 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
         cursor_style = f"cursor:url(\"{BUILTIN_CURSORS[builtin_cursor]}\") 12 12,auto;"
 
     name_classes = "name"
-    if name_effect in ("glow", "gradient", "shimmer"):
+    if name_effect in ("glow", "gradient", "shimmer", "rainbow"):
         name_classes += f" name--{name_effect}"
     if glow_name:
         name_classes += " name--halo"
@@ -767,14 +799,15 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
     card_classes = "card" + (f" in-{enter_anim}" if enter_anim and not entry_screen else "") + (" card--gold" if gold_border else "") + age_class + (" is-night" if night and night[0] else "")
     enter_attr = f' data-enter="{enter_anim}"' if enter_anim and entry_screen else ""  # played when the entry screen goes
     accent_rgb, bg_rgb = _hex_rgb(accent), _hex_rgb(bg)
-    fx_class = f"fx-{bg_effect}" if bg_effect in ("particles", "stars", "glow", "rain", "snow", "embers", "petals") else ""
+    fx_class = f"fx-{bg_effect}" if bg_effect in ("particles", "stars", "glow", "rain", "snow", "embers", "petals", "aurora", "plasma", "dither", "tv") else ""
     card_border = (
         f"linear-gradient(rgba({bg_rgb},{card_opacity:.2f}),rgba({bg_rgb},{card_opacity:.2f})) padding-box,linear-gradient(135deg,{accent},rgba({accent_rgb},.15),{accent}) border-box"
         if gradient_border else f"rgba({bg_rgb},{card_opacity:.2f})"
     )
     if gold_border:  # v3.113: a gold gradient that turns (via a registered angle property; static gold where unsupported)
         card_border = f"linear-gradient(rgba({bg_rgb},{card_opacity:.2f}),rgba({bg_rgb},{card_opacity:.2f})) padding-box,linear-gradient(var(--ga,135deg),#E6C36B,rgba(230,195,107,.18),#fff2c4,#E6C36B) border-box"
-    title = f"{display_name} · misa.lol"
+    title = seo_title or f"{display_name} · misa.lol"
+    meta_desc = seo_desc or description or f"misa.lol/{username}"
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -782,9 +815,9 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title>
-<meta name="description" content="{description or ('misa.lol/' + username)}">
+<meta name="description" content="{meta_desc}">
 <meta property="og:title" content="{title}">
-<meta property="og:description" content="{description or ('misa.lol/' + username)}">
+<meta property="og:description" content="{meta_desc}">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://misa.lol/{username}">
 <meta property="og:site_name" content="misa.lol">
@@ -793,7 +826,7 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
-<meta name="twitter:description" content="{description or ('misa.lol/' + username)}">
+<meta name="twitter:description" content="{meta_desc}">
 <meta name="twitter:image" content="https://misa.lol/{username}/card.png">
 <meta name="theme-color" content="{bg}">
 <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
@@ -804,7 +837,7 @@ def render_public_profile(config: dict, views: int | None = None, signatures: li
 *,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
 html,body{{min-height:100%}}
 [hidden]{{display:none!important}}
-body{{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;min-height:100svh;padding:28px 16px 88px;overflow-x:hidden;{cursor_style}}}
+body{{font-family:var(--font);background:{f"linear-gradient(165deg,{bg},{bg2})" if bg2 else "var(--bg)"};color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;min-height:100svh;padding:28px 16px 88px;overflow-x:hidden;{cursor_style}}}
 a{{color:inherit;text-decoration:none}}
 button{{font:inherit;color:inherit;background:none;border:0;cursor:pointer}}
 .ic{{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}}
@@ -819,6 +852,21 @@ button{{font:inherit;color:inherit;background:none;border:0;cursor:pointer}}
 .bg-fx.fx-snow{{background-image:radial-gradient(rgba(255,255,255,.9) 1.6px,transparent 2.4px),radial-gradient(rgba(255,255,255,.6) 1.2px,transparent 2px),radial-gradient(rgba(255,255,255,.35) 1px,transparent 1.6px);background-size:170px 170px,120px 120px,80px 80px;background-position:0 0,50px 30px,20px 70px;animation:snow 14s linear infinite;opacity:.85}}
 .bg-fx.fx-embers{{background-image:radial-gradient(rgba(var(--accent-rgb),.95) 1.5px,transparent 2.2px),radial-gradient(rgba(255,180,90,.8) 1.2px,transparent 1.8px),radial-gradient(rgba(255,120,40,.5) 2px,transparent 2.8px);background-size:210px 210px,150px 150px,320px 320px;background-position:0 0,70px 40px,30px 90px;animation:embers 9s linear infinite,flicker 1.3s ease-in-out infinite;opacity:.8}}
 .bg-fx.fx-petals{{background-image:radial-gradient(ellipse 5px 9px at 50% 50%,rgba(255,179,209,.95) 60%,transparent 62%),radial-gradient(ellipse 4px 7px at 50% 50%,rgba(255,214,231,.85) 60%,transparent 62%),radial-gradient(ellipse 6px 10px at 50% 50%,rgba(255,150,190,.7) 60%,transparent 62%);background-size:190px 190px,140px 140px,260px 260px;background-position:0 0,60px 30px,120px 80px;animation:petals 16s linear infinite,sway 5s ease-in-out infinite;opacity:.9}}
+.bg-fx.fx-aurora{{background:linear-gradient(120deg,rgba(80,220,200,.35),transparent 38%,rgba(120,90,255,.28) 70%,transparent);background-size:220% 200%;animation:drift 18s ease-in-out infinite}}
+.bg-fx.fx-plasma{{background:radial-gradient(circle at 20% 30%,rgba(var(--accent-rgb),.4),transparent 42%),radial-gradient(circle at 80% 70%,rgba(124,92,255,.35),transparent 40%);animation:drift 12s linear infinite}}
+.bg-fx.fx-dither{{background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px);opacity:.5}}
+.bg-fx.fx-tv{{background:repeating-linear-gradient(180deg,transparent 0 2px,rgba(255,255,255,.06) 2px 3px);animation:rain .35s linear infinite;opacity:.4}}
+.name--rainbow{{background:linear-gradient(90deg,var(--accent),#E6C36B,#7c5cff,#39ffa0,var(--accent));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 2.8s linear infinite}}
+.links-align-left .link{{text-align:left}}
+.links-align-right .link{{flex-direction:row-reverse;text-align:right}}
+button.link{{font:inherit;color:inherit;cursor:pointer;width:100%;text-align:inherit}}
+.link__value{{margin-left:auto;opacity:.55;font-size:12px;font-weight:500}}
+.ic-custom{{width:18px;height:18px;object-fit:cover;border-radius:5px;flex:none}}
+.player__art{{width:36px;height:36px;border-radius:10px;object-fit:cover;flex:none}}
+.pronouns{{opacity:.75;font-size:12px}}
+body.layout-simplistic{{place-items:start center;padding-top:48px}}
+body.layout-simplistic .card{{text-align:left;justify-items:start;max-width:400px}}
+body.layout-sleek .card{{max-width:560px;padding:32px 36px}}
 @keyframes rain{{to{{background-position:-14px 160px,-22px 240px}}}}
 @keyframes snow{{to{{background-position:24px 170px,-30px 150px,10px 80px}}}}
 @keyframes embers{{to{{background-position:10px -210px,-20px -150px,15px -320px}}}}
@@ -1192,7 +1240,7 @@ a.np__t:hover{{color:var(--accent)}}
 @media (prefers-reduced-motion:reduce){{.bg-fx,.name--shimmer,.player__bars i,.entry__text,.bio__caret,.card,.card--gold,.player--vinyl .player__btn,.blk__dot,.avatar-wrap::before,.here__dot,.blk__colon{{animation:none!important}}.odo__col,.mood{{transition:none!important}}.blk--np .np__disc,.np__bars i{{animation:none!important}}.secret.in-glitch,.secret__ask.is-wrong input{{animation:none!important}}.bg-video{{display:none}}.sky i,.sky--storm{{animation:none!important}}.candle__flame,.draw__card{{animation:none!important}}.flip--on .card,.flip--on .card--back,.flip--on{{transition:none!important}}.candle.is-out .candle__flame,.candle.is-out{{transition:none!important}}.bio--type .bio__caret{{display:none}}}}
 </style>
 </head>
-<body>
+<body class="layout-{layout}">
 {SPRITE}
 {video_tag}
 <div class="bg-image" style="{image_style}" aria-hidden="true"></div>
@@ -1489,7 +1537,7 @@ a.np__t:hover{{color:var(--accent)}}
         .then(function(r){{ return r.json().catch(function(){{ return {{}}; }}).then(function(d){{ m.textContent=r.ok?(d.message||'Thanks.'):(typeof d.detail==='string'?d.detail:'Could not send that.'); if(r.ok) setTimeout(function(){{ closeReport(); m.textContent=''; }},2200); }}); }})
         .catch(function(){{ m.textContent='Could not send that.'; }}).then(function(){{ sending=false; b.removeAttribute('aria-busy'); }}); }}); }}
   /* link clicks → the owner's analytics (a beacon, never blocks the navigation) */
-  document.addEventListener('click',function(e){{ var l=e.target&&e.target.closest&&e.target.closest('a[data-go]'); if(l&&navigator.sendBeacon) navigator.sendBeacon('/api/v1/hit/{username}/'+encodeURIComponent(l.getAttribute('data-go'))); }});
+  document.addEventListener('click',function(e){{ var t=e.target&&e.target.closest; if(!t) return; var l=e.target.closest('a[data-go]'); if(l&&navigator.sendBeacon) navigator.sendBeacon('/api/v1/hit/{username}/'+encodeURIComponent(l.getAttribute('data-go'))); var c=e.target.closest('[data-copy]'); if(c){{ var txt=c.getAttribute('data-copy')||''; if(txt&&navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(txt).catch(function(){{}}); }} }});
 }})();
 </script>
 </body>

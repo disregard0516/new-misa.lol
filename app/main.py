@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 from html import escape
 from pathlib import Path
 import json
+import os
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -34,7 +35,11 @@ async def lifespan(app: FastAPI):
     settings = get_settings()
     setup_logging("DEBUG" if settings.debug else "INFO")
     init_dragonfly(settings.dragonfly_url)
-    await init_data_api(settings.data_api_url, settings.data_api_key)
+    try:
+        await init_data_api(settings.data_api_url, settings.data_api_key)
+    except Exception:
+        if not os.environ.get("VERCEL"):
+            raise
     await init_admin_db(settings.database_url)
     app.state.settings = settings
     yield
@@ -81,10 +86,12 @@ def create_app() -> FastAPI:
 
     def frontend_config_js() -> Response:
         current = get_settings()
+        preview = os.environ.get("MISA_UI_PREVIEW", "").lower() in {"1", "true", "yes"}
         payload = json.dumps({"turnstileSiteKey": current.turnstile_site_key})
         body = (
             f"window.MISA_CONFIG = {payload};"
             "window.MISA_TURNSTILE_SITE_KEY = window.MISA_CONFIG.turnstileSiteKey;"
+            f"window.MISA_UI_PREVIEW = {json.dumps(preview)};"
         )
         return Response(
             body,
@@ -159,6 +166,51 @@ def create_app() -> FastAPI:
         png = await run_in_threadpool(cached_card, slug, profile)
         return Response(content=png, media_type="image/png", headers={"Cache-Control": "public, max-age=300"})
 
+    def _preview_on() -> bool:
+        return os.environ.get("MISA_UI_PREVIEW", "").lower() in {"1", "true", "yes"}
+
+    @application.get("/preview/qr.png")
+    async def preview_qr(request: Request) -> Response:
+        if not _preview_on():
+            raise HTTPException(status_code=404)
+        from app.core.qr import page_qr_png
+
+        base = get_settings().public_base_url.rstrip("/")
+        dark = request.query_params.get("theme") == "dark"
+        png = await run_in_threadpool(lambda: page_qr_png(f"{base}/you", dark=dark))
+        return Response(content=png, media_type="image/png", headers={"Cache-Control": "no-store"})
+
+    @application.get("/ui")
+    async def ui_preview() -> FileResponse:
+        if not _preview_on():
+            raise HTTPException(status_code=404)
+        return html_response("dashboard.html")
+
+    @application.get("/{username}/qr.png")
+    async def profile_qr(username: str, request: Request) -> Response:
+        """QR PNG for the public page."""
+        slug = username.lower()
+        if not USERNAME_RE.match(slug):
+            raise HTTPException(status_code=404)
+        await rate_limit(f"rl:qr:{client_ip(request)}", 60, 60)
+        try:
+            user = await data_api.find_user(username=slug)
+            if user is None or user.currently_suspended:
+                raise HTTPException(status_code=404)
+        except HTTPException:
+            raise
+        except Exception:
+            raise HTTPException(status_code=404)
+        from app.core.qr import page_qr_png
+
+        base = get_settings().public_base_url.rstrip("/")
+        dark = request.query_params.get("theme") == "dark"
+        try:
+            png = await run_in_threadpool(lambda: page_qr_png(f"{base}/{user.username}", dark=dark))
+        except ImportError:
+            raise HTTPException(status_code=503, detail="QR support is not installed.")
+        return Response(content=png, media_type="image/png", headers={"Cache-Control": "public, max-age=86400"})
+
     @application.get("/{username}/milestone.png")
     async def milestone_card(username: str, request: Request, n: int = 0) -> Response:
         """v3.124: a card for a view count the page has really crossed — 404 for one it hasn't."""
@@ -186,7 +238,9 @@ def create_app() -> FastAPI:
         if slug in PRIVATE_PAGES | GUEST_PAGES:
             user = await get_user_from_request(request)
             if slug in PRIVATE_PAGES and user is None:
-                return RedirectResponse("/login", status_code=302)
+                preview = os.environ.get("MISA_UI_PREVIEW", "").lower() in {"1", "true", "yes"}
+                if not (preview and slug == "dashboard"):
+                    return RedirectResponse("/login", status_code=302)
             if slug in GUEST_PAGES and user is not None:
                 return RedirectResponse("/dashboard", status_code=302)
             if slug == "admin" and not (user.is_admin or user.id in get_settings().admin_user_id_list):
@@ -256,6 +310,41 @@ def create_app() -> FastAPI:
                     return HTMLResponse(render_public_profile(profile, views=views, here=here, since=getattr(user, "created_at", None), was_at=was_at, **parts), headers={"Cache-Control": "no-store"})
         except Exception:
             pass
+        preview = os.environ.get("MISA_UI_PREVIEW", "").lower() in {"1", "true", "yes"}
+        if preview and slug.lower() == "you":
+            return HTMLResponse(
+                render_public_profile(
+                    {
+                        "profile": {
+                            "username": "you",
+                            "displayName": "you",
+                            "description": "be weird online again.",
+                            "location": "the void",
+                            "pronouns": "they/them",
+                        },
+                        "settings": {
+                            "accentColor": "#F00646",
+                            "textColor": "#F2F2F0",
+                            "backgroundColor": "#050606",
+                            "backgroundColor2": "#1a0a10",
+                            "showViews": True,
+                            "showSocials": True,
+                            "backgroundEffect": "Glow",
+                            "usernameEffect": "Shimmer",
+                            "layout": "modern",
+                            "font": "playfair",
+                        },
+                        "assets": {},
+                        "socials": [
+                            {"id": "s1", "platform": "X", "label": "x", "value": "https://x.com", "enabled": True},
+                            {"id": "s2", "platform": "Discord", "label": "discord", "value": "https://discord.gg", "enabled": True},
+                        ],
+                        "badges": [{"name": "early", "color": "#F00646", "owned": True, "enabled": True}],
+                    },
+                    views=12840,
+                ),
+                headers={"Cache-Control": "no-store"},
+            )
         raise HTTPException(status_code=404)
 
     @application.exception_handler(StarletteHTTPException)
