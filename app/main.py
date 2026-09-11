@@ -166,13 +166,8 @@ def create_app() -> FastAPI:
         png = await run_in_threadpool(cached_card, slug, profile)
         return Response(content=png, media_type="image/png", headers={"Cache-Control": "public, max-age=300"})
 
-    def _preview_on() -> bool:
-        return os.environ.get("MISA_UI_PREVIEW", "").lower() in {"1", "true", "yes"}
-
     @application.get("/preview/qr.png")
     async def preview_qr(request: Request) -> Response:
-        if not _preview_on():
-            raise HTTPException(status_code=404)
         from app.core.qr import page_qr_png
 
         base = get_settings().public_base_url.rstrip("/")
