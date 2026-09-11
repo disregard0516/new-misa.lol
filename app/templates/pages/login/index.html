@@ -28,12 +28,13 @@
     <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="/css/v2.css?v=still1">
+    <link rel="stylesheet" href="/css/v2.css?v=mk3">
+    <link rel="stylesheet" href="/css/press.css?v=mk3">
     <script src="/js/config.js"></script>
-    <script src="/js/auth.js"></script>
-    <script src="/js/v2.js?v=still1" defer></script>
+    <script src="/js/auth.js?v=mk3"></script>
+    <script src="/js/v2.js?v=mk3" defer></script>
 </head>
-<body class="auth-page login-page">
+<body class="auth-page login-page mk-auth">
 <a class="skip" href="#main">Skip to content</a>
 <!-- ═══ SVG ICON SPRITE ═══ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -134,9 +135,8 @@
     </div>
   </div>
 
-  <aside class="auth__stage auth__stage--video" aria-hidden="true">
-    <video class="auth__video" muted loop playsinline preload="none" poster="/images/mainbg-poster.webp" data-src="/images/mainbg.mp4" data-src-webm="/images/mainbg.webm" tabindex="-1"></video>
-    <div class="hero__glow"></div>
+  <aside class="auth__stage" aria-hidden="true">
+    <img class="auth__still" src="/images/mainbg-poster-960.webp" alt="" decoding="async">
     <div class="hero__dots"></div>
     <p class="auth__note hand">welcome back. <small>your page kept the lights on.</small></p>
   </aside>

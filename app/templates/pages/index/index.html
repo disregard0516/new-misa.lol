@@ -23,17 +23,19 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="icon" href="/images/favicon.svg?v=facff01a" type="image/svg+xml">
     <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="/css/v2.css?v=still1">
-    <script src="/js/config.js" defer></script>
-    <script src="/js/auth.js" defer></script>
-    <script src="/js/v2.js?v=still1" defer></script>
+    <link rel="stylesheet" href="/css/v2.css?v=mk3">
+    <link rel="stylesheet" href="/css/press.css?v=mk3">
+    <script src="/js/config.js"></script>
+    <script src="/js/auth.js?v=mk3" defer></script>
+    <script src="/js/v2.js?v=mk3" defer></script>
+    <script src="/js/night.js?v=mk3" defer></script>
 </head>
-<body>
+<body class="night mk">
 <a class="skip" href="#main">Skip to content</a>
 <!-- ═══ SVG ICON SPRITE ═══ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -73,21 +75,19 @@
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
 </svg>
 
-<!-- ═══ NAV ═══ -->
-<header class="nav" id="top">
-  <div class="nav__inner">
-    <a href="/" class="nav__logo" aria-label="misa.lol home"><span class="nav__dagger" aria-hidden="true">†</span>misa.lol</a>
-    <nav class="nav__links" aria-label="Primary">
-      <a href="/#themes">Themes</a>
-      <a href="/#features">Features</a>
-      <a href="/explore">Explore</a>
-      <a href="/pricing">Pricing</a>
-    </nav>
-    <div class="nav__actions">
-      <a href="/login" class="nav__login">Login</a>
-      <a href="/signup" class="btn btn--ivory btn--sm" data-claim><span>Claim<span class="full"> username</span></span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-      <button class="nav__burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span></button>
-    </div>
+<header class="nav mk-bar" id="top">
+  <a href="/" class="mk-mark" aria-label="misa.lol home">misa<span>.lol</span></a>
+  <nav class="nav__links mk-nav" aria-label="Primary">
+    <a href="/#how">How</a>
+    <a href="/#themes">Looks</a>
+    <a href="/#features">Kit</a>
+    <a href="/explore">Explore</a>
+    <a href="/pricing">Pricing</a>
+  </nav>
+  <div class="nav__actions mk-end">
+    <a href="/login" class="nav__login">Log in</a>
+    <a href="/signup" class="mk-go" data-claim>Claim name</a>
+    <button class="nav__burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span></button>
   </div>
 </header>
 
@@ -102,101 +102,76 @@
 </div>
 
 <main id="main">
-<div class="grain" aria-hidden="true"></div>
-<div class="halo" aria-hidden="true" data-halo></div>
-
-<!-- ═══ HERO v3 — full-bleed loop, giant type ═══ -->
-<section class="hero3">
-  <picture><source media="(max-width:640px)" srcset="/images/mainbg-poster-960.webp" type="image/webp"><source srcset="/images/mainbg-poster.webp" type="image/webp"><img class="hero3__poster" src="/images/mainbg-poster.jpg" alt="" width="1671" height="941" fetchpriority="high" decoding="async"></picture>
-  <div class="hero3__tint" aria-hidden="true"></div>
-  <div class="hero__dots" aria-hidden="true"></div>
-  <div class="container hero3__inner">
-    <div class="hero3__copy">
-      <p class="eyebrow">your corner of the internet</p>
-      <h1 class="hero3__title">be weird<br><em>online again.</em></h1>
-      <p class="hero__lede"><strong>misa.lol</strong> is one page for your identity, music, socials and links — with the video backgrounds, effects and cursors that make it actually yours. Type a name. Watch it happen.</p>
-      <div class="hero__form">
-        <form class="claim" action="/signup" method="get" autocomplete="off">
-          <label class="claim__prefix" for="claim-name">misa.lol/</label>
-          <input class="claim__input" id="claim-name" name="username" type="text" placeholder="yourname" maxlength="24" spellcheck="false" autocapitalize="off" autocorrect="off" inputmode="text" enterkeyhint="go" pattern="[A-Za-z][A-Za-z0-9_]{2,23}" aria-describedby="claim-hint" data-live>
-          <button class="claim__btn" type="submit">Claim <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-        </form>
-        <p class="claim__hint" id="claim-hint"><span class="dot" aria-hidden="true"></span><span data-hint>free forever · not a subscription · live in under a minute</span></p>
+<section class="mk-hero" id="hero">
+  <aside class="mk-index" aria-label="On this page">
+    <a href="#hero"><b>01</b> claim</a>
+    <a href="#how"><b>02</b> steps</a>
+    <a href="#themes"><b>03</b> looks</a>
+    <a href="#features"><b>04</b> kit</a>
+    <a href="#pricing"><b>05</b> pay</a>
+  </aside>
+  <div class="mk-copy">
+    <p class="mk-kicker">public page product</p>
+    <h1 class="mk-h1">One URL.<br>A whole page,<br>not a stack of buttons.</h1>
+    <p class="mk-lede">misa.lol is the page you post: music, video, socials, guestbook, stats. Free forever. Upgrades are one payment.</p>
+    <form class="mk-claim claim" action="/signup" method="get" autocomplete="off">
+      <label class="claim__prefix" for="claim-name">misa.lol/</label>
+      <input class="claim__input" id="claim-name" name="username" type="text" placeholder="yourname" maxlength="24" spellcheck="false" autocapitalize="off" autocorrect="off" inputmode="text" enterkeyhint="go" pattern="[A-Za-z][A-Za-z0-9_]{2,23}" aria-describedby="claim-hint" data-live>
+      <button class="mk-claim__btn" type="submit">Take it</button>
+    </form>
+    <p class="claim__hint" id="claim-hint"><span data-hint>no card · live in under a minute</span></p>
+    <div class="lab mk-lab" role="group" aria-label="Preview controls">
+      <div class="swatches" role="radiogroup" aria-label="Theme">
+        <button class="swatch" type="button" data-set-theme="gothic" role="radio" aria-checked="true" tabindex="0" aria-label="Gothic theme" title="gothic" style="--sw:#F00646"></button>
+        <button class="swatch" type="button" data-set-theme="soft" role="radio" aria-checked="false" tabindex="-1" aria-label="Soft theme" title="soft" style="--sw:#ff6ea9"></button>
+        <button class="swatch" type="button" data-set-theme="mono" role="radio" aria-checked="false" tabindex="-1" aria-label="Mono theme" title="mono" style="--sw:#fff"></button>
+        <button class="swatch" type="button" data-set-theme="y2k" role="radio" aria-checked="false" tabindex="-1" aria-label="Y2K theme" title="y2k" style="--sw:#39ffa0"></button>
+        <button class="swatch" type="button" data-set-theme="sunset" role="radio" aria-checked="false" tabindex="-1" aria-label="Sunset theme" title="sunset" style="--sw:#ff8a3d"></button>
+        <button class="swatch" type="button" data-set-theme="paper" role="radio" aria-checked="false" tabindex="-1" aria-label="Paper theme" title="paper" style="--sw:#EEE8E2"></button>
+        <button class="swatch" type="button" data-set-theme="vampire" role="radio" aria-checked="false" tabindex="-1" aria-label="Vampire theme" title="vampire" style="--sw:#b3001b"></button>
+        <button class="swatch" type="button" data-set-theme="cathedral" role="radio" aria-checked="false" tabindex="-1" aria-label="Cathedral theme" title="cathedral" style="--sw:#d4a24c"></button>
+        <button class="swatch" type="button" data-set-theme="static" role="radio" aria-checked="false" tabindex="-1" aria-label="Static theme" title="static" style="--sw:#888"></button>
+        <button class="swatch" type="button" data-set-theme="lavender" role="radio" aria-checked="false" tabindex="-1" aria-label="Lavender theme" title="lavender" style="--sw:#7c5cff"></button>
       </div>
-    </div>
-
-    <!-- live controls for the preview phone — a sibling of the copy so phones can put it under the phone -->
-    <div class="lab hero3__lab" role="group" aria-label="Preview controls">
-      <div class="lab__row">
-        <span class="lab__label">theme</span>
-        <div class="swatches" role="radiogroup" aria-label="Theme">
-          <button class="swatch" type="button" data-set-theme="gothic" role="radio" aria-checked="true" tabindex="0" aria-label="Gothic theme" title="gothic" style="--sw:linear-gradient(135deg,#F00646,#1a0006)"></button>
-          <button class="swatch" type="button" data-set-theme="soft" role="radio" aria-checked="false" tabindex="-1" aria-label="Soft theme" title="soft" style="--sw:linear-gradient(135deg,#ffb3d1,#c9b6ff)"></button>
-          <button class="swatch" type="button" data-set-theme="mono" role="radio" aria-checked="false" tabindex="-1" aria-label="Mono theme" title="mono" style="--sw:linear-gradient(135deg,#fff 50%,#000 50%)"></button>
-          <button class="swatch" type="button" data-set-theme="y2k" role="radio" aria-checked="false" tabindex="-1" aria-label="Y2K theme" title="y2k" style="--sw:linear-gradient(135deg,#39ffa0,#1a5cff)"></button>
-          <button class="swatch" type="button" data-set-theme="sunset" role="radio" aria-checked="false" tabindex="-1" aria-label="Sunset theme" title="sunset" style="--sw:linear-gradient(135deg,#ff8a3d,#7b2cff)"></button>
-          <button class="swatch" type="button" data-set-theme="paper" role="radio" aria-checked="false" tabindex="-1" aria-label="Paper theme" title="paper" style="--sw:#EEE8E2"></button>
-          <button class="swatch" type="button" data-set-theme="vampire" role="radio" aria-checked="false" tabindex="-1" aria-label="Vampire theme" title="vampire" style="--sw:linear-gradient(135deg,#b3001b,#0b0004)"></button>
-          <button class="swatch" type="button" data-set-theme="cathedral" role="radio" aria-checked="false" tabindex="-1" aria-label="Cathedral theme" title="cathedral" style="--sw:linear-gradient(135deg,#d4a24c,#0e0c14)"></button>
-          <button class="swatch" type="button" data-set-theme="static" role="radio" aria-checked="false" tabindex="-1" aria-label="Static theme" title="static" style="--sw:repeating-linear-gradient(0deg,#f5f5f5 0 2px,#101010 2px 4px)"></button>
-          <button class="swatch" type="button" data-set-theme="lavender" role="radio" aria-checked="false" tabindex="-1" aria-label="Lavender theme" title="lavender" style="--sw:linear-gradient(135deg,#c9b6ff,#7c5cff)"></button>
-        </div>
-      </div>
-      <div class="lab__row">
-        <span class="lab__label">effects</span>
-        <div class="toggles">
-          <button class="toggle" type="button" role="switch" data-fx="video" aria-checked="true"><i aria-hidden="true"></i>video background</button>
-          <button class="toggle" type="button" role="switch" data-fx="type" aria-checked="true"><i aria-hidden="true"></i>typewriter bio</button>
-          <button class="toggle" type="button" role="switch" data-fx="sparkle" aria-checked="false"><i aria-hidden="true"></i>gold sparkles</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero__stage hero3__stage">
-      <p class="hero__note hand" aria-hidden="true">this is you →</p>
-      <!-- The preview phone. Reuses your hero loop as the profile's video background. -->
-      <div class="phone theme-gothic video-on phone-float" id="hero-phone" data-theme="gothic" role="group" aria-label="Live preview of your misa.lol page">
-        <div class="phone__notch" aria-hidden="true"></div>
-        <div class="phone__bg" aria-hidden="true"></div>
-        <div class="phone__art" aria-hidden="true"></div>
-        <video class="phone__video" muted loop playsinline preload="none" data-poster="/images/mainbg-poster-960.webp" data-autoplay aria-hidden="true" tabindex="-1">
-          <source src="/images/mainbg.webm" type="video/webm">
-          <source src="/images/mainbg.mp4" type="video/mp4">
-        </video>
-        <div class="phone__tint" aria-hidden="true"></div>
-        <div class="phone__glare" aria-hidden="true"></div>
-        <svg class="ic pf__spark" aria-hidden="true"><use href="#i-sparkle"/></svg>
-        <svg class="ic pf__spark" aria-hidden="true"><use href="#i-sparkle"/></svg>
-        <svg class="ic pf__spark" aria-hidden="true"><use href="#i-sparkle"/></svg>
-        <div class="pf">
-          <div class="pf__avatar" aria-hidden="true" data-avatar>y</div>
-          <div class="pf__name"><span data-name>yourname</span><span class="pf__badge" data-badge title="verified"><svg class="ic"><use href="#i-check"/></svg></span></div>
-          <div class="pf__handle">misa.lol/<span data-handle>yourname</span></div>
-          <p class="pf__bio"><span data-bio>your bio, typing itself.</span><span class="caret" aria-hidden="true"></span></p>
-          <div class="pf__links">
-            <span class="pf__link"><svg class="ic"><use href="#i-music"/></svg><span class="pf__label">new single</span><svg class="ic"><use href="#i-arrow"/></svg></span>
-            <span class="pf__link"><svg class="ic"><use href="#i-video"/></svg><span class="pf__label">tiktok</span><svg class="ic"><use href="#i-arrow"/></svg></span>
-            <span class="pf__link"><svg class="ic"><use href="#i-users"/></svg><span class="pf__label">discord server</span><svg class="ic"><use href="#i-arrow"/></svg></span>
-            <span class="pf__link"><svg class="ic"><use href="#i-heart"/></svg><span class="pf__label">wishlist</span><svg class="ic"><use href="#i-arrow"/></svg></span>
-          </div>
-          <div class="pf__music"><span class="pf__art"><svg class="ic"><use href="#i-play"/></svg></span><span class="pf__track"><b>graveyard shift</b><span data-artist>yourname</span><span class="pf__bar"><i></i></span></span></div>
-          <div class="pf__foot"><span class="pf__views"><svg class="ic"><use href="#i-eye"/></svg>12.4k views</span><span class="pf__socials" aria-hidden="true"><i><svg class="ic"><use href="#i-music"/></svg></i><i><svg class="ic"><use href="#i-video"/></svg></i><i><svg class="ic"><use href="#i-users"/></svg></i><i><svg class="ic"><use href="#i-mail"/></svg></i></span></div>
-        </div>
+      <div class="toggles">
+        <button class="toggle" type="button" role="switch" data-fx="video" aria-checked="true"><i aria-hidden="true"></i>video</button>
+        <button class="toggle" type="button" role="switch" data-fx="type" aria-checked="true"><i aria-hidden="true"></i>typewriter</button>
+        <button class="toggle" type="button" role="switch" data-fx="sparkle" aria-checked="false"><i aria-hidden="true"></i>sparkle</button>
       </div>
     </div>
   </div>
-  <div class="ticker">
-    <div class="ticker__track" aria-hidden="true">
-      <span>one payment, yours for life</span><i>†</i><span>not a subscription</span><i>†</i><span>video backgrounds</span><i>†</i><span>custom cursors</span><i>†</i><span>typewriter bios</span><i>†</i><span>gold sparkles</span><i>†</i><span>made for the internet people ♡</span><i>†</i><span>misa.lol/yourname</span><i>†</i>
-      <span>one payment, yours for life</span><i>†</i><span>not a subscription</span><i>†</i><span>video backgrounds</span><i>†</i><span>custom cursors</span><i>†</i><span>typewriter bios</span><i>†</i><span>gold sparkles</span><i>†</i><span>made for the internet people ♡</span><i>†</i><span>misa.lol/yourname</span><i>†</i>
+  <div class="mk-screen">
+    <div class="mk-chrome">
+      <span class="mk-dots" aria-hidden="true"></span>
+      <span class="mk-url">misa.lol/<span data-handle>yourname</span></span>
     </div>
-    <button class="ticker__pause" type="button" data-ticker-pause aria-pressed="false" aria-label="Pause the ticker"><svg class="ic" data-icon="pause" aria-hidden="true"><use href="#i-pause"/></svg><svg class="ic" data-icon="play" aria-hidden="true"><use href="#i-play"/></svg></button>
+    <div class="phone theme-gothic video-on" id="hero-phone" data-theme="gothic" role="group" aria-label="Live preview of your misa.lol page">
+      <div class="phone__bg" aria-hidden="true"></div>
+      <video class="phone__video" muted loop playsinline preload="none" poster="/images/mainbg-poster-960.webp" data-src="/images/mainbg.webm" data-src-mp4="/images/mainbg.mp4" data-autoplay aria-hidden="true" tabindex="-1"></video>
+      <div class="phone__tint" aria-hidden="true"></div>
+      <div class="pf">
+        <div class="pf__avatar" aria-hidden="true" data-avatar>y</div>
+        <div class="pf__name"><span data-name>yourname</span><span class="pf__badge" data-badge title="verified"><svg class="ic"><use href="#i-check"/></svg></span></div>
+        <div class="pf__handle">misa.lol/<span data-handle>yourname</span></div>
+        <p class="pf__bio"><span data-bio>your bio, typing itself.</span><span class="caret" aria-hidden="true"></span></p>
+        <div class="pf__links">
+          <span class="pf__link"><svg class="ic"><use href="#i-music"/></svg><span class="pf__label">new single</span><svg class="ic"><use href="#i-arrow"/></svg></span>
+          <span class="pf__link"><svg class="ic"><use href="#i-video"/></svg><span class="pf__label">tiktok</span><svg class="ic"><use href="#i-arrow"/></svg></span>
+          <span class="pf__link"><svg class="ic"><use href="#i-users"/></svg><span class="pf__label">discord</span><svg class="ic"><use href="#i-arrow"/></svg></span>
+        </div>
+        <div class="pf__music"><span class="pf__art"><svg class="ic"><use href="#i-play"/></svg></span><span class="pf__track"><b>graveyard shift</b><span data-artist>yourname</span><span class="pf__bar"><i></i></span></span></div>
+        <div class="pf__foot"><span class="pf__views"><svg class="ic"><use href="#i-eye"/></svg>12.4k views</span></div>
+      </div>
+    </div>
   </div>
 </section>
-
 <!-- ═══ HOW IT WORKS — three steps, no fluff ═══ -->
-<section class="section section--bridge container" id="how">
-  <h2 class="sr-only">How it works</h2>
+<section class="mk-sec" id="how">
+  <header class="mk-head">
+    <p class="mk-kicker">02 · how</p>
+    <h2 class="mk-h2">Three moves.</h2>
+    <p class="mk-lede">Claim a name, dress the page, post the link. The rest is optional.</p>
+  </header>
   <ol class="steps">
     <li class="steps__item reveal">
       <span class="steps__num">1</span>
@@ -217,19 +192,19 @@
 </section>
 
 <!-- ═══ THE WALL — tilted collage of example pages ═══ -->
-<section class="section container" id="themes">
-  <div class="section__head reveal">
-    <p class="eyebrow">the neighbourhood</p>
-    <h2 class="title">Every page starts <em>somewhere else.</em></h2>
-    <p class="lede">Sixteen example pages across ten looks — not real people, just what yours could look like. Tap one to try its look on your preview above.</p>
-  </div>
+<section class="section container snap-sec" id="themes">
+  <header class="bs-head2 reveal">
+    <span class="bs-head2__no" aria-hidden="true">ii</span>
+    <h2 class="bs-head2__t">Every page starts <em>somewhere else.</em></h2>
+    <p class="bs-head2__d">Sixteen example pages across ten looks — not real people, just what yours could look like. Tap one to try its look on your preview above.</p>
+  </header>
   <div class="wall" id="wall" role="group" aria-label="Example pages by theme"><!-- built by app.js from the PAGES list --></div>
   <noscript><p class="wall__nojs">The example pages are drawn by a little script that isn’t running here — they live on the explore page too.</p></noscript>
   <p class="wall__more"><a class="btn btn--ghost" href="/explore" data-wall-more><span data-more-label>All sixteen on explore</span> <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
 </section>
 
 <!-- ═══ MANIFESTO — the crimson block ═══ -->
-<section class="manifesto">
+<section class="manifesto snap-sec">
   <div class="container manifesto__inner">
     <p class="manifesto__eyebrow">† a small manifesto</p>
     <h2 class="manifesto__title">the internet used to be <em>weird.</em><br>we’d like it back.</h2>
@@ -242,12 +217,12 @@
 </section>
 
 <!-- ═══ SPEC SHEET ═══ -->
-<section class="section container" id="features">
-  <div class="section__head reveal">
-    <p class="eyebrow">what you get</p>
-    <h2 class="title">Everything a page <em>should've had</em> by now.</h2>
-    <p class="lede">Most link-in-bio tools give you a list of buttons. misa.lol gives you a place. Everything below is a toggle — turn off anything you don't want.</p>
-  </div>
+<section class="section container snap-sec" id="features">
+  <header class="bs-head2 reveal">
+    <span class="bs-head2__no" aria-hidden="true">iii</span>
+    <h2 class="bs-head2__t">Everything a page <em>should've had</em> by now.</h2>
+    <p class="bs-head2__d">Most link-in-bio tools give you a list of buttons. misa.lol gives you a place. Everything below is a toggle — turn off anything you don't want.</p>
+  </header>
 
   <div class="spec">
     <div class="spec__row reveal">
@@ -416,24 +391,24 @@
 </section>
 
 <!-- ═══ EVERYTHING ELSE ═══ (v3.140: built from the pricing page's own compare table — never written by hand) -->
-<section class="section container section--tight" id="everything">
-  <div class="section__head reveal">
-    <p class="eyebrow">everything else</p>
-    <h2 class="title">And <em>forty</em> other things.</h2>
-    <p class="lede">The ones above are the ones worth showing. Here's the whole list, honestly, on one screen — this is generated from the pricing page, so it can't quietly fall behind.</p>
+<section class="section container section--tight snap-sec" id="everything">
+  <header class="bs-head2 reveal">
+    <span class="bs-head2__no" aria-hidden="true">iv</span>
+    <h2 class="bs-head2__t">And <em>forty</em> other things.</h2>
+    <p class="bs-head2__d">The ones above are the ones worth showing. Here's the whole list, honestly, on one screen — this is generated from the pricing page, so it can't quietly fall behind.</p>
     <p class="allof__key"><span class="feat feat--free"><i aria-hidden="true"></i>free</span><span class="feat feat--lifetime"><i aria-hidden="true"></i>lifetime</span><span class="feat feat--supporter"><i aria-hidden="true"></i>supporter</span><span class="feat feat--soon"><i aria-hidden="true"></i>not built yet</span></p>
-  </div>
+  </header>
   <div class="allof reveal"><div class="allof__col"><h3 class="allof__h">Basics</h3><ul class="allof__list"><li class="feat feat--free" title="misa.lol/yourname"><i aria-hidden="true"></i>misa.lol/yourname<span class="sr-only"> — free</span></li><li class="feat feat--free" title="Unlimited links"><i aria-hidden="true"></i>Unlimited links<span class="sr-only"> — free</span></li><li class="feat feat--free" title="Music player + hidden mode"><i aria-hidden="true"></i>Music player + hidden mode<span class="sr-only"> — free</span></li><li class="feat feat--free" title="Analytics"><i aria-hidden="true"></i>Analytics<span class="sr-only"> — free</span></li><li class="feat feat--lifetime" title="Footer badge removed"><i aria-hidden="true"></i>Footer badge removed<span class="sr-only"> — lifetime</span></li></ul></div><div class="allof__col"><h3 class="allof__h">Look</h3><ul class="allof__list"><li class="feat feat--lifetime" title="Video backgrounds"><i aria-hidden="true"></i>Video backgrounds<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="Animated backgrounds"><i aria-hidden="true"></i>Animated backgrounds<span class="sr-only"> — lifetime</span></li><li class="feat feat--free" title="Link styles"><i aria-hidden="true"></i>Link styles<span class="sr-only"> — free</span></li><li class="feat feat--lifetime" title="Avatar frames"><i aria-hidden="true"></i>Avatar frames<span class="sr-only"> — lifetime</span></li><li class="feat feat--free" title="One-click themes"><i aria-hidden="true"></i>One-click themes<span class="sr-only"> — free</span></li><li class="feat feat--lifetime" title="Fonts &amp; templates"><i aria-hidden="true"></i>Fonts &amp; templates<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="Content blocks + a clock in your time zone"><i aria-hidden="true"></i>Content blocks + a clock in your time zone<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="Music player styling"><i aria-hidden="true"></i>Music player styling<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="Custom share card"><i aria-hidden="true"></i>Custom share card<span class="sr-only"> — lifetime</span></li><li class="feat feat--supporter" title="Animated gold profile border"><i aria-hidden="true"></i>Animated gold profile border<span class="sr-only"> — supporter</span></li></ul></div><div class="allof__col"><h3 class="allof__h">Effects</h3><ul class="allof__list"><li class="feat feat--lifetime" title="Typewriter bio"><i aria-hidden="true"></i>Typewriter bio<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="Entrance &amp; enter animations"><i aria-hidden="true"></i>Entrance &amp; enter animations<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="Tab title that moves"><i aria-hidden="true"></i>Tab title that moves<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="Page moods by the visitor’s hour"><i aria-hidden="true"></i>Page moods by the visitor’s hour<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="Username effects"><i aria-hidden="true"></i>Username effects<span class="sr-only"> — lifetime</span></li><li class="feat feat--supporter" title="Cursors"><i aria-hidden="true"></i>Cursors<span class="sr-only"> — supporter</span></li><li class="feat feat--supporter feat--soon" title="Popup animations — not built yet"><i aria-hidden="true"></i>Popup animations<span class="sr-only"> — supporter, not built yet</span></li></ul></div><div class="allof__col"><h3 class="allof__h">Alive</h3><ul class="allof__list"><li class="feat feat--free" title="Guestbook — visitors sign, you approve"><i aria-hidden="true"></i>Guestbook<span class="sr-only"> — free</span></li><li class="feat feat--free" title="“3 people here right now”"><i aria-hidden="true"></i>“3 people here right now”<span class="sr-only"> — free</span></li><li class="feat feat--lifetime" title="Retro hit counters"><i aria-hidden="true"></i>Retro hit counters<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="Secret word → a hidden link"><i aria-hidden="true"></i>Secret word → a hidden link<span class="sr-only"> — lifetime</span></li><li class="feat feat--free" title="Ask box — they ask, you answer on the page"><i aria-hidden="true"></i>Ask box<span class="sr-only"> — free</span></li><li class="feat feat--free" title="Chalkboard — visitors draw, you keep"><i aria-hidden="true"></i>Chalkboard<span class="sr-only"> — free</span></li><li class="feat feat--free" title="The last ten visits, as little stories"><i aria-hidden="true"></i>The last ten visits, as little stories<span class="sr-only"> — free</span></li><li class="feat feat--lifetime" title="Weather and now-playing blocks"><i aria-hidden="true"></i>Weather and now-playing blocks<span class="sr-only"> — lifetime</span></li><li class="feat feat--free" title="The tally — ask your visitors something"><i aria-hidden="true"></i>The tally<span class="sr-only"> — free</span></li><li class="feat feat--free" title="Vigil — candles visitors light, that burn out"><i aria-hidden="true"></i>Vigil<span class="sr-only"> — free</span></li><li class="feat feat--free" title="The moon — tonight’s real phase on your card"><i aria-hidden="true"></i>The moon<span class="sr-only"> — free</span></li><li class="feat feat--free" title="Neighbours — pages that name each other"><i aria-hidden="true"></i>Neighbours<span class="sr-only"> — free</span></li><li class="feat feat--free" title="The archive — put an older version of your page back"><i aria-hidden="true"></i>The archive<span class="sr-only"> — free</span></li><li class="feat feat--lifetime" title="The night shift — blocks that only exist after dark"><i aria-hidden="true"></i>The night shift<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="The draw — a line dealt to every visitor"><i aria-hidden="true"></i>The draw<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="The other side — your page gets a back"><i aria-hidden="true"></i>The other side<span class="sr-only"> — lifetime</span></li><li class="feat feat--lifetime" title="Time capsule — words that open on a day"><i aria-hidden="true"></i>Time capsule<span class="sr-only"> — lifetime</span></li></ul></div><div class="allof__col"><h3 class="allof__h">Identity</h3><ul class="allof__list"><li class="feat feat--lifetime" title="Verified check"><i aria-hidden="true"></i>Verified check<span class="sr-only"> — lifetime</span></li><li class="feat feat--supporter" title="Supporter tag"><i aria-hidden="true"></i>Supporter tag<span class="sr-only"> — supporter</span></li></ul></div><div class="allof__col"><h3 class="allof__h">Tools</h3><ul class="allof__list"><li class="feat feat--lifetime feat--soon" title="Unlimited image host — not built yet"><i aria-hidden="true"></i>Unlimited image host<span class="sr-only"> — lifetime, not built yet</span></li><li class="feat feat--lifetime feat--soon" title="Private encrypted chats — not built yet"><i aria-hidden="true"></i>Private encrypted chats<span class="sr-only"> — lifetime, not built yet</span></li><li class="feat feat--lifetime feat--soon" title="Future Pro perks — not built yet"><i aria-hidden="true"></i>Future Pro perks<span class="sr-only"> — lifetime, not built yet</span></li></ul></div></div>
   <p class="allof__more reveal"><a href="/pricing#compare">See it as a table, plan by plan <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
 </section>
 
 <!-- ═══ PRICING STRIP ═══ -->
-<section class="section container" id="pricing">
-  <div class="section__head reveal">
-    <p class="eyebrow">pricing</p>
-    <h2 class="title">Pay once. <em>Or don't.</em></h2>
-    <p class="lede">Every upgrade is a one-time payment. Nothing renews.</p>
-  </div>
+<section class="section container snap-sec" id="pricing">
+  <header class="bs-head2 reveal">
+    <span class="bs-head2__no" aria-hidden="true">v</span>
+    <h2 class="bs-head2__t">Pay once. <em>Or don't.</em></h2>
+    <p class="bs-head2__d">Every upgrade is a one-time payment. Nothing renews.</p>
+  </header>
 
   <div class="tiers">
     <div class="tier-col reveal" role="group" aria-labelledby="tier-free">
@@ -475,7 +450,7 @@
 </section>
 
 <!-- ═══ CTA ═══ -->
-<section class="cta">
+<section class="cta snap-sec">
   <div class="container cta__grid">
     <div class="reveal">
       <h2 class="title">Claim your corner <em>of the internet.</em></h2>

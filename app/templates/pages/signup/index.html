@@ -28,10 +28,11 @@
     <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="/css/v2.css?v=still1">
+    <link rel="stylesheet" href="/css/v2.css?v=mk3">
+    <link rel="stylesheet" href="/css/press.css?v=mk3">
     <script src="/js/config.js"></script>
-    <script src="/js/auth.js"></script>
-    <script src="/js/v2.js?v=still1" defer></script>
+    <script src="/js/auth.js?v=mk3"></script>
+    <script src="/js/v2.js?v=mk3" defer></script>
 </head>
 <body class="auth-page signup-page">
 <a class="skip" href="#main">Skip to content</a>
@@ -152,39 +153,9 @@
     </div>
   </div>
 
-  <aside class="auth__stage">
-    <div class="hero__glow" aria-hidden="true"></div>
-    <div class="hero__dots" aria-hidden="true"></div>
-    <p class="hero__note hand" aria-hidden="true">← this'll be you</p>
-    <!-- The preview phone. Reuses your hero loop as the profile's video background. -->
-      <div class="phone theme-gothic video-on phone-float" id="hero-phone" data-theme="gothic" role="group" aria-label="Live preview of your misa.lol page">
-        <div class="phone__notch" aria-hidden="true"></div>
-        <div class="phone__bg" aria-hidden="true"></div>
-        <div class="phone__art" aria-hidden="true"></div>
-        <video class="phone__video" muted loop playsinline preload="none" data-poster="/images/mainbg-poster-960.webp" data-autoplay aria-hidden="true" tabindex="-1">
-          <source src="/images/mainbg.webm" type="video/webm">
-          <source src="/images/mainbg.mp4" type="video/mp4">
-        </video>
-        <div class="phone__tint" aria-hidden="true"></div>
-        <div class="phone__glare" aria-hidden="true"></div>
-        <svg class="ic pf__spark" aria-hidden="true"><use href="#i-sparkle"/></svg>
-        <svg class="ic pf__spark" aria-hidden="true"><use href="#i-sparkle"/></svg>
-        <svg class="ic pf__spark" aria-hidden="true"><use href="#i-sparkle"/></svg>
-        <div class="pf">
-          <div class="pf__avatar" aria-hidden="true" data-avatar>y</div>
-          <div class="pf__name"><span data-name>yourname</span><span class="pf__badge" data-badge title="verified"><svg class="ic"><use href="#i-check"/></svg></span></div>
-          <div class="pf__handle">misa.lol/<span data-handle>yourname</span></div>
-          <p class="pf__bio"><span data-bio>your bio, typing itself.</span><span class="caret" aria-hidden="true"></span></p>
-          <div class="pf__links">
-            <span class="pf__link"><svg class="ic"><use href="#i-music"/></svg><span class="pf__label">new single</span><svg class="ic"><use href="#i-arrow"/></svg></span>
-            <span class="pf__link"><svg class="ic"><use href="#i-video"/></svg><span class="pf__label">tiktok</span><svg class="ic"><use href="#i-arrow"/></svg></span>
-            <span class="pf__link"><svg class="ic"><use href="#i-users"/></svg><span class="pf__label">discord server</span><svg class="ic"><use href="#i-arrow"/></svg></span>
-            <span class="pf__link"><svg class="ic"><use href="#i-heart"/></svg><span class="pf__label">wishlist</span><svg class="ic"><use href="#i-arrow"/></svg></span>
-          </div>
-          <div class="pf__music"><span class="pf__art"><svg class="ic"><use href="#i-play"/></svg></span><span class="pf__track"><b>graveyard shift</b><span data-artist>yourname</span><span class="pf__bar"><i></i></span></span></div>
-          <div class="pf__foot"><span class="pf__views"><svg class="ic"><use href="#i-eye"/></svg>12.4k views</span><span class="pf__socials" aria-hidden="true"><i><svg class="ic"><use href="#i-music"/></svg></i><i><svg class="ic"><use href="#i-video"/></svg></i><i><svg class="ic"><use href="#i-users"/></svg></i><i><svg class="ic"><use href="#i-mail"/></svg></i></span></div>
-        </div>
-      </div>
+  <aside class="auth__stage" aria-hidden="true">
+    <img class="auth__still" src="/images/mainbg-poster-960.webp" alt="" decoding="async">
+    <p class="auth__note hand">go on. <small>this'll be you.</small></p>
   </aside>
 </div>
 

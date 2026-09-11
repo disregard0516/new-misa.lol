@@ -1,7 +1,7 @@
-/* offline dashboard fill for local runs */
+/* offline fill for dashboard + admin when no backend is running */
 (function () {
-  var path = (location.pathname || "").replace(/\/$/, "") || "/";
-  var on = path === "/ui" || /(?:^|[?&])preview=1(?:&|$)/.test(location.search || "") || !!window.MISA_UI_PREVIEW;
+  var path = (location.pathname || "").replace(/\/+$/, "") || "/";
+  var on = !!window.MISA_UI_PREVIEW || path === "/ui" || /(?:^|[?&])preview=1(?:&|$)/.test(location.search || "");
   if (!on) return;
 
   function isoDays(n) {
@@ -16,6 +16,19 @@
   var days = isoDays(14);
   var counts = [12, 18, 9, 22, 31, 14, 27, 40, 19, 25, 33, 28, 36, 44];
   var t = Math.floor(Date.now() / 1000);
+  var nowIso = new Date().toISOString();
+
+  var users = [
+    { id: "u1", username: "you", display_name: "you", email: "you@localhost", is_admin: false, created_at: nowIso, last_login_at: nowIso, suspended_at: null, suspension_reason: null, suspended_until: null },
+    { id: "u2", username: "ren", display_name: "ren", email: "ren@localhost", is_admin: false, created_at: nowIso, last_login_at: nowIso, suspended_at: null },
+    { id: "u3", username: "valer", display_name: "valer", email: "valer@localhost", is_admin: true, created_at: nowIso, last_login_at: nowIso, suspended_at: null },
+  ];
+  var entitlements = [{ user_id: "u1", plan: "supporter", active: true, expires_at: null, granted_by: "u3", created_at: nowIso }];
+  var badges = [{ id: "early", name: "early", description: "first wave", color: "#F00646" }, { id: "verified", name: "verified", description: "blue check", color: "#3b82f6" }];
+  var reserved = [{ username: "staff", reason: "brand", created_at: nowIso }];
+  var reports = [{ id: "r1", target_username: "noise", target_user_id: "u2", reason: "spam", details: "demo row", status: "open", created_at: nowIso }];
+  var flags = [{ key: "templates", description: "Template creator", enabled: false }, { key: "help_center", description: "Help Center", enabled: false }];
+  var logs = [{ created_at: nowIso, actor_user_id: "u3", action: "preview.open", target_type: "ui", target_id: "local", metadata: { mode: "offline" } }];
 
   var profile = {
     profile: {
@@ -75,12 +88,13 @@
     card: "/images/share.png",
     qr: "/preview/qr.png",
     "/api/v1/me": {
-      id: "preview",
-      username: "you",
-      display_name: "you",
-      email: "preview@localhost",
+      id: "u3",
+      username: "valer",
+      display_name: "valer",
+      email: "valer@localhost",
       plan: "supporter",
       avatar_url: "/images/favicon.svg",
+      is_admin: true,
       providers: { email: true, google: false, discord: false, telegram: false },
       badges: profile.badges,
     },
@@ -108,14 +122,40 @@
     "/api/v1/me/asks": { waiting: [], answered: [] },
   };
 
-  document.documentElement.classList.add("is-ui-preview");
-  document.addEventListener("DOMContentLoaded", function () {
-    if (document.querySelector("[data-preview-banner]")) return;
-    var bar = document.createElement("div");
-    bar.setAttribute("data-preview-banner", "");
-    // static, not sticky: the dashboard header also pins to top:0 and the two collide
-    bar.style.cssText = "position:relative;z-index:80;padding:8px 16px;text-align:center;font:650 13px/1.4 Inter,system-ui,sans-serif;background:#F00646;color:#fff;";
-    bar.textContent = "Local preview. Nothing is saved to an account.";
-    document.body.insertBefore(bar, document.body.firstChild);
-  });
+  window.MISA_DEMO_ADMIN = {
+    handle: function (method, path) {
+      var p = String(path || "").split("?")[0];
+      if (method === "GET" && p === "/users") return { users: users };
+      if (method === "GET" && p === "/entitlements") return { entitlements: entitlements };
+      if (method === "GET" && p === "/badges") return { badges: badges };
+      if (method === "GET" && p === "/reserved-usernames") return { usernames: reserved };
+      if (method === "GET" && p === "/reports") return { reports: reports };
+      if (method === "GET" && p === "/feature-flags") return { flags: flags };
+      if (method === "GET" && p === "/audit-logs") return { logs: logs };
+      return { ok: true };
+    },
+  };
+
+  function unlockAuth() {
+    document.querySelectorAll(".auth-lock").forEach(function (el) {
+      el.classList.remove("is-locked");
+      el.removeAttribute("inert");
+      try { el.inert = false; } catch (e) {}
+      el.querySelectorAll("input, button, textarea, select").forEach(function (n) {
+        n.disabled = false;
+        n.removeAttribute("required");
+      });
+      el.querySelectorAll("a").forEach(function (a) { a.removeAttribute("tabindex"); });
+    });
+    var gate = document.querySelector("[data-lock-note]");
+    if (gate) gate.hidden = true;
+    var box = document.querySelector(".turnstile-box");
+    if (box) box.hidden = true;
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", unlockAuth);
+  } else {
+    unlockAuth();
+  }
 })();

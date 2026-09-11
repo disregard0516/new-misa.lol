@@ -96,6 +96,12 @@ window.misaTurnstileError = function () {
 
 function watchTurnstileGate() {
   if (!document.querySelector(".auth-lock")) return;
+  if (window.MISA_UI_PREVIEW || window.MISA_DEMO) {
+    unlockAuthActions("preview");
+    const box = document.querySelector(".turnstile-box");
+    if (box) box.hidden = true;
+    return;
+  }
   syncTurnstileGate();
   const root = document.querySelector(".turnstile-box") || document.body;
   const observer = new MutationObserver(syncTurnstileGate);
@@ -155,8 +161,12 @@ async function sendJson(url, body) {
 function bindLoginForm() {
   const form = document.getElementById("login-form");
   if (!form) return;
-  form.addEventListener("submit", async (event) => {
+    form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (window.MISA_UI_PREVIEW || window.MISA_DEMO) {
+      window.location.href = "/dashboard";
+      return;
+    }
     if (form.dataset.busy) return; // v3.97: a second Enter while it sends does nothing
     const submit = form.querySelector('[type="submit"]');
     const original = submit ? submit.textContent : "";
@@ -192,8 +202,12 @@ function bindLoginForm() {
 function bindSignupForm() {
   const form = document.getElementById("signup-form");
   if (!form) return;
-  form.addEventListener("submit", async (event) => {
+      form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (window.MISA_UI_PREVIEW || window.MISA_DEMO) {
+      window.location.href = "/dashboard";
+      return;
+    }
     if (form.dataset.busy) return; // v3.97: a second Enter while it sends does nothing
     const submit = form.querySelector('[type="submit"]');
     const original = submit ? submit.textContent : "";
