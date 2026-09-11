@@ -472,6 +472,40 @@
   text-transform:uppercase;
 }
 
+/* ── rendered rows ────────────────────────────────────── */
+
+.dash--v43 .slip-row,
+.dash--v43 .ask-card,
+.dash--v43 .badge-row,
+.dash--v43 .linkcheck{
+  padding:13px 0;
+  border:0;
+  border-top:1px solid var(--line);
+  border-radius:0;
+  background:none;
+}
+.dash--v43 .slip-row__line{color:var(--text)}
+.dash--v43 .slip-row__who{color:var(--mute)}
+.dash--v43 .ask-card__q{color:var(--text)}
+.dash--v43 .ask-card__when{
+  font-family:var(--font-serif);
+  font-style:italic;
+  color:var(--mute);
+}
+.dash--v43 .badge-row__dot{border-radius:2px}
+.dash--v43 .board-tile{
+  border-radius:0;
+  border:1px solid var(--line);
+  background:none;
+}
+.dash--v43 .board-tile__pic{border-radius:0}
+.dash--v43 .btn--sm{border-radius:2px}
+.dash--v43 .badges__empty,
+.dash--v43 .ask-list .dash__previewnote{
+  padding:14px 0;
+  border-top:1px solid var(--line);
+}
+
 /* ── the plate ────────────────────────────────────────── */
 
 .dash--v43 .dash__preview{
