@@ -5,9 +5,10 @@ Keys (all per user id):
   views:<uid>:d:<date>   views on that UTC day                          (expires after 100 days)
   refs:<uid>             hash  referrer host → count                    (kept small: at most 64 hosts)
   clicks:<uid>           hash  social id → count
+  geos:<uid>             hash  two-letter country → count               (only ISO-shaped codes, so it can't grow wild)
   seen:<uid>:<visitor>   dedupe marker, 30 minutes                      (one view per visitor per half hour)
-A view is one page render by a browser that isn't a known crawler / link-preview bot. `visitor` is a salted hash of
-the client address + user agent — never the address itself.
+A view is one page render by a browser that isn't a known crawler / link-preview bot, and isn't the owner looking at
+their own page. `visitor` is a salted hash of the client address + user agent — never the address itself.
 """
 from __future__ import annotations
 
@@ -25,6 +26,7 @@ BOT_RE = re.compile(r"bot|crawl|spider|slurp|preview|facebookexternalhit|twitter
 DEDUPE_SECONDS = 1800
 DAILY_TTL = 100 * 24 * 3600
 MAX_REF_HOSTS = 64
+COUNTRY_RE = re.compile(r"^[A-Z]{2}$")
 
 
 def _day(d: datetime | None = None) -> str:
@@ -53,9 +55,16 @@ def _ref_host(request: Request, own_domain: str) -> str | None:
     return host[:80]
 
 
-async def record_view(user_id: str, request: Request, *, salt: str, own_domain: str) -> bool:
-    """Count one view for a profile render. Returns True if it counted (not a bot, not a repeat within 30 min)."""
+def _country(request: Request) -> str | None:
+    code = (request.headers.get("cf-ipcountry") or request.headers.get("x-vercel-ip-country") or "").strip().upper()
+    return code if COUNTRY_RE.match(code) and code != "XX" else None
+
+
+async def record_view(user_id: str, request: Request, *, salt: str, own_domain: str, viewer_id: str | None = None) -> bool:
+    """Count one view for a profile render. False if it didn't count: a bot, the owner's own look, or a repeat within 30 min."""
     if BOT_RE.search(request.headers.get("user-agent", "")):
+        return False
+    if viewer_id and viewer_id == str(user_id):
         return False
     r = get_dragonfly()
     if not await r.set(f"seen:{user_id}:{_visitor(request, salt)}", "1", nx=True, ex=DEDUPE_SECONDS):
@@ -68,6 +77,9 @@ async def record_view(user_id: str, request: Request, *, salt: str, own_domain: 
     host = _ref_host(request, own_domain)
     if host:
         pipe.hincrby(f"refs:{user_id}", host, 1)
+    code = _country(request)
+    if code:
+        pipe.hincrby(f"geos:{user_id}", code, 1)
     await pipe.execute()
     if host:
         # keep the referrer table small: drop the rarest hosts once it grows past the cap
@@ -111,18 +123,20 @@ async def stats(user_id: str, days: int = 14) -> dict[str, Any]:
         pipe.get(f"views:{user_id}:d:{d}")
     pipe.hgetall(f"refs:{user_id}")
     pipe.hgetall(f"clicks:{user_id}")
+    pipe.hgetall(f"geos:{user_id}")
     res = await pipe.execute()
     total = int(res[0] or 0)
     daily = [[d, int(v or 0)] for d, v in zip(day_keys, res[1 : 1 + days])]
     refs = sorted(((h, int(n)) for h, n in (res[1 + days] or {}).items()), key=lambda kv: -kv[1])[:10]
     clicks = sorted(((sid, int(n)) for sid, n in (res[2 + days] or {}).items()), key=lambda kv: -kv[1])[:20]
-    return {"views": total, "today": daily[-1][1] if daily else 0, "week": sum(v for _, v in daily[-7:]), "daily": daily, "referrers": refs, "clicks": clicks}
+    geos = sorted(((c, int(n)) for c, n in (res[3 + days] or {}).items()), key=lambda kv: -kv[1])[:10]
+    return {"views": total, "today": daily[-1][1] if daily else 0, "week": sum(v for _, v in daily[-7:]), "daily": daily, "referrers": refs, "clicks": clicks, "countries": geos}
 
 
 async def forget_user(user_id: str) -> None:
     """Drop everything counted for a user (account deletion)."""
     r = get_dragonfly()
-    keys = [f"views:{user_id}", f"refs:{user_id}", f"clicks:{user_id}"]
+    keys = [f"views:{user_id}", f"refs:{user_id}", f"clicks:{user_id}", f"geos:{user_id}"]
     async for key in r.scan_iter(match=f"views:{user_id}:d:*", count=200):
         keys.append(key)
     async for key in r.scan_iter(match=f"seen:{user_id}:*", count=200):

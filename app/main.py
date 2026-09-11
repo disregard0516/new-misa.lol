@@ -17,7 +17,7 @@ from app.core.config import get_settings
 from app.core.logging import setup_logging
 from app.core.middleware import RequestContextMiddleware
 from app.core.security import USERNAME_RE
-from app.core.sessions import get_user_from_request
+from app.core.sessions import get_user_from_request, session_user_id
 from app.db import close_admin_db, close_data_api, close_dragonfly, data_api, init_admin_db, init_data_api, init_dragonfly
 from app.profile_page import render_public_profile
 from app.share_card import cached_card
@@ -258,7 +258,7 @@ def create_app() -> FastAPI:
                     views = None
                     try:
                         settings = get_settings()
-                        await record_view(user.id, request, salt=settings.analytics_salt or settings.data_api_key or "misa", own_domain=settings.domain)
+                        await record_view(user.id, request, salt=settings.analytics_salt or settings.data_api_key or "misa", own_domain=settings.domain, viewer_id=await session_user_id(request))
                         views = await total_views(user.id)
                     except Exception:
                         pass  # analytics never break a page

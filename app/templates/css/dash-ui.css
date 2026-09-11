@@ -308,7 +308,7 @@
 
 .dash--v43 .ana{
   display:grid;
-  grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,.72fr));
+  grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,.66fr));
   gap:26px;
   margin-top:34px;
   padding:0;

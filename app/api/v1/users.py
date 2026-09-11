@@ -131,11 +131,11 @@ async def update_me(
 
 @router.get("/me/stats")
 async def my_stats(user: Annotated[User, Depends(require_user)]) -> dict:
-    """Views (total / today / 7 days / 14 daily buckets), top referrers, link clicks — counted server-side."""
+    """Views (total / today / 7 days / 14 daily buckets), top referrers, link clicks, countries — counted server-side."""
     try:
         data = await analytics_stats(user.id)
     except (RuntimeError, OSError):
-        return {"views": 0, "today": 0, "week": 0, "daily": [], "referrers": [], "clicks": [], "unavailable": True}
+        return {"views": 0, "today": 0, "week": 0, "daily": [], "referrers": [], "clicks": [], "countries": [], "unavailable": True}
     # label the clicks with the current links
     labels: dict[str, str] = {}
     try:

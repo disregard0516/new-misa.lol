@@ -92,6 +92,7 @@
       daily: days.map(function (d, i) { return [d, counts[i]]; }),
       referrers: [["tiktok.com", 210], ["x.com", 90], ["discord.com", 40]],
       clicks: [["s1", "x", 420], ["s2", "discord", 88], ["s3", "copy this", 12]],
+      countries: [["IN", 5120], ["US", 3080], ["DE", 940], ["GB", 610], ["BR", 380], ["JP", 210]],
     },
     "/api/v1/me/replay": {
       on: true,

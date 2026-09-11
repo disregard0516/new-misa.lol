@@ -78,6 +78,17 @@ def clear_session_cookie(response: Response, request: Request, settings: Setting
     )
 
 
+async def session_user_id(request: Request) -> str | None:
+    """The signed-in user's id without fetching the account — enough to tell a page owner from a visitor."""
+    data = await load_session(request.cookies.get(get_settings().session_cookie_name))
+    if not data:
+        return None
+    try:
+        return str(UUID(str(data["user_id"])))
+    except (KeyError, ValueError):
+        return None
+
+
 async def get_user_from_request(request: Request) -> User | None:
     settings = get_settings()
     token = request.cookies.get(settings.session_cookie_name)
