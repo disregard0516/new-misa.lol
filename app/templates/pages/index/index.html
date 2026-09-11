@@ -23,24 +23,30 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="icon" href="/images/favicon.svg?v=facff01a" type="image/svg+xml">
     <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="/css/v2.css?v=mk3">
-    <link rel="stylesheet" href="/css/press.css?v=mk6">
+    <link rel="stylesheet" href="/css/press.css?v=mk9">
     <script src="/js/config.js"></script>
     <script src="/js/auth.js?v=mk3" defer></script>
     <script src="/js/v2.js?v=mk3" defer></script>
     <script src="/js/night.js?v=mk3" defer></script>
-    <script src="/js/home-polish.js?v=2" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+    <script src="/js/home-polish.js?v=5" defer></script>
 </head>
 <body class="night mk">
 <a class="skip" href="#main">Skip to content</a>
 <!-- ═══ SVG ICON SPRITE ═══ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <filter id="mk-ink" x="-25%" y="-25%" width="150%" height="150%">
+    <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M19.6 6.4 8.7 16.8 4.2 12.1"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
@@ -87,6 +93,8 @@
     <a href="/ui">Dashboard</a>
   </nav>
   <div class="nav__actions mk-end">
+    <button class="mk-vhs" type="button" aria-pressed="false" aria-label="Turn VHS scanlines on"><i aria-hidden="true"></i><span>VHS off</span></button>
+    <button class="mk-sound" type="button" aria-pressed="false" aria-label="Turn interface sounds on"><i aria-hidden="true"></i><span>sound off</span></button>
     <a href="/login" class="nav__login">Log in</a>
     <a href="/signup" class="mk-go" data-claim>Claim name</a>
     <button class="nav__burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span></button>
@@ -113,8 +121,12 @@
   </picture>
   <video class="mk-hero-loop" muted loop playsinline preload="none" data-src="/images/mainbg.mp4" data-src-webm="/images/mainbg.webm" aria-hidden="true" tabindex="-1"></video>
   <div class="mk-hero-vignette" aria-hidden="true"></div>
+  <div class="mk-paper-meta" aria-hidden="true"><span>Vol. I · No. 01</span><b>The personal internet</b><span>Est. 2026 · Daily edition</span></div>
   <div class="mk-orbit mk-orbit--one" aria-hidden="true"></div>
   <div class="mk-orbit mk-orbit--two" aria-hidden="true"></div>
+  <svg class="mk-blob" viewBox="0 0 420 420" aria-hidden="true">
+    <path d="M292 54c78 38 128 128 108 198-22 78-128 124-198 108C122 344 58 248 72 168 86 86 204 12 292 54Z"/>
+  </svg>
   <aside class="mk-index" aria-label="On this page">
     <a href="#hero"><b>01</b> claim</a>
     <a href="#how"><b>02</b> steps</a>
@@ -124,7 +136,7 @@
   </aside>
   <div class="mk-copy">
     <p class="mk-kicker"><span aria-hidden="true"></span> your corner of the internet</p>
-    <h1 class="mk-h1">Your page.<br>Your sound.<br><em>Your world.</em></h1>
+    <h1 class="mk-h1">Your page.<br>Your sound.<br><em>Your world.<svg class="mk-signature" viewBox="0 0 420 18" preserveAspectRatio="none" aria-hidden="true"><path d="M3 12C92 4 178 16 256 8s119-5 161 1"/></svg></em></h1>
     <p class="mk-lede">Bring your identity, music, links and community into one page that feels unmistakably yours—not another stack of boring buttons.</p>
     <form class="mk-claim claim" action="/signup" method="get" autocomplete="off">
       <label class="claim__prefix" for="claim-name">misa.lol/</label>
@@ -177,7 +189,7 @@
           <span class="pf__link"><svg class="ic"><use href="#i-users"/></svg><span class="pf__label">discord</span><svg class="ic"><use href="#i-arrow"/></svg></span>
         </div>
         <div class="pf__music"><span class="pf__art"><svg class="ic"><use href="#i-play"/></svg></span><span class="pf__track"><b>graveyard shift</b><span data-artist>yourname</span><span class="pf__bar"><i></i></span></span></div>
-        <div class="pf__foot"><span class="pf__views"><svg class="ic"><use href="#i-eye"/></svg>12.4k views</span></div>
+        <div class="pf__foot"><span class="pf__views"><svg class="ic"><use href="#i-eye"/></svg><span data-live-views>12.4k</span> views</span></div>
       </div>
     </div>
   </div>
@@ -485,6 +497,7 @@
           <input class="claim__input" id="claim-name-2" name="username" type="text" placeholder="yourname" maxlength="24" spellcheck="false" autocapitalize="off" autocorrect="off" inputmode="text" enterkeyhint="go" pattern="[A-Za-z][A-Za-z0-9_]{2,23}" aria-describedby="claim-name-2-hint">
           <button class="claim__btn" type="submit">Claim <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
         </form>
+        <p class="mk-pulse" data-claimed><i aria-hidden="true"></i><b data-claimed-n>11</b> people claimed a page in the last hour</p>
         <p class="claim__hint" id="claim-name-2-hint"><span class="dot" aria-hidden="true"></span><span data-hint>free forever · not a subscription · live in under a minute</span></p>
       </div>
     </div>
