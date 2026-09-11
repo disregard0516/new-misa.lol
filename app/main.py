@@ -182,8 +182,6 @@ def create_app() -> FastAPI:
 
     @application.get("/ui")
     async def ui_preview() -> FileResponse:
-        if not _preview_on():
-            raise HTTPException(status_code=404)
         return html_response("dashboard.html")
 
     @application.get("/{username}/qr.png")

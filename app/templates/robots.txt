@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /ui
+Disallow: /dashboard
+Disallow: /admin
 
 Sitemap: https://misa.lol/sitemap.xml

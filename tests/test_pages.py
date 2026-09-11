@@ -12,6 +12,8 @@ def test_site_pages_serve_the_new_templates(client, world):
 def test_guests_are_sent_to_login_and_users_away_from_it(client, world):
     world.user = None
     assert client.get("/dashboard", follow_redirects=False).status_code == 302
+    r = client.get("/ui")
+    assert r.status_code == 200 and "Dashboard — misa.lol" in r.text
     from tests.conftest import FakeUser
 
     world.user = FakeUser()
