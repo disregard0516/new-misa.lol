@@ -33,6 +33,30 @@
     });
   }
 
+  function revealCurrentTarget() {
+    if (!window.location.hash) return;
+    var target = document.getElementById(window.location.hash.slice(1));
+    if (!target) return;
+    target.classList.add("in");
+    Array.prototype.forEach.call(target.querySelectorAll(".reveal"), function (element) {
+      element.classList.add("in");
+    });
+  }
+
+  revealCurrentTarget();
+  window.addEventListener("hashchange", revealCurrentTarget);
+
+  Array.prototype.forEach.call(document.querySelectorAll(".spec-more"), function (details) {
+    details.addEventListener("toggle", function () {
+      if (!details.open) return;
+      Array.prototype.forEach.call(details.querySelectorAll(".reveal"), function (element, index) {
+        window.setTimeout(function () {
+          element.classList.add("in");
+        }, reduceMotion ? 0 : Math.min(index * 35, 280));
+      });
+    });
+  });
+
   if (reduceMotion || !window.matchMedia("(pointer: fine)").matches) return;
 
   var frame = 0;

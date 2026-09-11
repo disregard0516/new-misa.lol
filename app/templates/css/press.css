@@ -568,6 +568,39 @@ html:has(.mk){scroll-snap-type:none}
 .mk .spec__row:hover .spec__name em{color:#F00646}
 .mk .spec__demo{filter:saturate(.88);transition:filter .25s ease,transform .25s ease}
 .mk .spec__row:hover .spec__demo{filter:saturate(1.12);transform:translateY(-2px)}
+.mk .spec__body>p,.mk .steps__item p,.mk .bs-head2__d{color:#aaa9a5}
+.mk .spec-more{
+  position:relative;margin-top:18px;
+  border:1px solid rgba(255,255,255,.11);border-radius:16px;
+  background:#09090b;overflow:hidden;
+}
+.mk .spec-more>summary{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  min-height:92px;padding:20px 24px;cursor:pointer;list-style:none;
+  background:
+    linear-gradient(90deg,rgba(240,6,70,.08),transparent 45%),
+    rgba(255,255,255,.018);
+  transition:background .25s ease,color .25s ease;
+}
+.mk .spec-more>summary::-webkit-details-marker{display:none}
+.mk .spec-more>summary:hover{background:linear-gradient(90deg,rgba(240,6,70,.14),transparent 50%),rgba(255,255,255,.025)}
+.mk .spec-more>summary span{display:grid;gap:6px}
+.mk .spec-more>summary b{color:#f0efeb;font-size:17px;letter-spacing:-.025em}
+.mk .spec-more>summary small{color:#898985;font:500 11px/1.5 var(--mk-mono)}
+.mk .spec-more>summary i{
+  position:relative;flex:0 0 36px;width:36px;height:36px;
+  border:1px solid rgba(240,6,70,.28);border-radius:50%;background:rgba(240,6,70,.07);
+  transition:transform .3s ease,background .2s ease;
+}
+.mk .spec-more>summary i::before,.mk .spec-more>summary i::after{
+  content:"";position:absolute;left:50%;top:50%;width:12px;height:1px;
+  background:#F00646;transform:translate(-50%,-50%);
+}
+.mk .spec-more>summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.mk .spec-more[open]>summary i{transform:rotate(45deg);background:rgba(240,6,70,.14)}
+.mk .spec-more__rows{padding:10px}
+.mk .spec-more__rows .spec__row:last-child{margin-bottom:0}
+.mk .spec-more:not([open]) .spec-more__rows{display:none}
 
 .mk .allof{
   position:relative;z-index:1;gap:1px;padding:1px;
@@ -601,18 +634,19 @@ html:has(.mk){scroll-snap-type:none}
 .mk .tier-col .btn:hover{transform:translateY(-2px)}
 
 .mk .cta{
-  position:relative;overflow:hidden;border-top:1px solid var(--mk-line);
+  position:relative;isolation:isolate;clear:both;overflow:hidden;border-top:1px solid var(--mk-line);
   background:
     radial-gradient(600px circle at 20% 50%,rgba(240,6,70,.14),transparent 68%),
     #09090b;
 }
-.mk .cta::after{
-  content:"misa.lol";position:absolute;right:-.04em;bottom:-.19em;
-  color:rgba(255,255,255,.022);font:800 clamp(120px,22vw,340px)/1 Inter,sans-serif;
-  letter-spacing:-.09em;pointer-events:none;
-}
+.mk .cta::before,.mk .cta::after{content:none!important;display:none!important}
 .mk .cta__grid{position:relative;z-index:1}
-.mk .footer{border-top:1px solid var(--mk-line);background:#050506}
+.mk .cta .title{position:relative;z-index:2;max-width:12ch;text-wrap:balance}
+.mk .cta__side{position:relative;z-index:2}
+.mk .footer{
+  position:relative;z-index:2;clear:both;
+  min-height:0!important;border-top:1px solid var(--mk-line);background:#050506;
+}
 
 @media (prefers-reduced-motion:no-preference){
   @keyframes mk-art-breathe{
