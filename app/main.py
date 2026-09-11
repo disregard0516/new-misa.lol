@@ -237,16 +237,15 @@ def create_app() -> FastAPI:
         slug = page.removesuffix(".html") or "index"
         if slug in PRIVATE_PAGES | GUEST_PAGES:
             user = await get_user_from_request(request)
-            if slug in PRIVATE_PAGES and user is None:
+            if slug == "admin":
+                if user is None or not (user.is_admin or user.id in get_settings().admin_user_id_list):
+                    raise HTTPException(status_code=404)
+            elif slug in PRIVATE_PAGES and user is None:
                 preview = os.environ.get("MISA_UI_PREVIEW", "").lower() in {"1", "true", "yes"}
                 if not (preview and slug == "dashboard"):
                     return RedirectResponse("/login", status_code=302)
             if slug in GUEST_PAGES and user is not None:
                 return RedirectResponse("/dashboard", status_code=302)
-            if slug == "admin" and (
-                user is None or not (user.is_admin or user.id in get_settings().admin_user_id_list)
-            ):
-                raise HTTPException(status_code=404)
         # site pages first: their slugs are reserved usernames, so no need to hit the data API for /pricing etc.
         try:
             return html_response(f"{slug}.html")
