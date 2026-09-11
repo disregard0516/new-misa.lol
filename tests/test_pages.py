@@ -55,7 +55,7 @@ def test_admin_page_is_admins_only(client, world):
 
     assert client.get("/admin").status_code == 404                      # signed in, not an admin
     world.user = None
-    assert client.get("/admin", follow_redirects=False).status_code == 302
+    assert client.get("/admin", follow_redirects=False).status_code == 404
     admin = FakeUser()
     admin.is_admin = True
     world.user = admin
