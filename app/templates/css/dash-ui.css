@@ -5,7 +5,7 @@
   background:var(--ink);
 }
 
-/* paper grain. the whole point: screens are flat, print is not */
+/* paper grain, over everything — keep the opacity under .04 or text starts to fizz */
 .dash--v43::after{
   content:"";
   position:fixed;
@@ -129,7 +129,7 @@
   background:none;
   transition:color .15s;
 }
-.dash--v43 .dash__nav a .ic{display:none}   /* numerals carry the list; icons only add noise */
+.dash--v43 .dash__nav a .ic{display:none}   /* the numerals replace the icons */
 .dash--v43 .dash__nav a::before{
   content:counter(sec,decimal-leading-zero);
   position:absolute;
@@ -269,7 +269,7 @@
   background:none;
   gap:6px;
 }
-.dash--v43 .tile:first-child{                /* the one number anyone opens this page for */
+.dash--v43 .tile:first-child{                /* views, given half the row */
   grid-column:span 6;
   border-top:2px solid var(--crimson);
 }
