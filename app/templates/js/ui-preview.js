@@ -112,7 +112,8 @@
     if (document.querySelector("[data-preview-banner]")) return;
     var bar = document.createElement("div");
     bar.setAttribute("data-preview-banner", "");
-    bar.style.cssText = "position:sticky;top:0;z-index:80;padding:8px 16px;text-align:center;font:650 13px/1.4 Inter,system-ui,sans-serif;background:#F00646;color:#fff;";
+    // static, not sticky: the dashboard header also pins to top:0 and the two collide
+    bar.style.cssText = "position:relative;z-index:80;padding:8px 16px;text-align:center;font:650 13px/1.4 Inter,system-ui,sans-serif;background:#F00646;color:#fff;";
     bar.textContent = "Local preview. Nothing is saved to an account.";
     document.body.insertBefore(bar, document.body.firstChild);
   });

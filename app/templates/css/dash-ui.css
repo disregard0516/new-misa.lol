@@ -75,6 +75,8 @@
 }
 .dash--v43 .dash__url-copy:hover{color:var(--crimson)}
 .dash--v43 .dash__avatar{border-radius:2px}
+.dash--v43 #nav-handle{display:none}    /* the url pill already carries the address */
+.dash--v43 .dash__userinfo b{font-size:14px}
 .dash--v43 .dash__topactions .btn{
   border-radius:2px;
   padding:9px 15px;
@@ -292,7 +294,14 @@
   border-radius:0;
   background:none;
 }
-.dash--v43 .milestone__num{font-size:30px}
+.dash--v43 .milestone__num{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:400;
+  font-size:34px;
+  letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;
+}
 .dash--v43 .milestone .btn{border-radius:2px}
 
 /* ── charts and indexes ───────────────────────────────── */
@@ -405,6 +414,24 @@
 .dash--v43 .field__input{border-radius:2px;padding:13px 14px}
 .dash--v43 .field__label{letter-spacing:.18em}
 .dash--v43 .toggle{border-radius:2px;padding:8px 13px 8px 8px}
+.dash--v43 .theme-pick{
+  border-radius:0;
+  border-color:var(--line);
+  transition:border-color .15s;
+}
+.dash--v43 .theme-pick:hover{transform:none;border-color:var(--line-2)}
+.dash--v43 .theme-pick[aria-pressed="true"]{border-color:var(--crimson);box-shadow:none}
+.dash--v43 .theme-pick i{
+  border-radius:0;
+  font-family:var(--font-serif);
+  font-style:italic;
+}
+.dash--v43 .theme-pick span{letter-spacing:.1em;text-transform:uppercase;font-size:10px}
+.dash--v43 .swatch,
+.dash--v43 input[type="color"]{border-radius:2px}
+.dash--v43 input[type="color"]::-webkit-color-swatch{border-radius:0}
+.dash--v43 input[type="color"]::-webkit-color-swatch-wrapper{border-radius:0}
+.dash--v43 select.field__input{border-radius:2px}
 .dash--v43 .social-row,
 .dash--v43 .block-row,
 .dash--v43 .connection-row{
