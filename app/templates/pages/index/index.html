@@ -23,20 +23,19 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="icon" href="/images/favicon.svg?v=facff01a" type="image/svg+xml">
     <link rel="icon" href="/images/favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="/css/v2.css?v=mk3">
     <link rel="stylesheet" href="/css/press.css?v=mk3">
-    <link rel="stylesheet" href="/css/creator-home.css?v=1">
     <script src="/js/config.js"></script>
     <script src="/js/auth.js?v=mk3" defer></script>
     <script src="/js/v2.js?v=mk3" defer></script>
     <script src="/js/night.js?v=mk3" defer></script>
 </head>
-<body class="night mk creator-home">
+<body class="night mk">
 <a class="skip" href="#main">Skip to content</a>
 <!-- ═══ SVG ICON SPRITE ═══ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -76,21 +75,19 @@
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
 </svg>
 
-<header class="nav mk-bar creator-nav" id="top">
-  <a href="/" class="mk-mark creator-brand" aria-label="misa.lol home">
-    <span class="creator-brand__mark" aria-hidden="true">m</span>
-    <span class="creator-brand__word">misa<span>.lol</span></span>
-  </a>
+<header class="nav mk-bar" id="top">
+  <a href="/" class="mk-mark" aria-label="misa.lol home">misa<span>.lol</span></a>
   <nav class="nav__links mk-nav" aria-label="Primary">
-    <a href="/#how">How it works</a>
-    <a href="/#themes">Showcase</a>
-    <a href="/#features">Features</a>
+    <a href="/#how">How</a>
+    <a href="/#themes">Looks</a>
+    <a href="/#features">Kit</a>
+    <a href="/explore">Explore</a>
     <a href="/pricing">Pricing</a>
+    <a href="/ui">Dashboard</a>
   </nav>
   <div class="nav__actions mk-end">
-    <a href="/explore" class="creator-nav__explore">Explore pages</a>
     <a href="/login" class="nav__login">Log in</a>
-    <a href="/signup" class="mk-go" data-claim>Build your page <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <a href="/signup" class="mk-go" data-claim>Claim name</a>
     <button class="nav__burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span></button>
   </div>
 </header>
@@ -108,72 +105,67 @@
 
 <main id="main">
 <section class="mk-hero" id="hero">
+  <aside class="mk-index" aria-label="On this page">
+    <a href="#hero"><b>01</b> claim</a>
+    <a href="#how"><b>02</b> steps</a>
+    <a href="#themes"><b>03</b> looks</a>
+    <a href="#features"><b>04</b> kit</a>
+    <a href="#pricing"><b>05</b> pay</a>
+  </aside>
   <div class="mk-copy">
-    <div class="creator-badge"><span aria-hidden="true"></span> Made for independent creators</div>
-    <h1 class="mk-h1">Turn your name<br>into a <em>world.</em></h1>
-    <p class="mk-lede">A creator page with the personality of a website and the simplicity of one link. Bring your work, music, community and story together—then make every visit feel like you.</p>
+    <p class="mk-kicker">public page product</p>
+    <h1 class="mk-h1">One URL.<br>A whole page,<br>not a stack of buttons.</h1>
+    <p class="mk-lede">misa.lol is the page you post: music, video, socials, guestbook, stats. Free forever. Upgrades are one payment.</p>
     <form class="mk-claim claim" action="/signup" method="get" autocomplete="off">
       <label class="claim__prefix" for="claim-name">misa.lol/</label>
       <input class="claim__input" id="claim-name" name="username" type="text" placeholder="yourname" maxlength="24" spellcheck="false" autocapitalize="off" autocorrect="off" inputmode="text" enterkeyhint="go" pattern="[A-Za-z][A-Za-z0-9_]{2,23}" aria-describedby="claim-hint" data-live>
-      <button class="mk-claim__btn" type="submit">Claim your link <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      <button class="mk-claim__btn" type="submit">Take it</button>
     </form>
-    <p class="claim__hint" id="claim-hint"><span data-hint>Free to start · no card · live in under a minute</span></p>
-    <div class="creator-proof" aria-label="Product benefits">
-      <div><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><b>One link</b> for your whole creative life</span></div>
-      <div><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><b>Your style</b>, without touching code</span></div>
-      <div><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span><b>One payment</b>, never a subscription</span></div>
+    <p class="claim__hint" id="claim-hint"><span data-hint>no card · live in under a minute</span></p>
+    <div class="lab mk-lab" role="group" aria-label="Preview controls">
+      <div class="swatches" role="radiogroup" aria-label="Theme">
+        <button class="swatch" type="button" data-set-theme="gothic" role="radio" aria-checked="true" tabindex="0" aria-label="Gothic theme" title="gothic" style="--sw:#F00646"></button>
+        <button class="swatch" type="button" data-set-theme="soft" role="radio" aria-checked="false" tabindex="-1" aria-label="Soft theme" title="soft" style="--sw:#ff6ea9"></button>
+        <button class="swatch" type="button" data-set-theme="mono" role="radio" aria-checked="false" tabindex="-1" aria-label="Mono theme" title="mono" style="--sw:#fff"></button>
+        <button class="swatch" type="button" data-set-theme="y2k" role="radio" aria-checked="false" tabindex="-1" aria-label="Y2K theme" title="y2k" style="--sw:#39ffa0"></button>
+        <button class="swatch" type="button" data-set-theme="sunset" role="radio" aria-checked="false" tabindex="-1" aria-label="Sunset theme" title="sunset" style="--sw:#ff8a3d"></button>
+        <button class="swatch" type="button" data-set-theme="paper" role="radio" aria-checked="false" tabindex="-1" aria-label="Paper theme" title="paper" style="--sw:#EEE8E2"></button>
+        <button class="swatch" type="button" data-set-theme="vampire" role="radio" aria-checked="false" tabindex="-1" aria-label="Vampire theme" title="vampire" style="--sw:#b3001b"></button>
+        <button class="swatch" type="button" data-set-theme="cathedral" role="radio" aria-checked="false" tabindex="-1" aria-label="Cathedral theme" title="cathedral" style="--sw:#d4a24c"></button>
+        <button class="swatch" type="button" data-set-theme="static" role="radio" aria-checked="false" tabindex="-1" aria-label="Static theme" title="static" style="--sw:#888"></button>
+        <button class="swatch" type="button" data-set-theme="lavender" role="radio" aria-checked="false" tabindex="-1" aria-label="Lavender theme" title="lavender" style="--sw:#7c5cff"></button>
+      </div>
+      <div class="toggles">
+        <button class="toggle" type="button" role="switch" data-fx="video" aria-checked="true"><i aria-hidden="true"></i>video</button>
+        <button class="toggle" type="button" role="switch" data-fx="type" aria-checked="true"><i aria-hidden="true"></i>typewriter</button>
+        <button class="toggle" type="button" role="switch" data-fx="sparkle" aria-checked="false"><i aria-hidden="true"></i>sparkle</button>
+      </div>
     </div>
   </div>
-
-  <div class="creator-stage">
-    <div class="creator-stage__glow" aria-hidden="true"></div>
-    <div class="creator-toolbar">
-      <span class="creator-toolbar__label">Make it yours</span>
-      <div class="swatches" role="radiogroup" aria-label="Preview theme">
-        <button class="swatch" type="button" data-set-theme="gothic" role="radio" aria-checked="true" tabindex="0" aria-label="Gothic theme" title="Gothic" style="--sw:#f00646"></button>
-        <button class="swatch" type="button" data-set-theme="soft" role="radio" aria-checked="false" tabindex="-1" aria-label="Soft theme" title="Soft" style="--sw:#ff8fc7"></button>
-        <button class="swatch" type="button" data-set-theme="mono" role="radio" aria-checked="false" tabindex="-1" aria-label="Mono theme" title="Mono" style="--sw:#f3f1e8"></button>
-        <button class="swatch" type="button" data-set-theme="y2k" role="radio" aria-checked="false" tabindex="-1" aria-label="Y2K theme" title="Y2K" style="--sw:#b7ff45"></button>
-        <button class="swatch" type="button" data-set-theme="sunset" role="radio" aria-checked="false" tabindex="-1" aria-label="Sunset theme" title="Sunset" style="--sw:#ff7b42"></button>
-        <button class="swatch" type="button" data-set-theme="lavender" role="radio" aria-checked="false" tabindex="-1" aria-label="Lavender theme" title="Lavender" style="--sw:#8d7bff"></button>
-      </div>
-      <button class="creator-fx" type="button" role="switch" data-fx="sparkle" aria-checked="false"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"/></svg> Effects</button>
+  <div class="mk-screen">
+    <div class="mk-chrome">
+      <span class="mk-dots" aria-hidden="true"></span>
+      <span class="mk-url">misa.lol/<span data-handle>yourname</span></span>
     </div>
-    <div class="creator-window">
-      <div class="creator-window__bar">
-        <span class="mk-dots" aria-hidden="true"></span>
-        <span class="mk-url">misa.lol/<span data-handle>yourname</span></span>
-        <span class="creator-window__live"><i aria-hidden="true"></i> Live</span>
-      </div>
-      <div class="mk-screen">
-        <div class="phone theme-gothic video-on" id="hero-phone" data-theme="gothic" role="group" aria-label="Live preview of your misa.lol page">
-          <div class="phone__bg" aria-hidden="true"></div>
-          <div class="phone__tint" aria-hidden="true"></div>
-          <div class="pf">
-            <div class="pf__avatar" aria-hidden="true" data-avatar>y</div>
-            <div class="pf__name"><span data-name>yourname</span><span class="pf__badge" data-badge title="verified"><svg class="ic"><use href="#i-check"/></svg></span></div>
-            <div class="pf__handle">misa.lol/<span data-handle>yourname</span></div>
-            <p class="pf__bio"><span data-bio>your bio, typing itself.</span><span class="caret" aria-hidden="true"></span></p>
-            <div class="pf__links">
-              <span class="pf__link"><svg class="ic"><use href="#i-music"/></svg><span class="pf__label">listen to my new release</span><svg class="ic"><use href="#i-arrow"/></svg></span>
-              <span class="pf__link"><svg class="ic"><use href="#i-video"/></svg><span class="pf__label">watch the latest video</span><svg class="ic"><use href="#i-arrow"/></svg></span>
-              <span class="pf__link"><svg class="ic"><use href="#i-users"/></svg><span class="pf__label">join the community</span><svg class="ic"><use href="#i-arrow"/></svg></span>
-            </div>
-            <div class="pf__music"><span class="pf__art"><svg class="ic"><use href="#i-play"/></svg></span><span class="pf__track"><b>graveyard shift</b><span data-artist>yourname</span><span class="pf__bar"><i></i></span></span></div>
-            <div class="pf__foot"><span class="pf__views"><svg class="ic"><use href="#i-eye"/></svg>12.4k views</span></div>
-          </div>
+    <div class="phone theme-gothic video-on" id="hero-phone" data-theme="gothic" role="group" aria-label="Live preview of your misa.lol page">
+      <div class="phone__bg" aria-hidden="true"></div>
+      <video class="phone__video" muted loop playsinline preload="none" poster="/images/mainbg-poster-960.webp" data-src="/images/mainbg.webm" data-src-mp4="/images/mainbg.mp4" data-autoplay aria-hidden="true" tabindex="-1"></video>
+      <div class="phone__tint" aria-hidden="true"></div>
+      <div class="pf">
+        <div class="pf__avatar" aria-hidden="true" data-avatar>y</div>
+        <div class="pf__name"><span data-name>yourname</span><span class="pf__badge" data-badge title="verified"><svg class="ic"><use href="#i-check"/></svg></span></div>
+        <div class="pf__handle">misa.lol/<span data-handle>yourname</span></div>
+        <p class="pf__bio"><span data-bio>your bio, typing itself.</span><span class="caret" aria-hidden="true"></span></p>
+        <div class="pf__links">
+          <span class="pf__link"><svg class="ic"><use href="#i-music"/></svg><span class="pf__label">new single</span><svg class="ic"><use href="#i-arrow"/></svg></span>
+          <span class="pf__link"><svg class="ic"><use href="#i-video"/></svg><span class="pf__label">tiktok</span><svg class="ic"><use href="#i-arrow"/></svg></span>
+          <span class="pf__link"><svg class="ic"><use href="#i-users"/></svg><span class="pf__label">discord</span><svg class="ic"><use href="#i-arrow"/></svg></span>
         </div>
+        <div class="pf__music"><span class="pf__art"><svg class="ic"><use href="#i-play"/></svg></span><span class="pf__track"><b>graveyard shift</b><span data-artist>yourname</span><span class="pf__bar"><i></i></span></span></div>
+        <div class="pf__foot"><span class="pf__views"><svg class="ic"><use href="#i-eye"/></svg>12.4k views</span></div>
       </div>
     </div>
-    <div class="creator-float creator-float--fans"><span>this week</span><b>1,204</b><small><i aria-hidden="true"></i> +18% visits</small></div>
-    <div class="creator-float creator-float--note"><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg><span>A home for<br><b>everything you make.</b></span></div>
   </div>
-</section>
-<section class="creator-outcomes" aria-label="What misa helps creators do">
-  <p>Built for creators who want to</p>
-  <div><span>01</span><b>Own their identity</b></div>
-  <div><span>02</span><b>Show their best work</b></div>
-  <div><span>03</span><b>Turn visitors into fans</b></div>
 </section>
 <!-- ═══ HOW IT WORKS — three steps, no fluff ═══ -->
 <section class="mk-sec" id="how">
