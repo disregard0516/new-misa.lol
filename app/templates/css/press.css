@@ -422,3 +422,210 @@ html:has(.mk){scroll-snap-type:none}
   .mk-lab{padding:10px}
   .mk .toggle{font-size:9px}
 }
+
+/* v3.149 — interaction and below-the-fold finish; keeps the illustrated UI */
+.mk{
+  --spot-x:50%;
+  --spot-y:50%;
+  --art-x:0px;
+  --art-y:0px;
+  --tilt-x:0deg;
+  --tilt-y:0deg;
+  --mk-line:rgba(255,255,255,.105);
+  --mk-panel:#0d0d0f;
+}
+.mk ::selection{background:#F00646;color:#fff}
+.mk::-webkit-scrollbar{width:10px}
+.mk::-webkit-scrollbar-track{background:#070708}
+.mk::-webkit-scrollbar-thumb{border:3px solid #070708;border-radius:999px;background:#343438}
+.mk::-webkit-scrollbar-thumb:hover{background:#F00646}
+
+.mk-hero-vignette::after{
+  content:"";position:absolute;inset:0;opacity:.68;
+  background:radial-gradient(360px circle at var(--spot-x) var(--spot-y),rgba(240,6,70,.105),transparent 65%);
+  transition:opacity .3s ease;mix-blend-mode:screen;
+}
+.mk .mk-nav a{position:relative;padding-block:7px}
+.mk .mk-nav a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:#F00646;transform:scaleX(0);transform-origin:right;
+  transition:transform .25s ease;
+}
+.mk .mk-nav a:hover::after,.mk .mk-nav a.is-active::after{transform:scaleX(1);transform-origin:left}
+.mk .mk-nav a.is-active{color:#fff}
+.mk .nav.is-scrolled{
+  box-shadow:0 15px 45px rgba(0,0,0,.28);
+  border-color:rgba(255,255,255,.14);
+}
+
+.mk .toggle{
+  border:1px solid rgba(255,255,255,.12)!important;
+  background:rgba(255,255,255,.035)!important;
+  transition:color .2s ease,border-color .2s ease,background .2s ease,transform .2s ease;
+}
+.mk .toggle:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.26)!important}
+.mk .toggle[aria-checked=true]{
+  border-color:rgba(240,6,70,.4)!important;
+  background:rgba(240,6,70,.1)!important;
+  color:#fff!important;
+}
+.mk-screen:hover{border-color:rgba(240,6,70,.42)}
+.mk-screen:hover::after{color:#fff;background:#F00646}
+
+/* Each section now feels like part of the same dark editorial system. */
+.mk .mk-sec,
+.mk .section.snap-sec{
+  position:relative;
+  border-top:1px solid var(--mk-line);
+}
+.mk .mk-sec::before,
+.mk .section.snap-sec::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:radial-gradient(600px circle at 9% 15%,rgba(240,6,70,.05),transparent 70%);
+}
+.mk .mk-head,.mk .bs-head2{position:relative;z-index:1}
+.mk .mk-h2,.mk .bs-head2__t{
+  letter-spacing:-.052em;
+  text-wrap:balance;
+}
+.mk .mk-head .mk-lede,.mk .bs-head2__d{color:#8f8f8b}
+
+.mk .steps{
+  position:relative;z-index:1;gap:14px;border:0;background:transparent;
+}
+.mk .steps__item{
+  position:relative;min-height:220px;padding:30px;
+  border:1px solid var(--mk-line);border-radius:18px;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.035),transparent 45%),
+    #0b0b0d;
+  overflow:hidden;
+  transition:transform .28s ease,border-color .28s ease,background .28s ease,box-shadow .28s ease;
+}
+.mk .steps__item::after{
+  content:"";position:absolute;right:-45px;bottom:-45px;width:120px;height:120px;
+  border:1px solid rgba(240,6,70,.15);border-radius:50%;
+  box-shadow:0 0 0 22px rgba(240,6,70,.025),0 0 0 44px rgba(240,6,70,.015);
+  transition:transform .4s ease,border-color .3s ease;
+}
+.mk .steps__item:hover{
+  transform:translateY(-7px);border-color:rgba(240,6,70,.36);
+  background:linear-gradient(145deg,rgba(240,6,70,.08),transparent 48%),#0d0d0f;
+  box-shadow:0 24px 60px rgba(0,0,0,.32);
+}
+.mk .steps__item:hover::after{transform:scale(1.15);border-color:rgba(240,6,70,.4)}
+.mk .steps__num{
+  display:grid;width:34px;height:34px;place-items:center;margin-bottom:30px;
+  border:1px solid rgba(240,6,70,.3);border-radius:9px;
+  background:rgba(240,6,70,.08);color:#F00646;font-family:var(--mk-mono);
+}
+.mk .steps__title{font-size:clamp(20px,2vw,27px);letter-spacing:-.04em}
+.mk .steps__item p{max-width:34ch;color:#8e8e8a;line-height:1.65}
+
+.mk .wall{position:relative;z-index:1;gap:20px}
+.mk .wall__item{
+  border:1px solid rgba(255,255,255,.1)!important;border-radius:18px!important;
+  background:#0c0c0e!important;padding:9px!important;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s ease,box-shadow .3s ease!important;
+}
+.mk .wall__item:hover{
+  z-index:3;transform:translateY(-9px) scale(1.015)!important;
+  border-color:rgba(240,6,70,.42)!important;
+  box-shadow:0 28px 70px rgba(0,0,0,.52),0 0 34px rgba(240,6,70,.08);
+}
+.mk .wall__item .phone{border-radius:12px!important;transition:filter .3s ease}
+.mk .wall__item:hover .phone{filter:saturate(1.12) brightness(1.04)}
+.mk .wall .film__cap{display:flex;justify-content:space-between;padding:12px 5px 4px;color:#bdbdb8}
+
+.mk .manifesto{
+  display:block!important;position:relative;overflow:hidden;
+  border-block:1px solid rgba(255,255,255,.13);
+  background:
+    radial-gradient(circle at 78% 30%,rgba(255,255,255,.1),transparent 25%),
+    linear-gradient(120deg,#bb0037,#F00646 55%,#a90032);
+}
+.mk .manifesto::before{
+  content:"";position:absolute;inset:-50%;opacity:.16;
+  background:repeating-linear-gradient(115deg,transparent 0 34px,rgba(255,255,255,.15) 35px 36px);
+  transform:rotate(-6deg);
+}
+.mk .manifesto__inner{position:relative;z-index:1}
+.mk .manifesto__title{max-width:12ch;text-shadow:0 12px 40px rgba(70,0,20,.32)}
+.mk .manifesto__cols{max-width:900px}
+
+.mk .spec{position:relative;z-index:1}
+.mk .spec__row{
+  margin-bottom:10px;padding:26px 24px!important;
+  border:1px solid rgba(255,255,255,.09)!important;border-radius:15px;
+  background:rgba(255,255,255,.018);
+  transition:transform .25s ease,border-color .25s ease,background .25s ease;
+}
+.mk .spec__row:hover{
+  transform:translateX(5px);border-color:rgba(240,6,70,.3)!important;
+  background:rgba(240,6,70,.035);
+}
+.mk .spec__name em{transition:color .2s ease}
+.mk .spec__row:hover .spec__name em{color:#F00646}
+.mk .spec__demo{filter:saturate(.88);transition:filter .25s ease,transform .25s ease}
+.mk .spec__row:hover .spec__demo{filter:saturate(1.12);transform:translateY(-2px)}
+
+.mk .allof{
+  position:relative;z-index:1;gap:1px;padding:1px;
+  border:1px solid var(--mk-line);border-radius:17px;overflow:hidden;
+  background:var(--mk-line);
+}
+.mk .allof__col{background:#0b0b0d!important;padding:24px!important}
+.mk .allof__col:hover{background:#101013!important}
+.mk .allof__h{color:#e2e2dd}
+
+.mk .tiers{position:relative;z-index:1;gap:15px}
+.mk .tier-col{
+  position:relative;overflow:hidden;
+  border:1px solid var(--mk-line)!important;border-radius:18px!important;
+  background:linear-gradient(150deg,rgba(255,255,255,.035),transparent 40%),#0b0b0d!important;
+  transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease;
+}
+.mk .tier-col:hover{
+  transform:translateY(-8px);border-color:rgba(255,255,255,.22)!important;
+  box-shadow:0 28px 70px rgba(0,0,0,.4);
+}
+.mk .tier-col--hot{
+  border-color:rgba(240,6,70,.45)!important;
+  background:linear-gradient(150deg,rgba(240,6,70,.12),transparent 45%),#0b0b0d!important;
+}
+.mk .tier-col--hot::before{
+  content:"MOST POPULAR";position:absolute;right:17px;top:17px;
+  color:#ff5c89;font:500 8px/1 var(--mk-mono);letter-spacing:.1em;
+}
+.mk .tier-col .btn{transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.mk .tier-col .btn:hover{transform:translateY(-2px)}
+
+.mk .cta{
+  position:relative;overflow:hidden;border-top:1px solid var(--mk-line);
+  background:
+    radial-gradient(600px circle at 20% 50%,rgba(240,6,70,.14),transparent 68%),
+    #09090b;
+}
+.mk .cta::after{
+  content:"misa.lol";position:absolute;right:-.04em;bottom:-.19em;
+  color:rgba(255,255,255,.022);font:800 clamp(120px,22vw,340px)/1 Inter,sans-serif;
+  letter-spacing:-.09em;pointer-events:none;
+}
+.mk .cta__grid{position:relative;z-index:1}
+.mk .footer{border-top:1px solid var(--mk-line);background:#050506}
+
+@media (prefers-reduced-motion:no-preference){
+  @keyframes mk-art-breathe{
+    from{transform:translate3d(var(--art-x),var(--art-y),0) scale(1.015)}
+    to{transform:translate3d(var(--art-x),var(--art-y),0) scale(1.045)}
+  }
+  @keyframes mk-screen-float{
+    0%,100%{transform:perspective(1200px) rotateY(calc(-5deg + var(--tilt-x))) rotateX(var(--tilt-y)) rotateZ(1deg) translateY(0)}
+    50%{transform:perspective(1200px) rotateY(calc(-2deg + var(--tilt-x))) rotateX(var(--tilt-y)) rotateZ(.2deg) translateY(-10px)}
+  }
+}
+@media (max-width:820px){
+  .mk .spec__row:hover{transform:none}
+  .mk .wall__item:hover{transform:translateY(-4px)!important}
+  .mk .steps__item{min-height:auto}
+}
