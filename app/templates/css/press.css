@@ -1643,6 +1643,16 @@ html:has(.mk){scroll-behavior:auto;scroll-snap-type:none}
   width:160px;height:320px;
   border-radius:28px!important;
 }
+/* Each preview page is laid out for a 300px frame, so scale it down to the ring's phone
+   instead of letting the frame crop it. */
+.mk .wall.wall--ring .phone .pf{
+  width:300px;
+  min-height:600px;
+  align-content:space-between;
+  padding:34px 18px 24px;
+  transform:scale(.5333);
+  transform-origin:0 0;
+}
 .mk .wall.wall--ring .phone__notch{top:8px;width:54px;height:15px}
 .mk .wall.wall--ring .phone::before{left:-5px;top:78px;height:40px}
 .mk .wall.wall--ring .phone::after{right:-5px;top:94px;height:58px}
@@ -1671,3 +1681,42 @@ html:has(.mk){scroll-behavior:auto;scroll-snap-type:none}
 }
 .mk .manifesto::before{opacity:.1}
 .mk .manifesto::after{color:rgba(0,0,0,.1)}
+
+/* Phones: the hero grows past one screen instead of pushing the headline off the top,
+   and the ring shrinks to whatever the viewport can actually hold. */
+@media (max-width:820px){
+  .mk-hero{
+    height:auto!important;
+    min-height:100dvh;
+    max-height:none!important;
+    justify-content:center;
+    padding:104px 18px 44px!important;
+  }
+  .mk-h1{font-size:clamp(30px,7.4vw,46px)!important}
+  .mk-copy{max-width:100%;padding:14px 10px!important}
+  .mk-hero .mk-stage{
+    position:relative;right:auto;bottom:auto;
+    width:min(94%,300px);margin:22px auto 0;
+  }
+  .mk-hero .pf__col{padding:16px 14px}
+  .mk-hero .mk-screen .pf__avatar,
+  .mk-hero .mk-screen .pf__top{grid-template-columns:72px 1fr}
+  .mk-hero .mk-screen .pf__avatar{width:72px;height:72px}
+  .mk-hero .mk-screen .pf__name{font-size:20px}
+
+  .mk .nav__inner{padding:0 8px 0 14px!important;gap:6px}
+  .mk .nav__login{display:none}
+  .mk .nav__actions{margin-left:auto;gap:6px;min-width:0}
+  .mk .nav__actions .btn--ivory{padding:8px 12px;font-size:12px;white-space:nowrap}
+
+  #themes.section{overflow:clip visible!important}
+  .wall-orbit{height:380px}
+  .wall-orbit__disc{width:270px;height:270px;margin:-135px 0 0 -135px}
+  .mk .wall.wall--ring .wall__item,.mk .wall.wall--ring .phone{width:104px}
+  .mk .wall.wall--ring .wall__item{height:208px;margin:-104px 0 0 -52px}
+  .mk .wall.wall--ring .phone{height:208px;border-radius:20px!important}
+  .mk .wall.wall--ring .phone__notch{width:34px;height:10px}
+  .mk .wall.wall--ring .phone .pf{min-height:640px;transform:scale(.3467)}
+  .mk .wall.wall--ring .phone::before,
+  .mk .wall.wall--ring .phone::after{display:none!important}
+}

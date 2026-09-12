@@ -202,7 +202,9 @@
       if (!n) return;
       var step = 360 / n;
       var compact = window.matchMedia("(max-width:820px)").matches;
-      var radius = compact ? 210 : 340;
+      var half = compact ? 52 : 80;
+      var fits = window.innerWidth / 2 - half - 10;
+      var radius = Math.min(compact ? 210 : 340, Math.max(110, fits));
       if (wallStage) {
         wallStage.style.transform = "rotateX(" + RING_TILT + "deg) rotateZ(" + ringAngle.toFixed(2) + "deg)";
       }
