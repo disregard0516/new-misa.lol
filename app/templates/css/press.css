@@ -1630,23 +1630,33 @@ html:has(.mk){scroll-behavior:auto;scroll-snap-type:none}
 }
 .mk-h1 em{letter-spacing:-.115em!important;word-spacing:.72em!important}
 
-/* Off-stage phones read as beads on the ring, so the circle still carries all sixteen. */
-.mk .wall.wall--ring .wall__item.is-ghost{cursor:default}
-.mk .wall.wall--ring .wall__item.is-ghost .phone{
-  opacity:0;
-  transition:opacity .32s ease;
+/* The whole ring reads at once again: every phone on the circle, swipe to spin it. */
+.wall-orbit{height:660px;cursor:grab}
+.wall-orbit.is-dragging{cursor:grabbing}
+.wall-stage{top:50%}
+.wall-orbit__disc{width:680px;height:680px;margin:-340px 0 0 -340px}
+.mk .wall.wall--ring .wall__item{
+  width:160px;height:320px;margin:-160px 0 0 -80px;
+  transition:transform .42s cubic-bezier(.22,.7,.2,1),opacity .3s ease,filter .3s ease;
 }
-.mk .wall.wall--ring .wall__item.is-ghost::after{
-  content:"";
-  position:absolute;left:50%;bottom:-4px;
-  width:9px;height:9px;margin-left:-4.5px;
-  border-radius:50%;
-  background:rgba(240,6,70,.55);
-  box-shadow:0 0 0 1px rgba(255,255,255,.14),0 0 14px rgba(240,6,70,.6);
+.mk .wall.wall--ring .phone{
+  width:160px;height:320px;
+  border-radius:28px!important;
+}
+.mk .wall.wall--ring .phone__notch{top:8px;width:54px;height:15px}
+.mk .wall.wall--ring .phone::before{left:-5px;top:78px;height:40px}
+.mk .wall.wall--ring .phone::after{right:-5px;top:94px;height:58px}
+@media (max-width:820px){
+  .wall-orbit{height:460px}
+  .wall-orbit__disc{width:420px;height:420px;margin:-210px 0 0 -210px}
+  .mk .wall.wall--ring .wall__item,.mk .wall.wall--ring .phone{width:116px}
+  .mk .wall.wall--ring .wall__item{height:232px;margin:-116px 0 0 -58px}
+  .mk .wall.wall--ring .phone{height:232px;border-radius:22px!important}
+  .mk .wall.wall--ring .phone__notch{width:40px;height:11px}
 }
 
 /* Ring phones stay whole: nothing clips them, and the crimson band below is glass. */
-#themes.section{overflow:visible!important;padding-bottom:16px}
+#themes.section{overflow:visible!important;padding-bottom:40px}
 .wall-orbit{overflow:visible}
 .mk .manifesto{
   position:relative;

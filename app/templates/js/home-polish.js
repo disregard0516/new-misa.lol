@@ -202,7 +202,7 @@
       if (!n) return;
       var step = 360 / n;
       var compact = window.matchMedia("(max-width:820px)").matches;
-      var radius = compact ? 200 : 320;
+      var radius = compact ? 210 : 340;
       if (wallStage) {
         wallStage.style.transform = "rotateX(" + RING_TILT + "deg) rotateZ(" + ringAngle.toFixed(2) + "deg)";
       }
@@ -225,14 +225,12 @@
           "deg) rotateX(" +
           (-RING_TILT) +
           "deg)";
-        var off = Math.abs(((world + 180) % 360) - 180);
-        var near = off <= step * 0.6;
-        var side = off <= step * 1.6;
+        var depth = (front + 1) / 2;
         item.style.zIndex = String(Math.round(40 + front * 80));
-        item.style.opacity = near ? "1" : side ? "0.3" : "1";
-        item.style.pointerEvents = side ? "auto" : "none";
-        item.classList.toggle("is-front", near);
-        item.classList.toggle("is-ghost", !side);
+        item.style.opacity = (0.66 + 0.34 * depth).toFixed(3);
+        item.style.filter = "brightness(" + (0.72 + 0.28 * depth).toFixed(3) + ")";
+        item.style.pointerEvents = "auto";
+        item.classList.toggle("is-front", front > 0.96);
       }
     }
 
@@ -244,10 +242,10 @@
       ringPaint();
     }
 
-    function ringGo(dir) {
+    function ringGo(dir, steps) {
       var n = ringItems.length;
       if (!n) return;
-      ringAngle -= dir * (360 / n);
+      ringAngle -= dir * (steps || 1) * (360 / n);
       ringSnap();
     }
 
@@ -262,43 +260,6 @@
     ringBoot();
     window.addEventListener("resize", ringPaint);
 
-    var ringAutoTimer = 0;
-    var ringHeld = false;
-    var ringSeen = true;
-    var stillOk = !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
-
-    function ringAutoStop() {
-      window.clearInterval(ringAutoTimer);
-      ringAutoTimer = 0;
-    }
-    function ringAutoStart() {
-      if (ringAutoTimer || !stillOk || ringHeld || !ringSeen) return;
-      ringAutoTimer = window.setInterval(function () {
-        ringGo(1);
-      }, 3400);
-    }
-    function ringHold(state) {
-      ringHeld = state;
-      if (state) ringAutoStop();
-      else ringAutoStart();
-    }
-    orbit.addEventListener("pointerenter", function () { ringHold(true); });
-    orbit.addEventListener("pointerleave", function () { ringHold(false); });
-    orbit.addEventListener("focusin", function () { ringHold(true); });
-    orbit.addEventListener("focusout", function () { ringHold(false); });
-    document.addEventListener("visibilitychange", function () {
-      if (document.hidden) ringAutoStop();
-      else ringAutoStart();
-    });
-    if (window.IntersectionObserver) {
-      new window.IntersectionObserver(function (entries) {
-        ringSeen = entries[0].isIntersecting;
-        if (ringSeen) ringAutoStart();
-        else ringAutoStop();
-      }, { threshold: 0.25 }).observe(orbit);
-    } else {
-      ringAutoStart();
-    }
 
     var prevBtn = orbit.querySelector(".wall-orbit__nav--prev");
     var nextBtn = orbit.querySelector(".wall-orbit__nav--next");
@@ -323,15 +284,19 @@
       ringV = dx / Math.max(1, now - ringT);
       ringX = event.clientX;
       ringT = now;
-      ringAngle += dx * 0.32;
+      ringAngle += dx * 0.42;
       ringPaint();
     });
     function ringEnd() {
       if (!ringDrag) return;
       ringDrag = false;
       orbit.classList.remove("is-dragging");
-      if (Math.abs(ringV) > 0.32) ringGo(ringV > 0 ? -1 : 1);
-      else ringSnap();
+      var speed = Math.abs(ringV);
+      if (speed > 0.22) {
+        ringGo(ringV > 0 ? -1 : 1, Math.min(4, Math.max(1, Math.round(speed * 2.6))));
+      } else {
+        ringSnap();
+      }
     }
     orbit.addEventListener("pointerup", ringEnd);
     orbit.addEventListener("pointercancel", ringEnd);
