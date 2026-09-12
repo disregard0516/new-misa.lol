@@ -1630,11 +1630,12 @@ html:has(.mk){scroll-behavior:auto;scroll-snap-type:none}
 }
 .mk-h1 em{letter-spacing:-.115em!important;word-spacing:.72em!important}
 
-/* The whole ring reads at once again: every phone on the circle, swipe to spin it. */
-.wall-orbit{height:660px;cursor:grab}
+/* One phone at a time: the ring still carries all sixteen, but only the one facing
+   forward is drawn, centred on the circle it rides. */
+.wall-orbit{height:540px;cursor:grab}
 .wall-orbit.is-dragging{cursor:grabbing}
-.wall-stage{top:50%}
-.wall-orbit__disc{width:680px;height:680px;margin:-340px 0 0 -340px}
+.wall-stage{top:25%}
+.wall-orbit__disc{width:520px;height:520px;margin:-260px 0 0 -260px}
 .mk .wall.wall--ring .wall__item{
   width:160px;height:320px;margin:-160px 0 0 -80px;
   transition:transform .42s cubic-bezier(.22,.7,.2,1),opacity .3s ease,filter .3s ease;
@@ -1710,7 +1711,7 @@ html:has(.mk){scroll-behavior:auto;scroll-snap-type:none}
   .mk .nav__actions .btn--ivory{padding:8px 12px;font-size:12px;white-space:nowrap}
 
   #themes.section{overflow:clip visible!important}
-  .wall-orbit{height:380px}
+  .wall-orbit{height:340px}
   .wall-orbit__disc{width:270px;height:270px;margin:-135px 0 0 -135px}
   .mk .wall.wall--ring .wall__item,.mk .wall.wall--ring .phone{width:104px}
   .mk .wall.wall--ring .wall__item{height:208px;margin:-104px 0 0 -52px}

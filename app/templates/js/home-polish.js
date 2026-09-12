@@ -204,7 +204,7 @@
       var compact = window.matchMedia("(max-width:820px)").matches;
       var half = compact ? 52 : 80;
       var fits = window.innerWidth / 2 - half - 10;
-      var radius = Math.min(compact ? 210 : 340, Math.max(110, fits));
+      var radius = Math.min(compact ? 170 : 260, Math.max(110, fits));
       if (wallStage) {
         wallStage.style.transform = "rotateX(" + RING_TILT + "deg) rotateZ(" + ringAngle.toFixed(2) + "deg)";
       }
@@ -227,12 +227,11 @@
           "deg) rotateX(" +
           (-RING_TILT) +
           "deg)";
-        var depth = (front + 1) / 2;
+        var lead = front > 0.96;
         item.style.zIndex = String(Math.round(40 + front * 80));
-        item.style.opacity = (0.66 + 0.34 * depth).toFixed(3);
-        item.style.filter = "brightness(" + (0.72 + 0.28 * depth).toFixed(3) + ")";
-        item.style.pointerEvents = "auto";
-        item.classList.toggle("is-front", front > 0.96);
+        item.style.opacity = lead ? "1" : "0";
+        item.style.pointerEvents = lead ? "auto" : "none";
+        item.classList.toggle("is-front", lead);
       }
     }
 
