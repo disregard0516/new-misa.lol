@@ -229,10 +229,10 @@
         var near = off <= step * 0.6;
         var side = off <= step * 1.6;
         item.style.zIndex = String(Math.round(40 + front * 80));
-        item.style.opacity = near ? "1" : side ? "0.28" : "0";
-        item.style.visibility = side ? "visible" : "hidden";
+        item.style.opacity = near ? "1" : side ? "0.3" : "1";
         item.style.pointerEvents = side ? "auto" : "none";
         item.classList.toggle("is-front", near);
+        item.classList.toggle("is-ghost", !side);
       }
     }
 
@@ -261,6 +261,44 @@
     }
     ringBoot();
     window.addEventListener("resize", ringPaint);
+
+    var ringAutoTimer = 0;
+    var ringHeld = false;
+    var ringSeen = true;
+    var stillOk = !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+    function ringAutoStop() {
+      window.clearInterval(ringAutoTimer);
+      ringAutoTimer = 0;
+    }
+    function ringAutoStart() {
+      if (ringAutoTimer || !stillOk || ringHeld || !ringSeen) return;
+      ringAutoTimer = window.setInterval(function () {
+        ringGo(1);
+      }, 3400);
+    }
+    function ringHold(state) {
+      ringHeld = state;
+      if (state) ringAutoStop();
+      else ringAutoStart();
+    }
+    orbit.addEventListener("pointerenter", function () { ringHold(true); });
+    orbit.addEventListener("pointerleave", function () { ringHold(false); });
+    orbit.addEventListener("focusin", function () { ringHold(true); });
+    orbit.addEventListener("focusout", function () { ringHold(false); });
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) ringAutoStop();
+      else ringAutoStart();
+    });
+    if (window.IntersectionObserver) {
+      new window.IntersectionObserver(function (entries) {
+        ringSeen = entries[0].isIntersecting;
+        if (ringSeen) ringAutoStart();
+        else ringAutoStop();
+      }, { threshold: 0.25 }).observe(orbit);
+    } else {
+      ringAutoStart();
+    }
 
     var prevBtn = orbit.querySelector(".wall-orbit__nav--prev");
     var nextBtn = orbit.querySelector(".wall-orbit__nav--next");

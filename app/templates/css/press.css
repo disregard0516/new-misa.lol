@@ -1630,6 +1630,21 @@ html:has(.mk){scroll-behavior:auto;scroll-snap-type:none}
 }
 .mk-h1 em{letter-spacing:-.115em!important;word-spacing:.72em!important}
 
+/* Off-stage phones read as beads on the ring, so the circle still carries all sixteen. */
+.mk .wall.wall--ring .wall__item.is-ghost{cursor:default}
+.mk .wall.wall--ring .wall__item.is-ghost .phone{
+  opacity:0;
+  transition:opacity .32s ease;
+}
+.mk .wall.wall--ring .wall__item.is-ghost::after{
+  content:"";
+  position:absolute;left:50%;bottom:-4px;
+  width:9px;height:9px;margin-left:-4.5px;
+  border-radius:50%;
+  background:rgba(240,6,70,.55);
+  box-shadow:0 0 0 1px rgba(255,255,255,.14),0 0 14px rgba(240,6,70,.6);
+}
+
 /* Ring phones stay whole: nothing clips them, and the crimson band below is glass. */
 #themes.section{overflow:visible!important;padding-bottom:16px}
 .wall-orbit{overflow:visible}
