@@ -6,7 +6,7 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var finePointer = window.matchMedia("(pointer: fine)").matches;
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".mk-nav a[href^='/#']"));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav__links a[href^='/#']"));
   var sections = navLinks
     .map(function (link) {
       var id = link.getAttribute("href").split("#")[1];
@@ -58,20 +58,6 @@
     });
   });
 
-  if (!reduceMotion && window.Lenis) {
-    var lenis = new window.Lenis({
-      duration: 1.05,
-      smoothWheel: true,
-      wheelMultiplier: 0.92,
-      touchMultiplier: 1
-    });
-    function smoothFrame(time) {
-      lenis.raf(time);
-      requestAnimationFrame(smoothFrame);
-    }
-    requestAnimationFrame(smoothFrame);
-  }
-
   if (!reduceMotion && window.gsap) {
     document.documentElement.classList.add("has-gsap");
     window.gsap.from(".mk-copy > *", {
@@ -79,15 +65,6 @@
       y: 24,
       duration: 0.72,
       stagger: 0.085,
-      ease: "power3.out",
-      clearProps: "opacity,transform"
-    });
-    window.gsap.from(".mk-screen", {
-      opacity: 0,
-      x: 36,
-      rotate: 4,
-      duration: 0.9,
-      delay: 0.2,
       ease: "power3.out",
       clearProps: "opacity,transform"
     });
@@ -173,20 +150,11 @@
   }
 
   var loop = document.querySelector(".mk-hero-loop");
-  if (loop && !reduceMotion) {
-    var webm = document.createElement("source");
-    webm.src = loop.getAttribute("data-src-webm") || "";
-    webm.type = "video/webm";
-    var mp4 = document.createElement("source");
-    mp4.src = loop.getAttribute("data-src") || "";
-    mp4.type = "video/mp4";
-    if (webm.src) loop.appendChild(webm);
-    if (mp4.src) loop.appendChild(mp4);
-    loop.load();
-    var play = loop.play();
-    if (play && play.then) {
-      play.then(function () { loop.classList.add("is-on"); }).catch(function () {});
-    }
+  if (loop) {
+    loop.removeAttribute("data-src");
+    loop.removeAttribute("data-src-webm");
+    loop.pause && loop.pause();
+    loop.remove();
   }
 
   var viewEl = document.querySelector("[data-live-views]");
@@ -210,11 +178,166 @@
     }, 9000);
   }
 
+  var orbit = document.getElementById("wall-orbit");
+  var wallRing = document.getElementById("wall");
+  var wallStage = document.getElementById("wall-stage");
+  if (orbit && wallRing && wallRing.classList.contains("wall--ring")) {
+    var ringItems = [];
+    var ringAngle = 0;
+    var ringDrag = false;
+    var ringMoved = false;
+    var ringX = 0;
+    var ringT = 0;
+    var ringV = 0;
+    var ringSnapTimer = 0;
+    var RING_TILT = 64;
+    orbit.tabIndex = 0;
+
+    function ringCollect() {
+      ringItems = Array.prototype.slice.call(wallRing.querySelectorAll(".wall__item"));
+    }
+
+    function ringPaint() {
+      var n = ringItems.length;
+      if (!n) return;
+      var step = 360 / n;
+      var compact = window.matchMedia("(max-width:820px)").matches;
+      var radius = compact ? 200 : 320;
+      if (wallStage) {
+        wallStage.style.transform = "rotateX(" + RING_TILT + "deg) rotateZ(" + ringAngle.toFixed(2) + "deg)";
+      }
+      var i;
+      for (i = 0; i < n; i++) {
+        var local = i * step;
+        var rad = (local * Math.PI) / 180;
+        var x = Math.sin(rad) * radius;
+        var y = Math.cos(rad) * radius;
+        var world = ((local + ringAngle) % 360 + 360) % 360;
+        var front = Math.cos((world * Math.PI) / 180);
+        var item = ringItems[i];
+        item.style.transform =
+          "translate3d(" +
+          x.toFixed(1) +
+          "px," +
+          y.toFixed(1) +
+          "px,0) rotateZ(" +
+          (-ringAngle).toFixed(2) +
+          "deg) rotateX(" +
+          (-RING_TILT) +
+          "deg)";
+        var off = Math.abs(((world + 180) % 360) - 180);
+        var near = off <= step * 0.6;
+        var side = off <= step * 1.6;
+        item.style.zIndex = String(Math.round(40 + front * 80));
+        item.style.opacity = near ? "1" : side ? "0.28" : "0";
+        item.style.visibility = side ? "visible" : "hidden";
+        item.style.pointerEvents = side ? "auto" : "none";
+        item.classList.toggle("is-front", near);
+      }
+    }
+
+    function ringSnap() {
+      var n = ringItems.length;
+      if (!n) return;
+      var step = 360 / n;
+      ringAngle = -Math.round(-ringAngle / step) * step;
+      ringPaint();
+    }
+
+    function ringGo(dir) {
+      var n = ringItems.length;
+      if (!n) return;
+      ringAngle -= dir * (360 / n);
+      ringSnap();
+    }
+
+    function ringBoot() {
+      ringCollect();
+      if (!ringItems.length) {
+        window.setTimeout(ringBoot, 40);
+        return;
+      }
+      ringPaint();
+    }
+    ringBoot();
+    window.addEventListener("resize", ringPaint);
+
+    var prevBtn = orbit.querySelector(".wall-orbit__nav--prev");
+    var nextBtn = orbit.querySelector(".wall-orbit__nav--next");
+    if (prevBtn) prevBtn.addEventListener("click", function () { ringGo(-1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { ringGo(1); });
+
+    orbit.addEventListener("pointerdown", function (event) {
+      if (event.target.closest(".wall-orbit__nav")) return;
+      ringDrag = true;
+      ringMoved = false;
+      orbit.classList.add("is-dragging");
+      ringX = event.clientX;
+      ringT = performance.now();
+      ringV = 0;
+      orbit.setPointerCapture(event.pointerId);
+    });
+    orbit.addEventListener("pointermove", function (event) {
+      if (!ringDrag) return;
+      var dx = event.clientX - ringX;
+      if (Math.abs(dx) > 5) ringMoved = true;
+      var now = performance.now();
+      ringV = dx / Math.max(1, now - ringT);
+      ringX = event.clientX;
+      ringT = now;
+      ringAngle += dx * 0.32;
+      ringPaint();
+    });
+    function ringEnd() {
+      if (!ringDrag) return;
+      ringDrag = false;
+      orbit.classList.remove("is-dragging");
+      if (Math.abs(ringV) > 0.32) ringGo(ringV > 0 ? -1 : 1);
+      else ringSnap();
+    }
+    orbit.addEventListener("pointerup", ringEnd);
+    orbit.addEventListener("pointercancel", ringEnd);
+
+    wallRing.addEventListener("click", function (event) {
+      if (ringMoved) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        ringMoved = false;
+        return;
+      }
+      var item = event.target.closest(".wall__item");
+      if (!item) return;
+      var idx = ringItems.indexOf(item);
+      if (idx < 0) return;
+      ringAngle = -idx * (360 / ringItems.length);
+      ringPaint();
+    }, true);
+
+    orbit.addEventListener("wheel", function (event) {
+      if (Math.abs(event.deltaX) < Math.abs(event.deltaY) && !event.shiftKey) return;
+      event.preventDefault();
+      ringAngle += (event.shiftKey ? event.deltaY : event.deltaX) * 0.14;
+      ringPaint();
+      window.clearTimeout(ringSnapTimer);
+      ringSnapTimer = window.setTimeout(ringSnap, 140);
+    }, { passive: false });
+
+    orbit.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        ringGo(-1);
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        ringGo(1);
+      }
+    });
+  }
+
   if (reduceMotion || !finePointer) return;
 
   document.documentElement.classList.add("has-star-cursor");
 
-  Array.prototype.forEach.call(document.querySelectorAll(".mk-go,.mk-claim__btn,.cta .claim__btn"), function (button) {
+  Array.prototype.forEach.call(document.querySelectorAll(".nav .btn[data-claim],.mk-claim__btn,.cta .claim__btn"), function (button) {
     button.addEventListener("pointermove", function (event) {
       var box = button.getBoundingClientRect();
       var x = (event.clientX - box.left - box.width / 2) * 0.16;
